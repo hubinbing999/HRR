@@ -23,6 +23,14 @@ namespace MVC_8
         }
         public DbSet<Classs> ts { get; set; }
         public DbSet<Student> Student { get; set; }
+        public DbSet<users> userss { get; set; }
+        public DbSet<config_file_first_kind> config_file_first_kinds { get; set; }
+        public DbSet<config_file_second_kind> config_file_second_kinds { get; set; }
+        public DbSet<config_file_third_kind> config_file_third_kinds { get; set; }
+        public DbSet<config_question_first_kind> config_question_first_kinds { get; set; }
+        public DbSet<config_question_second_kind> config_question_second_kinds { get; set; }
+        public DbSet<config_public_char> config_public_chars { get; set; }
+
     }
 }
 
