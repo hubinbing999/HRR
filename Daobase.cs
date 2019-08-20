@@ -1,5 +1,4 @@
-﻿using MVC_8;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -8,9 +7,8 @@ using System.Linq.Expressions;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-using Log4;
 
-namespace DAO
+namespace MVC_8
 {
     public class Daobase<T> where T : class
     {
@@ -32,18 +30,20 @@ namespace DAO
         //新增
         public int Add(T t)
         {
-            try {
-                db.Set<T>().Add(t);
-            } catch(Exception ex) {
-                Class1.WriteLog(ex); 
-            }
+            db.Set<T>().Add(t);
             return db.SaveChanges();
         }
-      
+        //修改
+        public int Uodate(T t)
+        {
+            db.Entry<T>(t).State = EntityState.Modified;
+            return db.SaveChanges();
+        }
+
         //删除  根据 条件删除
         public int Del(Expression<Func<T, bool>> where)
         {
-            T t = db.Set<T>().Where(where).AsNoTracking().FirstOrDefault();
+            T t = db.Set<T>().Where(where).FirstOrDefault();
 
             db.Set<T>().Attach(t);
             //对数据删除
@@ -53,14 +53,14 @@ namespace DAO
         //查询所有
         public List<T> SelectAll()
         {
-            List<T> list = db.Set<T>().Select(e => e).AsNoTracking().ToList();
+            List<T> list = db.Set<T>().Select(e => e).ToList();
             return list;
         }
         //根据条件查询
         public List<T> SeleteBy(Expression<Func<T, bool>> where)
         {
             List<T> list = db.Set<T>().Select(e => e)
-                  .Where(where).AsNoTracking()
+                  .Where(where)
                   .ToList();
 
             return list;
@@ -68,7 +68,7 @@ namespace DAO
         //分页查询 k代表数据类型 ，查询条件 ，总记录数 ，当前页，显示数量
         public List<T> FenYe<K>(Expression<Func<T, K>> order, Expression<Func<T, bool>> where, ref int rows, int currentPage, int pageSize)
         {
-            var data = db.Set<T>().OrderBy(order).Where(where).AsNoTracking();
+            var data = db.Set<T>().OrderBy(order).Where(where);
             rows = data.Count();//获取总行数
             List<T> list = data.Skip((currentPage - 1) * pageSize)
                    .Take(pageSize)
@@ -77,7 +77,7 @@ namespace DAO
         }
 
         //修改
-        public int ModifyWithOutproNames(T model, params string[] proNames) 
+        public int ModifyWithOutproNames(T model, string prymartKey, params string[] proNames)
         {
 
             DbEntityEntry entry = db.Entry<T>(model);
@@ -92,6 +92,7 @@ namespace DAO
             db.Configuration.ValidateOnSaveEnabled = false;
             return db.SaveChanges();
         }
+
 
     }
 }
