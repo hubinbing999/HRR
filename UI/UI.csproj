@@ -704,7 +704,8 @@
     <Content Include="Unity.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\config_file_first_kind\Index.cshtml" />
+    <Content Include="Views\config_file_first_kind\config_file_first_kind.cshtml" />
+    <Content Include="Views\config_file_first_kind\config_file_first_kindCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -733,6 +734,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{985dd896-f182-4805-ba3c-752aae903640}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVC-8\MVC-8.csproj">
+      <Project>{cec639a6-f409-4dbe-a34d-02d8360bff2a}</Project>
+      <Name>MVC-8</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

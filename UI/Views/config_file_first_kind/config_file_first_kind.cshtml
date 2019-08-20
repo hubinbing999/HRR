@@ -1,6 +1,4 @@
-﻿@model IEnumerable<Model.config_file_first_kindModel>
-
-@{
+﻿@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -30,8 +28,8 @@
                 </tr>
                 <tr>
                     <td align="right">
-                        <input type="button" value="添加" class="BUTTON_STYLE1"
-                               onclick="window.location.href='first_kind_register.html'" />
+                        @*<input type="button" value="添加" class="BUTTON_STYLE1" v-on:click="tj" />*@
+                        @Html.ActionLink("添加", "config_file_first_kindCreate", "",new {@class = "BUTTON_STYLE1"})
                     </td>
                 </tr>
             </table>
@@ -93,7 +91,7 @@
             load: function () {
                 var v = this;
                 $.ajax({
-                    url: "/config_file_first_kindController/Index2",
+                    url: "config_file_first_kind2",
                     type: "post",
                     data: "",
                     success: function (msg) {

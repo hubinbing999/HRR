@@ -14,11 +14,11 @@ namespace UI.Controllers
     {
         config_file_first_kindIBLL cb = iocComm.config_file_first_kindBLL();
         // GET: config_file_first_kind
-        public ActionResult Index() {
+        public ActionResult config_file_first_kind() {
             return View();
         }
 
-        public ActionResult Index2()
+        public ActionResult config_file_first_kind2()
         {
             List<config_file_first_kindModel> list = cb.select1();
             return Content(JsonConvert.SerializeObject(list));
@@ -26,20 +26,20 @@ namespace UI.Controllers
 
 
         // GET: config_file_first_kind/Create
-        public ActionResult Create()
+        public ActionResult config_file_first_kindCreate()
         {
             return View();
         }
 
         // POST: config_file_first_kind/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult config_file_first_kindCreate(FormCollection collection)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("config_file_first_kind");
             }
             catch
             {

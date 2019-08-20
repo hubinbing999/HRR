@@ -16,7 +16,7 @@ namespace UI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Student", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "config_file_first_kind", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
