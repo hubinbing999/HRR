@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="config_file_first_kindModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="usersModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
