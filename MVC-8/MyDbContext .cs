@@ -21,8 +21,7 @@ namespace MVC_8
             modelBuilder.Configurations.
                 AddFromAssembly(Assembly.GetExecutingAssembly());
         }
-        public DbSet<Classs> ts { get; set; }
-        public DbSet<Student> Student { get; set; }
+        public DbSet<config_file_first_kind> config_file_first_kinds { get; set; }
     }
 }
 

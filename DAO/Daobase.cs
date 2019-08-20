@@ -32,11 +32,7 @@ namespace DAO
         //新增
         public int Add(T t)
         {
-            try {
                 db.Set<T>().Add(t);
-            } catch(Exception ex) {
-                Class1.WriteLog(ex); 
-            }
             return db.SaveChanges();
         }
       
