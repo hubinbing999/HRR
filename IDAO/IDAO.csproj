@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="config_file_first_kindIDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="usersIDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">

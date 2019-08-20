@@ -52,6 +52,7 @@
     <Compile Include="config_file_first_kindDAO.cs" />
     <Compile Include="Daobase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="usersDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IDAO\IDAO.csproj">

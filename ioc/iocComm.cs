@@ -26,6 +26,18 @@ namespace ioc
             return ioc.Resolve<config_file_first_kindIBLL>("config_file_first_kindBLL");
         }
 
+        public static usersIDAO usersDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<usersDAO>("usersDAO");
+        }
+        public static usersIBLL usersBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+
+            return ioc.Resolve<usersIBLL>("usersBLL");
+        }
+
         private static UnityContainer CreatIoc(string name)
         {
             UnityContainer ioc = new UnityContainer();

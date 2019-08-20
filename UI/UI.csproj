@@ -199,6 +199,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Content\usersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\config_file_first_kindController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -705,6 +706,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\config_file_first_kind\Index.cshtml" />
+    <Content Include="Views\users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
