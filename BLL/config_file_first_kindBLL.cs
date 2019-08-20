@@ -16,6 +16,7 @@ namespace BLL
         config_file_first_kindIDAO st1 = iocComm.config_file_first_kindDAO();
         public int Add1(config_file_first_kindModel st)
         {
+
             return st1.Add(st);
         }
 
