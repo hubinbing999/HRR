@@ -9,22 +9,21 @@ using Unity;
 using Model;
 using DAO;
 using IBLL;
-
+using IDAO;
 namespace ioc
 {
    public class iocComm
     {
-        public static StudentDAO StudetDAO()
+        public static config_file_first_kindIDAO config_file_first_kindDAO()
         {
             UnityContainer ioc = CreatIoc("containerOne");
-
-            return ioc.Resolve<StudentDAO>("StudentDAO");
+            return ioc.Resolve<config_file_first_kindDAO>("config_file_first_kindDAO");
         }
-        public static StudentIBLL StudetIBLL()
+        public static config_file_first_kindIBLL config_file_first_kindBLL()
         {
             UnityContainer ioc = CreatIoc("containerTwo");
 
-            return ioc.Resolve<StudentIBLL>("StudentBLL");
+            return ioc.Resolve<config_file_first_kindIBLL>("config_file_first_kindBLL");
         }
 
         private static UnityContainer CreatIoc(string name)
@@ -32,10 +31,10 @@ namespace ioc
             UnityContainer ioc = new UnityContainer();
             //生成文件(Unity.config)对象
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = @"E:\2345下载\jQuery EasyUI 的使用\MVC\MVC-8\UI\Unity.config";
+            ecf.ExeConfigFilename = @"D:\Y2Net\EF\HRR\UI\Unity.config";
             //生成配置对象
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
-            //读取配置对象的unity节点区
+            //读取配置对象的unity节点区                                                               
             UnityConfigurationSection ucs = (UnityConfigurationSection)cf.GetSection("unity");
             ioc.LoadConfiguration(ucs, name);
             return ioc;
