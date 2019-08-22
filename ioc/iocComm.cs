@@ -37,7 +37,45 @@ namespace ioc
 
             return ioc.Resolve<usersIBLL>("usersBLL");
         }
+        //config_major_kind
+        public static config_major_kindIDAO config_major_kindDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<config_major_kindDAO>("config_major_kindDAO");
+        }
+        public static config_major_kindIBLL config_major_kindBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
 
+            return ioc.Resolve<config_major_kindIBLL>("config_major_kindBLL");
+        }
+
+        //config_major
+
+        public static config_majorIDAO config_majorDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<config_majorDAO>("config_majorDAO");
+        }
+        public static config_majorIBLL config_majorBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+
+            return ioc.Resolve<config_majorIBLL>("config_majorBLL");
+        }
+        //config_public_char
+
+        public static config_public_charIDAO config_public_charDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<config_public_charDAO>("config_public_charDAO");
+        }
+        public static config_public_charIBLL config_public_charBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+
+            return ioc.Resolve<config_public_charIBLL>("config_public_charBLL");
+        }
         private static UnityContainer CreatIoc(string name)
         {
             UnityContainer ioc = new UnityContainer();

@@ -8,7 +8,7 @@ namespace MVC_8
 {
    public class users
     {
-        public System.Int32 u_id { get; set; }
+        public System.Int32 id { get; set; }
 
 
         public System.String u_name { get; set; }

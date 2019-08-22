@@ -8,7 +8,7 @@ namespace Model
 {
     public class usersModel
     { 
-                    public System.Int32 u_id { get; set; }
+                    public System.Int32 id { get; set; }
 
                     
                     public System.String u_name { get; set; }

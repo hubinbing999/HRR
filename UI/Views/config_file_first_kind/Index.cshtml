@@ -14,8 +14,10 @@
     <script type="text/javascript"
             src="../../javascript/comm/comm.js">
     </script>
-    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/javascript/jquery-1.11.1.js"></script>
+
     <script src="~/javascript/vue.js"></script>
+   
 </head>
 <body>
     <div id="div123">
@@ -93,7 +95,7 @@
             load: function () {
                 var v = this;
                 $.ajax({
-                    url: "/config_file_first_kindController/Index2",
+                    url: "Index2",
                     type: "post",
                     data: "",
                     success: function (msg) {

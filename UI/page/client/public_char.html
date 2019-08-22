@@ -1,0 +1,594 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet"
+			href="../../css/table.css" type="text/css">
+		<script type="text/javascript"
+			src="../../javascript/comm/comm.js">
+		</script>
+		
+		<script type="text/javascript" src="../../javascript/jquery-1.7.2.js"></script>
+		
+		<script type="text/javascript">
+			function deletePublicChar(id){
+				$.ajax({
+						url:"http://127.0.0.1:8080/HR_Fist/customiz/customizAction!doDeletePublicChar",
+						data:"cpc.pbcId="+id,
+						dataType:"text",
+						success:function (){
+							alert("删除成功！");
+							location.reload();
+						},
+						type:"post"
+					});
+			}
+		</script>
+	</head>
+	<body>
+		<form method="post" action="../customiz/customizAction!findPublicChar">
+			<table width="100%">
+				<tr>
+					<td>
+						<font color="black">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--公共属性设置
+						</font>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<input type="button" value="添加" class="BUTTON_STYLE1"
+							onclick="window.location.href='public_char_add.html';">
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="1" cellpadding=0 cellspacing=1
+				bordercolorlight=#848284 bordercolordark=#eeeeee
+				class="TABLE_STYLE1">
+				<tr>
+					<td width="49%" class="TD_STYLE1">
+						属性种类
+					</td>
+					<td width="44%" class="TD_STYLE1">
+						属性名称
+					</td>
+					<td width="7%" class="TD_STYLE1" align="center">
+						删除
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td class="TD_STYLE2">
+						薪酬发放方式
+					</td>
+					<td class="TD_STYLE2">
+						
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						国籍
+					</td>
+					<td class="TD_STYLE2">
+						中国
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						国籍
+					</td>
+					<td class="TD_STYLE2">
+						美国
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						民族
+					</td>
+					<td class="TD_STYLE2">
+						汉族
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						民族
+					</td>
+					<td class="TD_STYLE2">
+						回族
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						宗教信仰
+					</td>
+					<td class="TD_STYLE2">
+						无
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						宗教信仰
+					</td>
+					<td class="TD_STYLE2">
+						佛教
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						政治面貌
+					</td>
+					<td class="TD_STYLE2">
+						党员
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						政治面貌
+					</td>
+					<td class="TD_STYLE2">
+						群众
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						教育年限
+					</td>
+					<td class="TD_STYLE2">
+						12
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						教育年限
+					</td>
+					<td class="TD_STYLE2">
+						16
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						学历
+					</td>
+					<td class="TD_STYLE2">
+						本科
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						学历
+					</td>
+					<td class="TD_STYLE2">
+						大专
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						专业
+					</td>
+					<td class="TD_STYLE2">
+						生物工程
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						专业
+					</td>
+					<td class="TD_STYLE2">
+						计算机
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						特长
+					</td>
+					<td class="TD_STYLE2">
+						数据库
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						特长
+					</td>
+					<td class="TD_STYLE2">
+						java
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						爱好
+					</td>
+					<td class="TD_STYLE2">
+						篮球
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						爱好
+					</td>
+					<td class="TD_STYLE2">
+						舞蹈
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						培训项目
+					</td>
+					<td class="TD_STYLE2">
+						英语
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						培训项目
+					</td>
+					<td class="TD_STYLE2">
+						管理
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						培训成绩
+					</td>
+					<td class="TD_STYLE2">
+						A
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						培训成绩
+					</td>
+					<td class="TD_STYLE2">
+						B
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						奖励项目
+					</td>
+					<td class="TD_STYLE2">
+						技术攻关
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						奖励项目
+					</td>
+					<td class="TD_STYLE2">
+						销售绩效
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						奖励等级
+					</td>
+					<td class="TD_STYLE2">
+						A
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						奖励等级
+					</td>
+					<td class="TD_STYLE2">
+						B
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						职称
+					</td>
+					<td class="TD_STYLE2">
+						工程师
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						职称
+					</td>
+					<td class="TD_STYLE2">
+						经理
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						职称
+					</td>
+					<td class="TD_STYLE2">
+						助理
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						职称
+					</td>
+					<td class="TD_STYLE2">
+						教授
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						职称
+					</td>
+					<td class="TD_STYLE2">
+						讲师
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						职称
+					</td>
+					<td class="TD_STYLE2">
+						技术支持
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						薪酬设置
+					</td>
+					<td class="TD_STYLE2">
+						出差补助
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						薪酬设置
+					</td>
+					<td class="TD_STYLE2">
+						交通补贴
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						薪酬设置
+					</td>
+					<td class="TD_STYLE2">
+						住房补贴
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						薪酬设置
+					</td>
+					<td class="TD_STYLE2">
+						基本工资
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						薪酬设置
+					</td>
+					<td class="TD_STYLE2">
+						年终奖
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						薪酬设置
+					</td>
+					<td class="TD_STYLE2">
+						误餐补助
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						薪酬发放方式
+					</td>
+					<td class="TD_STYLE2">
+						111
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						招聘类型
+					</td>
+					<td class="TD_STYLE2">
+						社会招聘
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						招聘类型
+					</td>
+					<td class="TD_STYLE2">
+						校园招聘
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						薪酬发放方式
+					</td>
+					<td class="TD_STYLE2">
+						
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						国籍
+					</td>
+					<td class="TD_STYLE2">
+						新西兰
+					</td>
+					<td class="TD_STYLE2" align="center">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+
+			</table>
+			<p>
+				 
+		</form>
+	</body>
+</html>

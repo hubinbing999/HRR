@@ -38,6 +38,9 @@ namespace BLL
         {
             return st1.update(st);
         }
+        public int dl(usersModel us) {
+            return st1.dl(us);
+        }
     }
 }
                 

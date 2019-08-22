@@ -14,7 +14,7 @@ namespace IDAO
         int update(usersModel st);
         List<usersModel> selectupdate(int id);
         int delete(int id);
-
+        int dl(usersModel us);
 
     }
 } 

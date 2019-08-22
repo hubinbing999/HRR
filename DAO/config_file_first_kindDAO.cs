@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using System.Data.Entity;
+using System.Runtime.Remoting.Messaging;
 
 namespace DAO
 {
@@ -65,13 +67,36 @@ namespace DAO
 
         }
 
+       
+
+        static MyDbContext db = CreateDbContext();
         public int delete(int id)
         {
-            int pd = Del(e => e.Id == id);
-            return pd;
+            config_file_first_kind us = new config_file_first_kind();
+            //接收前台来的id与表的id匹配
+            us.Id= id;
+            //开始删除
+            db.Entry<config_file_first_kind>(us).State = EntityState.Deleted;
+            //保存            
+            return db.SaveChanges();
+
+
+            // int pd = Del(e => e.id == id);
+            // return pd;
         }
+        private static MyDbContext CreateDbContext()
+        {
 
-
+            //从当前请求的线程取值
+            db = CallContext.GetData("s") as MyDbContext;
+            if (db == null)
+            {
+                db = new MyDbContext();
+                //把上下文对象存入当前请求的线程中
+                CallContext.SetData("s", db);
+            }
+            return db;
+        }
 
 
     }

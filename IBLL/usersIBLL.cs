@@ -14,5 +14,6 @@ namespace IBLL
         int update1(usersModel st);
         List<usersModel> selectupdate(int id);
         int delete(int id);
+        int dl(usersModel us);
     }
 }

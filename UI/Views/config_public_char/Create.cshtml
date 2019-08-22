@@ -1,0 +1,66 @@
+﻿@model Model.config_public_charModel
+@{
+    ViewBag.Title = "Create";
+}
+@{
+    ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet"
+          href="../../css/table.css" type="text/css">
+    <script type="text/javascript"
+            src="../../javascript/comm/comm.js">
+    </script>
+    <script src="~/Content/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/javascript/vue.js"></script>
+</head>
+
+<body>
+    @using (Ajax.BeginForm("Create", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "TR" }))
+    {
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">
+                        您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--公共属性设置--公共属性添加
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="提交" class="BUTTON_STYLE1">
+                    <input type="button" value="返回" class="BUTTON_STYLE1"
+                           onclick="history.back();">
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1" width="19%">
+                    属性种类
+                </td>
+                <td class="TD_STYLE2" width="81%">
+                    @Html.EditorFor(model => model.attribute_kind, new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
+                   
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    属性名称
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.EditorFor(model => model.attribute_name, new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
+                </td>
+            </tr>
+        </table>
+    }
+</body>
+</html>
+

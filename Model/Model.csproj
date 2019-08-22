@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="config_file_first_kindModel.cs" />
+    <Compile Include="config_majorModel.cs" />
+    <Compile Include="config_major_kindModel.cs" />
+    <Compile Include="config_major_kindModel1.cs" />
+    <Compile Include="config_public_char.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="usersModel.cs" />
   </ItemGroup>
