@@ -98,22 +98,7 @@ namespace DAO
             {
                 objContext.Detach(foundEntity);
             }
-        private Boolean RemoveHoldingEntityInContext(T entity)
-        {
-            var objContext = ((IObjectContextAdapter)db).ObjectContext;
-            var objSet = objContext.CreateObjectSet<T>();
-            var entityKey = objContext.CreateEntityKey(objSet.EntitySet.Name, entity);
-
-            Object foundEntity;
-            var exists = objContext.TryGetObjectByKey(entityKey, out foundEntity);
-
-            if (exists)
-            {
-                objContext.Detach(foundEntity);
-            }
-
-            return (exists);
-        }
+       
 
             return (exists);
         }

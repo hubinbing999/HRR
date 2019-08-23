@@ -152,10 +152,10 @@
             data: "id=" + id,
             success: function (msg) {
                 var dt = eval("(" + msg + ")");
+                var $select = $("<select name='cftk.secondKindId' id='secondKindId' class='INPUT_STYLE1'></select>");
+                var $option1 = $("<option value='0'>请选择I机构名称</option>")
                 for (var i = 0; i < dt.length; i++) {
-                    var $select = $("<select name='cftk.secondKindId' id='secondKindId' class='INPUT_STYLE1'></select>");
-                    var $option1 = $("<option value='0'>请选择I机构名称</option>")
-                    var $option = $("<option value=" + dt[0]["second_kind_id"] + ">" + dt[0]["second_kind_name"] + "</option>");
+                    var $option = $("<option value=" + dt[i]["second_kind_id"] + ">" + dt[i]["second_kind_name"] + "</option>");
                     $select.append($option1, $option);
                     $("#td1").append($select);
                 }

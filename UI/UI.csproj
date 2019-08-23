@@ -851,6 +851,36 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\config_file_first_kind\Index.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_delete_success.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind_change.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind_change_success.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind_register.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind_register_success.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_delete_success.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind_change.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind_change_success.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind_register.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind_register_success.cshtml" />
+    <Content Include="Views\config_major\Index.cshtml" />
+    <Content Include="Views\config_major_kind\config_major_kindxg.cshtml" />
+    <Content Include="Views\config_major_kind\Create1.cshtml" />
+    <Content Include="Views\config_major_kind\Index.cshtml" />
+    <Content Include="Views\config_majorController1\Create.cshtml" />
+    <Content Include="Views\config_majorController1\Index.cshtml" />
+    <Content Include="Views\config_public_char\Create.cshtml" />
+    <Content Include="Views\config_public_char\Index.cshtml" />
+    <Content Include="Views\config_public_char\SELECT.cshtml" />
+    <Content Include="Views\config_public_char\XZCreate.cshtml" />
+    <Content Include="Views\engage_major_release\Index.cshtml" />
+    <Content Include="Views\usser\Index.cshtml" />
+    <Content Include="Views\config_file_first_kind\config_file_first_kind.cshtml" />
+    <Content Include="Views\config_file_first_kind\config_file_first_kindCreate.cshtml" />
+    <Content Include="Views\config_file_first_kind\first_delete_success.cshtml" />
+    <Content Include="Views\config_file_first_kind\first_kind_change.cshtml" />
+    <Content Include="Views\config_file_first_kind\first_kind_change_success.cshtml" />
+    <Content Include="Views\config_file_first_kind\first_kind_register_success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

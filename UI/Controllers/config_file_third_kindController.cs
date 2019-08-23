@@ -48,7 +48,7 @@ namespace UI.Controllers
         }
         public ActionResult third_kind_register2() {
             int s1 =int.Parse(Request["id"]);
-            List<config_file_second_kindModel> list2 = csb.selectupdate(s1);
+            List<config_file_second_kindModel> list2 = csb.selectxlk1(s1.ToString());
             return Content(JsonConvert.SerializeObject(list2));
         }
 
