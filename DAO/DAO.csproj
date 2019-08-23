@@ -52,6 +52,9 @@
     <Compile Include="config_majorDao.cs" />
     <Compile Include="config_major_kindDao.cs" />
     <Compile Include="config_public_charDao.cs" />
+    <Compile Include="config_file_first_kindDAO.cs" />
+    <Compile Include="config_file_second_kindDAO.cs" />
+    <Compile Include="config_file_third_kindDAO.cs" />
     <Compile Include="Daobase.cs" />
     <Compile Include="engage_major_releaseDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

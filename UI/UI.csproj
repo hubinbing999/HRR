@@ -206,6 +206,9 @@
     <Compile Include="Controllers\config_major_kindController.cs" />
     <Compile Include="Controllers\config_public_charController.cs" />
     <Compile Include="Controllers\engage_major_releaseController.cs" />
+    <Compile Include="Controllers\config_file_first_kindController.cs" />
+    <Compile Include="Controllers\config_file_second_kindController.cs" />
+    <Compile Include="Controllers\config_file_third_kindController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\usserController.cs" />
     <Compile Include="Filters\DlFilterAttibute .cs" />
@@ -801,6 +804,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -846,18 +850,7 @@
     <Content Include="Unity.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\config_major_kind\Index.cshtml" />
-    <Content Include="Views\config_major_kind\Create1.cshtml" />
-    <Content Include="Views\config_major_kind\config_major_kindxg.cshtml" />
-    <Content Include="Views\config_major\Index.cshtml" />
-    <Content Include="Views\config_majorController1\Index.cshtml" />
-    <Content Include="Views\config_majorController1\Create.cshtml" />
-    <Content Include="Views\config_public_char\Index.cshtml" />
-    <Content Include="Views\config_public_char\Create.cshtml" />
-    <Content Include="Views\usser\Index.cshtml" />
-    <Content Include="Views\engage_major_release\Index.cshtml" />
-    <Content Include="Views\config_public_char\SELECT.cshtml" />
-    <Content Include="Views\config_public_char\XZCreate.cshtml" />
+    <Content Include="Views\config_file_first_kind\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -886,6 +879,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{985dd896-f182-4805-ba3c-752aae903640}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVC-8\MVC-8.csproj">
+      <Project>{cec639a6-f409-4dbe-a34d-02d8360bff2a}</Project>
+      <Name>MVC-8</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

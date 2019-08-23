@@ -75,7 +75,31 @@ namespace ioc
         public static engage_major_releaseIBLL engage_major_releaseBLL()
         {
             UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<config_file_first_kindIBLL>("config_file_first_kindBLL");
+        }
 
+
+        public static config_file_second_kindIDAO config_file_second_kindDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<config_file_second_kindDAO>("config_file_second_kindDAO");
+        }
+        public static config_file_second_kindIBLL config_file_second_kindBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<config_file_second_kindIBLL>("config_file_second_kindBLL");
+        }
+
+
+        public static config_file_third_kindIDAO config_file_third_kindDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<config_file_third_kindDAO>("config_file_third_kindDAO");
+        }
+        public static config_file_third_kindIBLL config_file_third_kindBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<config_file_third_kindIBLL>("config_file_third_kindBLL");
             return ioc.Resolve<engage_major_releaseIBLL>("engage_major_releaseBLL");
         }
 

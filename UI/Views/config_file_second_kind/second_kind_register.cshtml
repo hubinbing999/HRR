@@ -1,0 +1,151 @@
+﻿@model Model.config_file_second_kindModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>second_kind_register</title>
+    <link rel="stylesheet"
+          href="../../css/table.css" type="text/css">
+    <script type="text/javascript"
+            src="../../javascript/comm/comm.js">
+    </script>
+</head>
+<body>
+    @using (Ajax.BeginForm("second_kind_register",new AjaxOptions() {HttpMethod="post" })) {
+    <div id="div123"> 
+        <form action="second_kind_register_success.html" method="post">
+            <input type="hidden" id="firstKindName" name="cfsk.firstKindName">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">
+                            您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--II级机构设置--II级机构添加
+                        </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="提交" class="BUTTON_STYLE1">
+                        <input type="button" value="返回" class="BUTTON_STYLE1"
+                               v-on:click="fh">
+                    </td>
+                </tr>
+            </table>
+
+
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td width="19%" class="TD_STYLE1">
+                        I级机构名称
+                    </td>
+                    <td width="81%" class="TD_STYLE2">
+                        @*<select name="cfsk.firstKindId" id="firstKindId" onchange="change()">
+                              <option>请选择I级机构名称...</option>
+
+                            <option value="1353318953319">Ⅰ级结构</option>
+
+                            <option value="1353318929919">集团</option>
+
+                            <option value="1353318937391">总部</option>
+
+                        </select>*@
+                        @Html.DropDownList("first_kind_id", @ViewBag.dt as IEnumerable<SelectListItem>, "请选择I级机构名称...", new {  @id = "firstKindId", @name = "cfsk.firstKindId" })
+                    </td>
+                </tr>
+                <tr>
+                    <td width="19%" class="TD_STYLE1">
+                        II级机构编号
+                    </td>
+                    <td width="81%" class="TD_STYLE2">
+                        @Html.EditorFor(model => model.second_kind_id, new { htmlAttributes = new { @class = "INPUT_STYLE1", @readonly = true } })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        II级机构名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" class="INPUT_STYLE1" name="cfsk.secondKindName" value="" />*@
+                        @Html.EditorFor(model=>model.second_kind_name,new {htmlAttributes=new {@class= "INPUT_STYLE1" } })
+                        @Html.ValidationMessageFor(model=>model.second_kind_name,"",new {@class= "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<textarea rows="4" cols="" class="TEXTAREA_STYLE1" name="cfsk.secondSalaryId"></textarea>*@
+                        @Html.TextAreaFor(model=>model.second_salary_id,new { htmlAttributes =new { @class= "TEXTAREA_STYLE1" }, @rows = "4", @cols = "120" })
+                        @Html.ValidationMessageFor(model => model.second_salary_id, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<textarea rows="4" cols="" class="TEXTAREA_STYLE1" name="cfsk.secondSaleId"></textarea>*@
+                        @Html.TextAreaFor(model => model.second_sale_id, new { htmlAttributes = new { @class = "TEXTAREA_STYLE1"}, @rows = "4", @cols = "120" })
+                        @Html.ValidationMessageFor(model => model.second_sale_id, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    }
+</body>
+</html>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/javascript/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#div123",
+        data: {
+            row1: null
+        },
+        methods: {
+            fh: function () {
+                window.location.href = "second_kind";
+            },
+        }, created: function () {
+
+        }
+    })
+
+
+		//function check(){
+		//	if (document.getElementById("firstKind.ffkId").value==0){
+		//		alert("请选择I级机构名称!!!");
+		//		return false;
+		//	}
+		//	if (document.getElementById("secondKind.secondKindName").value==""){
+		//		alert("II级机构名称不能为空!!!");
+		//		return false;
+		//	}
+		//	if (document.getElementById("secondKind.secondSalaryId").value==""){
+		//		alert("薪酬发放责任人编号不能为空!!!");
+		//		return false;
+		//	}
+		//	if (document.getElementById("secondKind.secondSaleId").value==""){
+		//		alert("销售责任人编号不能为空!!!");
+		//		return false;
+		//	}
+		//	document.forms[0].submit();
+		//}
+		//function change(){
+		//var se=document.getElementById("firstKindId");
+		//document.getElementById("firstKindName").value=se.options[se.selectedIndex].innerHTML;
+
+		//}
+</script>

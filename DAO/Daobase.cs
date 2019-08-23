@@ -41,7 +41,6 @@ namespace DAO
         {
             RemoveHoldingEntityInContext(ta);
             T t = db.Set<T>().Where(where).AsNoTracking().FirstOrDefault();
-
             db.Set<T>().Attach(t);
             //对数据删除
             db.Set<T>().Remove(t);
@@ -99,9 +98,24 @@ namespace DAO
             {
                 objContext.Detach(foundEntity);
             }
+        private Boolean RemoveHoldingEntityInContext(T entity)
+        {
+            var objContext = ((IObjectContextAdapter)db).ObjectContext;
+            var objSet = objContext.CreateObjectSet<T>();
+            var entityKey = objContext.CreateEntityKey(objSet.EntitySet.Name, entity);
+
+            Object foundEntity;
+            var exists = objContext.TryGetObjectByKey(entityKey, out foundEntity);
+
+            if (exists)
+            {
+                objContext.Detach(foundEntity);
+            }
 
             return (exists);
         }
 
+            return (exists);
+        }
     }
 }
