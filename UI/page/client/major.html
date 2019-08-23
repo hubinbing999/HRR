@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet"
+			href="../../css/table.css" type="text/css">
+		<script type="text/javascript"
+			src="../../javascript/comm/comm.js">
+		</script>
+		
+		<script type="text/javascript" src="../../javascript/jquery-1.7.2.js"></script>
+		
+		<script type="text/javascript">
+			function doDeleteMajor(id){
+				$.ajax({
+				
+					url:"/HR_Fist/customiz/customizAction!doDeleteConfigMajor",
+					data:"cm.makId="+id,
+					dataType:"text",
+					success:function (){
+						alert("删除成功！");
+						location.reload();
+					},
+					type:"post"
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<form method="post" action="../customiz/customizAction!findMajor">
+			<table width="100%">
+				<tr>
+					<td>
+						<font color="black">您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--职位设置
+						</font>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<input type="button" value="添加" class="BUTTON_STYLE1"
+							onclick="window.location.href='major_add.html';">
+					</td>
+				</tr>
+			</table>
+			<table width="100%" border="1" cellpadding=0 cellspacing=1
+				bordercolorlight=#848284 bordercolordark=#eeeeee
+				class="TABLE_STYLE1">
+				<tr>
+					<td width="22%" class="TD_STYLE1">
+						职位分类编号
+					</td>
+					<td width="23%" class="TD_STYLE1">
+						职位分类名称
+					</td>
+					<td width="26%" class="TD_STYLE1">
+						职位编号
+					</td>
+					<td width="24%" class="TD_STYLE1">
+						职位名称
+					</td>
+					<td width="5%" class="TD_STYLE1">
+						删除
+					</td>
+				</tr>
+
+				
+				<tr>
+					<td class="TD_STYLE2">
+						01
+					</td>
+					<td class="TD_STYLE2">
+						销售
+					</td>
+					<td class="TD_STYLE2">
+						01
+					</td>
+					<td class="TD_STYLE2">
+						区域经理
+					</td>
+					<td class="TD_STYLE2">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						01
+					</td>
+					<td class="TD_STYLE2">
+						销售
+					</td>
+					<td class="TD_STYLE2">
+						02
+					</td>
+					<td class="TD_STYLE2">
+						总经理
+					</td>
+					<td class="TD_STYLE2">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						02
+					</td>
+					<td class="TD_STYLE2">
+						软件开发
+					</td>
+					<td class="TD_STYLE2">
+						01
+					</td>
+					<td class="TD_STYLE2">
+						项目经理
+					</td>
+					<td class="TD_STYLE2">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						02
+					</td>
+					<td class="TD_STYLE2">
+						软件开发
+					</td>
+					<td class="TD_STYLE2">
+						02
+					</td>
+					<td class="TD_STYLE2">
+						程序员
+					</td>
+					<td class="TD_STYLE2">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						03
+					</td>
+					<td class="TD_STYLE2">
+						人力资源
+					</td>
+					<td class="TD_STYLE2">
+						01
+					</td>
+					<td class="TD_STYLE2">
+						人事经理
+					</td>
+					<td class="TD_STYLE2">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						03
+					</td>
+					<td class="TD_STYLE2">
+						人力资源
+					</td>
+					<td class="TD_STYLE2">
+						02
+					</td>
+					<td class="TD_STYLE2">
+						专员
+					</td>
+					<td class="TD_STYLE2">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						04
+					</td>
+					<td class="TD_STYLE2">
+						生产部
+					</td>
+					<td class="TD_STYLE2">
+						01
+					</td>
+					<td class="TD_STYLE2">
+						主任
+					</td>
+					<td class="TD_STYLE2">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="TD_STYLE2">
+						04
+					</td>
+					<td class="TD_STYLE2">
+						生产部
+					</td>
+					<td class="TD_STYLE2">
+						02
+					</td>
+					<td class="TD_STYLE2">
+						技术工人
+					</td>
+					<td class="TD_STYLE2">
+						<a href="#">删除</a>
+					</td>
+				</tr>
+				
+
+			</table>
+			<p>
+			 
+		</form>
+	</body>
+</html>
+

@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="../../css/table.css" type="text/css" />
+		<script type="text/javascript" src="../../javascript/comm/comm.js"></script>
+		<script type="text/javascript" src="../../javascript/jquery-1.7.2.js"></script>
+		<title>无标题文档</title>
+</head>
+	<body>
+		 
+		<form method="post" action="salarystandard_register_success.html">
+			<table width="100%">
+				<tr>
+					<td>
+						<font color="black">您正在做的业务是：人力资源--薪酬标准管理--薪酬标准登记 
+						</font>
+					</td>
+				</tr>
+				<tr>
+					<td align="right">
+						<input type="button" value="提 交" onclick="check()" class="BUTTON_STYLE1">
+						<input type="reset" value="返 回" class="BUTTON_STYLE1" >
+					</td>
+				</tr>
+			</table>
+			<table id="stable" width="100%" border="1" cellpadding=0 cellspacing=1
+				bordercolorlight=#848284 bordercolordark=#eeeeee
+				class="TABLE_STYLE1">
+				<tr>
+					<td width="74" class="TD_STYLE1">
+						薪酬标准编号
+					</td>
+					<td width="168" class="TD_STYLE2">
+						<input type="text" name="standard.standardId" value="1353752304959" readonly="readonly" class="INPUT_STYLE2">
+					</td>
+					<td width="83" class="TD_STYLE1">
+						薪酬标准名称
+					</td>
+					<td width="171" class="TD_STYLE2">
+						<input type="text" name="standard.standardName" id="standardName" class="INPUT_STYLE2">
+					</td>
+					<td width="170" class="TD_STYLE1">
+						薪酬总额
+					</td>
+					<td width="138" class="TD_STYLE2">
+						<input type="text" name="standard.salarySum" id="sumSalary" value="0.0" readonly class="INPUT_STYLE2"/>
+					</td>
+					<td width="103" class="TD_STYLE1">
+						&nbsp;
+					</td>
+					<td width="95" height="26" class="TD_STYLE2">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						制定人
+					</td>
+					<td class="TD_STYLE2">
+						<input type="text" id="designer" name="standard.designer"   class="INPUT_STYLE2">
+					</td>
+					<td class="TD_STYLE1">
+						登记人
+					</td>
+					<td class="TD_STYLE2">
+						<input type="text" name="standard.register" value="better_admin" readonly="readonly" class="INPUT_STYLE2">
+					</td>
+					<td class="TD_STYLE1">
+						登记时间
+					</td>
+					<td class="TD_STYLE2">
+						<input type="text" id="Tdate" name="standard.registTime" readonly="readonly" class="INPUT_STYLE2">
+					</td>
+					<td class="TD_STYLE1">
+						&nbsp;
+					</td>
+					<td class="TD_STYLE2">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td class="TD_STYLE1">
+						备注
+					</td>
+					<td colspan="7" class="TD_STYLE2">
+						<textarea name="standard.remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
+					</td>
+				</tr>
+				<tr class="TD_STYLE1">
+					<td align="center">
+						序号
+					</td>
+					<td colspan="3">
+						薪酬项目名称
+					</td>
+					<td>
+						金额
+					</td>
+					<td colspan="3">
+						&nbsp;
+					</td>
+				</tr>
+				<tbody>
+				
+				<tr class="TD_STYLE2">
+					<td align="center">
+						63
+						
+						<input type="hidden" name="details[0].itemId" value="63">
+					</td>
+					<td colspan="3">
+					出差补助
+						<input type="hidden" id="details1" name="details[0].itemName" value="出差补助">
+					</td>
+					<td>
+						<input type="text" id="salary1" value="0.00" name="details[0].salary" 
+						onkeyup="countMoney('6','salary1')" class="INPUT_STYLE2">
+					</td>
+					<td colspan="3">
+						&nbsp;
+					</td>
+				</tr>
+			 	
+				<tr class="TD_STYLE2">
+					<td align="center">
+						64
+						
+						<input type="hidden" name="details[1].itemId" value="64">
+					</td>
+					<td colspan="3">
+					交通补贴
+						<input type="hidden" id="details2" name="details[1].itemName" value="交通补贴">
+					</td>
+					<td>
+						<input type="text" id="salary2" value="0.00" name="details[1].salary" 
+						onkeyup="countMoney('6','salary2')" class="INPUT_STYLE2">
+					</td>
+					<td colspan="3">
+						&nbsp;
+					</td>
+				</tr>
+			 	
+				<tr class="TD_STYLE2">
+					<td align="center">
+						65
+						
+						<input type="hidden" name="details[2].itemId" value="65">
+					</td>
+					<td colspan="3">
+					住房补贴
+						<input type="hidden" id="details3" name="details[2].itemName" value="住房补贴">
+					</td>
+					<td>
+						<input type="text" id="salary3" value="0.00" name="details[2].salary" 
+						onkeyup="countMoney('6','salary3')" class="INPUT_STYLE2">
+					</td>
+					<td colspan="3">
+						&nbsp;
+					</td>
+				</tr>
+			 	
+				<tr class="TD_STYLE2">
+					<td align="center">
+						66
+						
+						<input type="hidden" name="details[3].itemId" value="66">
+					</td>
+					<td colspan="3">
+					基本工资
+						<input type="hidden" id="details4" name="details[3].itemName" value="基本工资">
+					</td>
+					<td>
+						<input type="text" id="salary4" value="0.00" name="details[3].salary" 
+						onkeyup="countMoney('6','salary4')" class="INPUT_STYLE2">
+					</td>
+					<td colspan="3">
+						&nbsp;
+					</td>
+				</tr>
+			 	
+				<tr class="TD_STYLE2">
+					<td align="center">
+						67
+						
+						<input type="hidden" name="details[4].itemId" value="67">
+					</td>
+					<td colspan="3">
+					年终奖
+						<input type="hidden" id="details5" name="details[4].itemName" value="年终奖">
+					</td>
+					<td>
+						<input type="text" id="salary5" value="0.00" name="details[4].salary" 
+						onkeyup="countMoney('6','salary5')" class="INPUT_STYLE2">
+					</td>
+					<td colspan="3">
+						&nbsp;
+					</td>
+				</tr>
+			 	
+				<tr class="TD_STYLE2">
+					<td align="center">
+						68
+						
+						<input type="hidden" name="details[5].itemId" value="68">
+					</td>
+					<td colspan="3">
+					误餐补助
+						<input type="hidden" id="details6" name="details[5].itemName" value="误餐补助">
+					</td>
+					<td>
+						<input type="text" id="salary6" value="0.00" name="details[5].salary" 
+						onkeyup="countMoney('6','salary6')" class="INPUT_STYLE2">
+					</td>
+					<td colspan="3">
+						&nbsp;
+					</td>
+				</tr>
+			 	
+				</tbody>
+			</table>
+			<p>
+				&nbsp;
+			</p>
+		</form>
+		<script type="text/javascript">
+		function check(){
+				
+				var designer=document.getElementById("designer");
+				var standardName=document.getElementById("standardName");
+				if(designer.value.length<=0){
+				alert("制定人不可为空!!!");
+						return ;
+				}
+				if(standardName.value.length<=0){
+				alert("薪酬标准名称不可为空!!!");
+					return ;
+				}
+			document.forms[0].submit();
+		}
+		function countMoney(obj,o) {
+		
+		if (isNaN(document.getElementById(o).value) || document.getElementById(o).value < 0) {
+		alert("金额填写错误!");
+		document.getElementById(o).value="0.00";
+		return;
+	}
+		var sum=0;
+	 	for(var i=1;i<=obj;i++){
+	 		var salary=document.getElementById("salary"+i).value;
+	 		if(salary==""){
+	 		salary="0.00";
+	 		}
+	 		sum=Number(sum)+Number(salary);
+	 		 
+	 }
+	 document.getElementById("sumSalary").value=sum;
+	 
+}
+		function time(){
+ 					var tdate=document.getElementById("Tdate");					 
+ 					var d=new Date();
+ 					var y=d.getFullYear();
+ 					var moth=d.getMonth()+1;
+ 					var date=d.getDate();
+ 					var h=d.getHours();
+ 					var m=d.getMinutes();
+ 					var s=d.getSeconds();
+					var hh=20-1-h;
+					var mm=60-1-m;
+					var ss=60-s;
+					if(hh>0){
+							mm=mm+60*hh;
+					}
+ 					if(moth<10){
+ 							moth="0"+moth;
+ 					}
+ 					if(date<10){
+ 							date="0"+date;
+ 					}
+ 					if(h<10){
+ 							h="0"+h;
+ 					}
+ 					if(m<10){
+ 							m="0"+m;
+ 					}
+ 					if(s<10){
+ 							s="0"+s;
+ 					}
+ 					if(mm<10){
+ 							mm="0"+mm;
+ 					}
+ 					if(ss<10){
+ 							ss="0"+ss;
+ 					}	
+ 					 
+ 					tdate.value=y+"-"+moth+"-"+date+" "+h+":"+m+":"+s;
+					  
+ 				}
+ 				window.onload=time;
+ 				var out=window.setInterval(time, 1000);
+		</script>
+	</body>
+</html>
+
