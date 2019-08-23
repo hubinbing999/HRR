@@ -37,8 +37,10 @@ namespace DAO
         }
 
         //删除  根据 条件删除
-        public int Del(Expression<Func<T, bool>> where)
+        public int Del(Expression<Func<T, bool>> where,T fa)
         {
+            RemoveHoldingEntityInContext(fa);
+           // RemoveHoldingEntityInContext(t);
             T t = db.Set<T>().Where(where).AsNoTracking().FirstOrDefault();
 
             db.Set<T>().Attach(t);
@@ -55,6 +57,7 @@ namespace DAO
         //根据条件查询
         public List<T> SeleteBy(Expression<Func<T, bool>> where)
         {
+           
             List<T> list = db.Set<T>().Select(e => e)
                   .Where(where).AsNoTracking()
                   .ToList();
