@@ -37,8 +37,9 @@ namespace DAO
         }
 
         //删除  根据 条件删除
-        public int Del(Expression<Func<T, bool>> where)
+        public int Del(Expression<Func<T, bool>> where,T ta)
         {
+            RemoveHoldingEntityInContext(ta);
             T t = db.Set<T>().Where(where).AsNoTracking().FirstOrDefault();
 
             db.Set<T>().Attach(t);
@@ -55,10 +56,7 @@ namespace DAO
         //根据条件查询
         public List<T> SeleteBy(Expression<Func<T, bool>> where)
         {
-            List<T> list = db.Set<T>().Select(e => e)
-                  .Where(where).AsNoTracking()
-                  .ToList();
-
+            List<T> list = db.Set<T>().Select(e => e).Where(where).AsNoTracking().ToList();
             return list;
         }
         //分页查询 k代表数据类型 ，查询条件 ，总记录数 ，当前页，显示数量

@@ -206,6 +206,7 @@
     <Compile Include="Controllers\config_majorController1Controller.cs" />
     <Compile Include="Controllers\config_major_kindController.cs" />
     <Compile Include="Controllers\config_public_charController.cs" />
+    <Compile Include="Controllers\engage_major_releaseController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\usserController.cs" />
     <Compile Include="Filters\DlFilterAttibute .cs" />
@@ -853,6 +854,7 @@
     <Content Include="Views\config_public_char\Index.cshtml" />
     <Content Include="Views\config_public_char\Create.cshtml" />
     <Content Include="Views\usser\Index.cshtml" />
+    <Content Include="Views\engage_major_release\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

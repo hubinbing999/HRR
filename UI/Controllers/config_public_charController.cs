@@ -92,12 +92,13 @@ namespace UI.Controllers
             int pf = bo.delete(id);
             if (pf > 0)
             {
-                return RedirectToAction("Index");
+                return Content("<script> window.location.href='/config_public_char/Index';alert('删除成功');</script>");
+                //return RedirectToAction("Index");
             }
             else
             {
-
-                return RedirectToAction("Index");
+                return Content("<script> window.location.href='/config_public_char/Index';alert('删除失败');</script>");
+                //return RedirectToAction("Index");
             }
            
         }

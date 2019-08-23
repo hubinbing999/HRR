@@ -6,58 +6,36 @@ using System.Web.Mvc;
 using Model;
 using ioc;
 using IBLL;
+using Newtonsoft.Json;
 namespace UI.Controllers
 {
-    public class usserController : Controller
+    public class engage_major_releaseController : Controller
     {
-        usersIBLL us = iocComm.usersBLL();
-        // GET: usser
+        engage_major_releaseIBLL eng = iocComm.engage_major_releaseBLL();
+        // GET: engage_major_release
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Index3()
+        public ActionResult Index2()
         {
-            
-
-        string q=  HttpContext.Session["user"].ToString();
-            return Content(q);
+            List<engage_major_releaseModel> li = eng.select1();
+            string aa = JsonConvert.SerializeObject(li);
+            return Content(aa);
         }
-        public ActionResult dl(FormCollection collection) {
-            
-            string u_true_name1 = Request["u_true_name"];
-            string u_password1 = Request["u_password"];
-            usersModel us1 = new usersModel()
-            {
-                u_true_name = u_true_name1,
-                u_password = u_password1
-            };
-            int pd=   us.dl(us1);
-            if (pd > 0) {
-                Session["user"] = pd;
-                Session["us"] = u_true_name1;
-                return JavaScript("alert('登录成功'); localStorage.setItem('a', "+ u_true_name1 + ");  window.location.href='../page/index.html'");
-                
-            }
-            else {
-                return RedirectToAction("alert('登录失败'); window.location.href='/usser/Index'");
-            };
-
-            
-        }
-        // GET: usser/Details/5
+        // GET: engage_major_release/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: usser/Create
+        // GET: engage_major_release/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: usser/Create
+        // POST: engage_major_release/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -73,13 +51,13 @@ namespace UI.Controllers
             }
         }
 
-        // GET: usser/Edit/5
+        // GET: engage_major_release/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: usser/Edit/5
+        // POST: engage_major_release/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -95,13 +73,13 @@ namespace UI.Controllers
             }
         }
 
-        // GET: usser/Delete/5
+        // GET: engage_major_release/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: usser/Delete/5
+        // POST: engage_major_release/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

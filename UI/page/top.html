@@ -18,18 +18,7 @@
         <script type="text/javascript">
             $(function () {
                 $(function () {
-                    $.ajax({
-                        url: "/usser/Index3",
-                        type: "post",
-                        data: "",
-                        success: function (msg) {
-                            //alert("1111");
-                            //console.info(msg)
-                            var dd = eval("(" + msg + ")");
-                            t.dt = dd;
-                        }
-                    });
-
+                    $("#hu").val(localStorage.getItem("a"))
                 })
             })
 
@@ -46,7 +35,7 @@
 				</td>
 				<td style="text-align: right;font-size:17px;width:35%;color:black;" id="hu">
 					<br />
-					欢迎你：谢鹏(人事经理)&nbsp;
+					欢迎你：<span id="hu"></span>
 					<input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href='../login.html'"/>&nbsp;&nbsp;&nbsp;&nbsp;
 				</td>
 			</tr>

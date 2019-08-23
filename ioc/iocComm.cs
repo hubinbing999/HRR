@@ -76,6 +76,19 @@ namespace ioc
 
             return ioc.Resolve<config_public_charIBLL>("config_public_charBLL");
         }
+        //engage_major_release'
+        public static engage_major_releaseIDAO engage_major_releaseDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<engage_major_releaseDAO>("engage_major_releaseDAO");
+        }
+        public static engage_major_releaseIBLL engage_major_releaseBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+
+            return ioc.Resolve<engage_major_releaseIBLL>("engage_major_releaseBLL");
+        }
+
         private static UnityContainer CreatIoc(string name)
         {
             UnityContainer ioc = new UnityContainer();

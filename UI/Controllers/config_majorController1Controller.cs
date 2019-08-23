@@ -18,7 +18,7 @@ namespace UI.Controllers
         config_majorIBLL bo = iocComm.config_majorBLL();
         config_major_kindIBLL bq = iocComm.config_major_kindBLL();
         // GET: config_majorController1
-        [DlFilterAttibute]
+        //[DlFilterAttibute]
         public ActionResult Index()
         {
             return View();
@@ -34,8 +34,9 @@ namespace UI.Controllers
         {
             return View();
         }
-        [DlFilterAttibute]
+        //[DlFilterAttibute]
         // GET: config_majorController1/Create
+        string pp = "";
         public ActionResult Create()
         {
             List<config_majorModel> hh=  bo.select1();
@@ -48,6 +49,7 @@ namespace UI.Controllers
 
             config_majorModel ka = new config_majorModel();
             ka.major_id = "0" + i.ToString();
+            pp= "0" + i.ToString();
             List<SelectListItem> list = new List<SelectListItem>();
             config_major_kindIBLL con = iocComm.config_major_kindBLL();
             List<config_major_kindModel1> li = con.select1();
@@ -82,7 +84,7 @@ namespace UI.Controllers
             string major_kind_name1 = gt[0].major_kind_name;
             string major_id = Request["major_id"];
             string major_name = Request["major_name"];
-            con.major_kind_id = major_kind_id;
+            con.major_kind_id = major_kind_name;
             con.major_kind_name = major_kind_name1;
             con.major_id = major_id;
             con.major_name = major_name;
