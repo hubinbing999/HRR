@@ -14,5 +14,6 @@ namespace IBLL
         int update1(config_public_charModel st);
         List<config_public_charModel> selectupdate(int id);
         int delete(int id);
+        List<config_public_charModel> SelectByKind(config_public_charModel cm);
     }
 }

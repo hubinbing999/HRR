@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "XZCreate";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+</head>
+<body>
+    @model Model.config_public_charModel
+
+    <link href="~/css/table.css" rel="stylesheet" />
+    @using (Ajax.BeginForm("XZCreate", "config_public_char", new AjaxOptions() { HttpMethod = "post" }))
+    {
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">
+                        您正在做的业务是：人力资源--客户化设置--薪酬管理设这--薪酬项目设置--薪酬项目添加
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="提交" class="BUTTON_STYLE1">
+                    <input type="button" value="返回" class="BUTTON_STYLE1"
+                           onclick="history.back();">
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1" width="19%">
+                    薪酬项目名称
+                </td>
+                <td class="TD_STYLE2" width="81%">
+                    @Html.EditorFor(model => model.attribute_name, new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
+                </td>
+                <td hidden="hidden">
+                    @Html.TextBoxFor(model => model.attribute_kind, new { @Value = "薪酬设置" })
+                </td>
+            </tr>
+        </table>
+    }
+</body>
+</html>
+
