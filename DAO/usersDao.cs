@@ -98,9 +98,23 @@ namespace DAO
         {
             users u = new users();
            List<users>  li=SeleteBy(e => e.u_true_name.Equals(us.u_true_name) && e.u_password.Equals(us.u_password));
+            foreach (users item in li)
+            {
+                if (item == null || item.Equals(""))
+                {
+                    return 0;
+                }
+                else
+                {
+                    return li[0].id;
+                }
+            }
+            return 0;
 
+
+           
             //var result = db.Database.SqlQuery<users>($@"select [id] from  [dbo].[users] where [u_true_name]='{us.u_true_name}' and [u_password]='{us.u_password}'");
-            return li[0].id;
+            
         }
 
 

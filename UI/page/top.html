@@ -14,11 +14,12 @@
 			font-family: 微软雅黑;
 		}
 		</style>
-        <script src="../javascript/jquery-1.7.2.js"></script>
+        <script src="../javascript/jquery-1.11.1.js"></script>
+       
         <script type="text/javascript">
             $(function () {
-                $(function () {
-                    $("#hu").val(localStorage.getItem("a"))
+                $(function () { 
+                    $("#hu1").text(localStorage.getItem("a"));
                 })
             })
 
@@ -35,8 +36,8 @@
 				</td>
 				<td style="text-align: right;font-size:17px;width:35%;color:black;" id="hu">
 					<br />
-					欢迎你：<span id="hu"></span>
-					<input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href='../login.html'"/>&nbsp;&nbsp;&nbsp;&nbsp;
+					欢迎你：<span id="hu1"></span>
+					<input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href='/usser/Index'"/>&nbsp;&nbsp;&nbsp;&nbsp;
 				</td>
 			</tr>
 		</table>

@@ -36,11 +36,11 @@ namespace UI.Controllers
             if (pd > 0) {
                 Session["user"] = pd;
                 Session["us"] = u_true_name1;
-                return JavaScript("alert('登录成功'); localStorage.setItem('a', "+ u_true_name1 + ");  window.location.href='../page/index.html'");
+                return JavaScript("alert('登录成功'); localStorage.setItem('a', '"+ u_true_name1 + "');  window.location.href='../page/index.html'");
                 
             }
             else {
-                return RedirectToAction("alert('登录失败'); window.location.href='/usser/Index'");
+                return JavaScript("alert('登录失败'); window.location.href='/usser/Index'");
             };
 
             
