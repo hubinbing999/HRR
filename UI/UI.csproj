@@ -201,6 +201,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\config_file_first_kindController.cs" />
+    <Compile Include="Controllers\config_file_second_kindController.cs" />
+    <Compile Include="Controllers\config_file_third_kindController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -659,6 +661,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -706,6 +709,22 @@
     </Content>
     <Content Include="Views\config_file_first_kind\config_file_first_kind.cshtml" />
     <Content Include="Views\config_file_first_kind\config_file_first_kindCreate.cshtml" />
+    <Content Include="Views\config_file_first_kind\first_kind_register_success.cshtml" />
+    <Content Include="Views\config_file_first_kind\first_kind_change.cshtml" />
+    <Content Include="Views\config_file_first_kind\first_kind_change_success.cshtml" />
+    <Content Include="Views\config_file_first_kind\first_delete_success.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind_register.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind_register_success.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind_change.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_kind_change_success.cshtml" />
+    <Content Include="Views\config_file_second_kind\second_delete_success.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind_register.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind_register_success.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind_change.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_delete_success.cshtml" />
+    <Content Include="Views\config_file_third_kind\third_kind_change_success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,6 +22,8 @@ namespace MVC_8
                 AddFromAssembly(Assembly.GetExecutingAssembly());
         }
         public DbSet<config_file_first_kind> config_file_first_kinds { get; set; }
+        public DbSet<config_file_second_kind> config_file_second_kinds { get; set; }
+        public DbSet<config_file_third_kind> config_file_third_kinds { get; set; }
     }
 }
 

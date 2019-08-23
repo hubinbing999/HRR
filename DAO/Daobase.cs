@@ -40,7 +40,6 @@ namespace DAO
         public int Del(Expression<Func<T, bool>> where)
         {
             T t = db.Set<T>().Where(where).AsNoTracking().FirstOrDefault();
-
             db.Set<T>().Attach(t);
             //对数据删除
             db.Set<T>().Remove(t);
@@ -75,7 +74,7 @@ namespace DAO
         //修改
         public int ModifyWithOutproNames(T model, params string[] proNames) 
         {
-
+            RemoveHoldingEntityInContext(model);
             DbEntityEntry entry = db.Entry<T>(model);
             entry.State = EntityState.Unchanged;
             var properties = model.GetType().GetProperties();
@@ -88,6 +87,21 @@ namespace DAO
             db.Configuration.ValidateOnSaveEnabled = false;
             return db.SaveChanges();
         }
+        private Boolean RemoveHoldingEntityInContext(T entity)
+        {
+            var objContext = ((IObjectContextAdapter)db).ObjectContext;
+            var objSet = objContext.CreateObjectSet<T>();
+            var entityKey = objContext.CreateEntityKey(objSet.EntitySet.Name, entity);
 
+            Object foundEntity;
+            var exists = objContext.TryGetObjectByKey(entityKey, out foundEntity);
+
+            if (exists)
+            {
+                objContext.Detach(foundEntity);
+            }
+
+            return (exists);
+        }
     }
 }

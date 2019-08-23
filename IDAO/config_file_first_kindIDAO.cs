@@ -15,6 +15,5 @@ namespace IDAO
         List<config_file_first_kindModel> selectupdate(int id);
         int delete(int id);
 
-
     }
 } 

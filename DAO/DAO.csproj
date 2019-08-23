@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="config_file_first_kindDAO.cs" />
+    <Compile Include="config_file_second_kindDAO.cs" />
+    <Compile Include="config_file_third_kindDAO.cs" />
     <Compile Include="Daobase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
