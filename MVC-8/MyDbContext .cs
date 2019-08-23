@@ -21,7 +21,7 @@ namespace MVC_8
             modelBuilder.Configurations.
                 AddFromAssembly(Assembly.GetExecutingAssembly());
         }
-        public DbSet<config_file_first_kind> config_file_first_kind { get; set; }
+        
         public DbSet<config_major_kind> config_major_kind { get; set; }
         public DbSet<config_major> config_major { get; set; }
         public DbSet<config_public_char> config_public_char { get; set; }

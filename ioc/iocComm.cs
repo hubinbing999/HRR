@@ -14,17 +14,7 @@ namespace ioc
 {
    public class iocComm
     {
-        public static config_file_first_kindIDAO config_file_first_kindDAO()
-        {
-            UnityContainer ioc = CreatIoc("containerOne");
-            return ioc.Resolve<config_file_first_kindDAO>("config_file_first_kindDAO");
-        }
-        public static config_file_first_kindIBLL config_file_first_kindBLL()
-        {
-            UnityContainer ioc = CreatIoc("containerTwo");
-
-            return ioc.Resolve<config_file_first_kindIBLL>("config_file_first_kindBLL");
-        }
+       
 
         public static usersIDAO usersDAO()
         {
@@ -94,7 +84,7 @@ namespace ioc
             UnityContainer ioc = new UnityContainer();
             //生成文件(Unity.config)对象
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = @"D:\Source\Repos\823HRR\UI\Unity.config";
+            ecf.ExeConfigFilename = @"E:\最后\UI\Unity.config";
             //生成配置对象
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
             //读取配置对象的unity节点区                                                               
