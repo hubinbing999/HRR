@@ -64,15 +64,15 @@ namespace DAO
         {
         config_public_char us = new config_public_char();
             //接收前台来的id与表的id匹配
-            us.id = id;
-            //开始删除
-            db.Entry<config_public_char>(us).State =EntityState.Deleted;
-            //保存            
-            return db.SaveChanges(); 
- 
-
-           // int pd = Del(e => e.id == id);
-           // return pd;
+            us.id = id;//(必须与表的id进行匹配)
+            //接收前台来的id与表的id匹配
+            //us.id = id;
+            ////开始删除
+            //db.Entry<config_public_char>(us).State =EntityState.Deleted;
+            ////保存            
+            //return db.SaveChanges(); 
+           int pd = Del(e => e.id == id,us);
+           return pd;
         }
         private static MyDbContext CreateDbContext()
         {
@@ -87,7 +87,23 @@ namespace DAO
             }
             return db;
         }
+        public List<config_public_charModel> SelectByKind(config_public_charModel cm)
+        {
 
+            List<config_public_char> list = SeleteBy(e => e.attribute_kind.Equals(cm.attribute_kind));
+            List<config_public_charModel> list2 = new List<config_public_charModel>();
+            foreach (config_public_char item in list)
+            {
+                config_public_charModel cpc = new config_public_charModel()
+                {
+                    id = item.id,
+                    attribute_kind = item.attribute_kind,
+                    attribute_name = item.attribute_name
+                };
+                list2.Add(cpc);
+            }
+            return list2;
+        }
 
 
 

@@ -29,6 +29,11 @@ namespace BLL
             return st1.select();
         }
 
+        public List<config_public_charModel> SelectByKind(config_public_charModel cm)
+        {
+            return st1.SelectByKind(cm);
+                }
+
         public List<config_public_charModel> selectupdate(int id)
         {
             return st1.selectupdate(id);

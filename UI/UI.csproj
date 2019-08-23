@@ -853,6 +853,8 @@
     <Content Include="Views\config_public_char\Index.cshtml" />
     <Content Include="Views\config_public_char\Create.cshtml" />
     <Content Include="Views\usser\Index.cshtml" />
+    <Content Include="Views\config_public_char\SELECT.cshtml" />
+    <Content Include="Views\config_public_char\XZCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
