@@ -26,6 +26,8 @@ namespace MVC_8
         public DbSet<config_major> config_major { get; set; }
         public DbSet<config_public_char> config_public_char { get; set; }
         public DbSet<users> users { get; set; }
+        public DbSet<engage_major_release> engage_major_release { get; set; }
+        
     }
 }
 

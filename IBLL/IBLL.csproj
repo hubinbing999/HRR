@@ -44,6 +44,7 @@
     <Compile Include="config_majorIBLL.cs" />
     <Compile Include="config_major_kindIBLL.cs" />
     <Compile Include="config_public_charIBLL.cs" />
+    <Compile Include="engage_major_releaseIBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="usersIBLL.cs" />
   </ItemGroup>

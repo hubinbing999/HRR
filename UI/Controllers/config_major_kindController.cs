@@ -14,6 +14,7 @@ namespace UI.Controllers
     public class config_major_kindController : Controller
     {
         config_major_kindIBLL con = iocComm.config_major_kindBLL();
+        config_majorIBLL uu = iocComm.config_majorBLL();
         // GET: config_major_kind
         [DlFilterAttibute]
         public ActionResult Index()
@@ -105,17 +106,38 @@ namespace UI.Controllers
         // GET: config_major_kind/Delete/5
         public ActionResult Delete(int id)
         {
-            int pf=  con.delete(id);
-
-            if (pf > 0)
+            List<config_major_kindModel1> li = con.selectupdate(id.ToString());
+            string pd=  li[0].major_kind_name;
+            List<config_majorModel> list = uu.select1();
+            bool od = true;
+            foreach (config_majorModel item in list)
             {
-                return RedirectToAction("Index");
+                if (item.major_kind_name == pd) {
+                    od = false;
+                }
             }
-            else
-            {
 
-                return RedirectToAction("Index");
+            if (od)
+            {
+                int pf = con.delete(id);
+                if (pf > 0)
+                {
+                    return Content("<script> window.location.href='/config_major_kind/Index';alert('删除成功');</script>");
+                    //return RedirectToAction("Index");
+                }
+                else
+                {
+
+                    return Content("<script> window.location.href='/config_major_kind/Index';alert('删除失败');</script>");
+                }
             }
+            else {
+
+                return Content("<script> window.location.href='/config_major_kind/Index';alert('删除失败!请删除数据');</script>");
+            }
+
+
+            
             
         }
 

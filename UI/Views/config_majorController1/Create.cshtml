@@ -18,7 +18,7 @@
     <script type="text/javascript">
         $(function () {
             $("#major_kind_name").click(function () {
-                $("#major_kind_id").val(  $(this).val());
+                $("#major_kind_id").val($(this).val());
 
             })
         })
@@ -74,7 +74,7 @@
                     职位编号
                 </td>
                 <td class="TD_STYLE2" width="81%">
-                    @Html.EditorFor(model => model.major_id, new { htmlAttributes = new { @class = "INPUT_STYLE1",@disabled = "disabled" } })
+                    @Html.EditorFor(model => model.major_id,new { htmlAttributes = new { @class = "INPUT_STYLE1"} })
                     
                 </td>
             </tr>

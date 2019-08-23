@@ -59,12 +59,16 @@
     <Compile Include="CodeFirst\config_majorConfig.cs" />
     <Compile Include="CodeFirst\config_major_kindConfig.cs" />
     <Compile Include="CodeFirst\config_public_charConfig.cs" />
+    <Compile Include="CodeFirst\engage_major_releaseConfig.cs" />
+    <Compile Include="CodeFirst\human_fileConfig.cs" />
     <Compile Include="CodeFirst\usersConfig.cs" />
     <Compile Include="config_file_first_kind.cs" />
     <Compile Include="config_major.cs" />
     <Compile Include="config_major_kind.cs" />
     <Compile Include="config_public_char.cs" />
     <Compile Include="Daobase.cs" />
+    <Compile Include="engage_major_release.cs" />
+    <Compile Include="human_file.cs" />
     <Compile Include="MyDbContext .cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
