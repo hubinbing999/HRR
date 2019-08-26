@@ -209,6 +209,7 @@
     <Compile Include="Controllers\config_file_first_kindController.cs" />
     <Compile Include="Controllers\config_file_second_kindController.cs" />
     <Compile Include="Controllers\config_file_third_kindController.cs" />
+    <Compile Include="Controllers\human_fileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\usserController.cs" />
     <Compile Include="Filters\DlFilterAttibute .cs" />
@@ -881,6 +882,7 @@
     <Content Include="Views\config_file_first_kind\first_kind_change.cshtml" />
     <Content Include="Views\config_file_first_kind\first_kind_change_success.cshtml" />
     <Content Include="Views\config_file_first_kind\first_kind_register_success.cshtml" />
+    <Content Include="Views\human_file\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

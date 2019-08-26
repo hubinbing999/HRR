@@ -61,6 +61,7 @@
     <Compile Include="CodeFirst\config_public_charConfig.cs" />
     <Compile Include="CodeFirst\engage_major_releaseConfig.cs" />
     <Compile Include="CodeFirst\human_fileConfig.cs" />
+    <Compile Include="CodeFirst\human_file_digConfig.cs" />
     <Compile Include="CodeFirst\usersConfig.cs" />
     <Compile Include="config_major.cs" />
     <Compile Include="config_major_kind.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="human_file.cs" />
     <Compile Include="config_file_second_kind.cs" />
     <Compile Include="config_file_third_kind.cs" />
+    <Compile Include="human_file_dig.cs" />
     <Compile Include="MyDbContext .cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

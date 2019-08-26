@@ -47,6 +47,8 @@
     <Compile Include="engage_major_releaseIBLL.cs" />
     <Compile Include="config_file_second_kindIBLL.cs" />
     <Compile Include="config_file_third_kindIBLL.cs" />
+    <Compile Include="human_fileIBLL.cs" />
+    <Compile Include="human_file_digIBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="usersIBLL.cs" />
   </ItemGroup>

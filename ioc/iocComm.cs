@@ -114,7 +114,30 @@ namespace ioc
             return ioc.Resolve<config_file_third_kindIBLL>("config_file_third_kindBLL");
            
         }
+        //human_file_dig
+        public static human_file_digIDAO human_file_digDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<human_file_digDAO>("human_file_digDAO");
+        }
+        public static human_file_digIBLL human_file_digBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<human_file_digIBLL>("human_file_digBLL");
 
+        }
+        //human_file
+        public static human_fileIDAO human_fileDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<human_fileDAO>("human_fileDAO");
+        }
+        public static human_fileIBLL human_fileBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<human_fileIBLL>("human_fileBLL");
+
+        }
         private static UnityContainer CreatIoc(string name)
         {
             UnityContainer ioc = new UnityContainer();

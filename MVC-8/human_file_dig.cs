@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVC_8
 {
-   public class human_file
+   public class human_file_dig
     {
         public System.Int32 id { get; set; }
    

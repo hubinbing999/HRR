@@ -49,6 +49,8 @@
     <Compile Include="config_file_first_kindModel.cs" />
     <Compile Include="config_file_second_kindModel.cs" />
     <Compile Include="config_file_third_kindModel.cs" />
+    <Compile Include="human_file.cs" />
+    <Compile Include="human_file_dig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="usersModel.cs" />
   </ItemGroup>
