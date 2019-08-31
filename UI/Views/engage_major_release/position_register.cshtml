@@ -1,0 +1,380 @@
+﻿@model Model.engage_major_releaseModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>position_register</title>
+    <link rel="stylesheet"
+          href="../../css/table.css" type="text/css">
+    <link rel="stylesheet"
+          href="../../css/cwcalendar.css" type="text/css">
+    <script type="text/javascript"
+            src="../../javascript/jquery-1.7.2.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/jquery.messager.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/comm/comm.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/comm/select.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/calendar-ch.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/time.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/human_register.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/human_input_check.js">
+    </script>
+    <script src="~/javascript/jquery-1.11.1.js"></script>
+    <script src="~/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+    <div id="div123"> 
+        @using (Ajax.BeginForm("position_register",new AjaxOptions() {HttpMethod="post" })) {
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--职位发布管理--职位发布登记 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="button" value="提交" class="BUTTON_STYLE1" onclick="mysubmit()">
+                        <input type="reset" value="清除" class="BUTTON_STYLE1" onclick="qc()">
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td class="TD_STYLE1" width="11%">
+                        I级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE2">
+
+                        @*<select name="emajorRelease.firstKindId" id="firstKindId" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+
+                            <option value="01">集团</option>
+
+                            <option value="02">总部</option>
+
+
+                        </select>*@
+                        @Html.DropDownList("first_kind_id", @ViewBag.dt as IEnumerable<SelectListItem>, "--请选择--", new {@class="SELECT_STYLE1" , @id= "firstKindId"  })
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        II级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE2" id="td2">
+                        @*<select name="emajorRelease.secondKindId" id="secondKindId" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+                        </select>*@
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        III级机构
+                    </td>
+                    <td class="TD_STYLE2" id="td3">
+                        @*<select name="emajorRelease.thirdKindId" id="thirdKindId" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+                        </select>*@
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        招聘类型
+                    </td>
+                    <td class="TD_STYLE2" colspan="2">
+                        @*<select name="emajorRelease.engageType" id="engageType" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+
+                            <option value="校园招聘">校园招聘</option>
+
+                            <option value="社会招聘">社会招聘</option>
+
+                        </select>*@
+                        @Html.DropDownList("attribute_kind",@ViewBag.dt2 as IEnumerable<SelectListItem>, "--请选择--",new { @class = "SELECT_STYLE1", @id = "engageType" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select class="SELECT_STYLE1">
+            <option value="">--请选择--</option>
+
+            <option value="01">销售</option>
+
+            <option value="02">软件开发</option>
+
+            <option value="03">人力资源</option>
+
+            <option value="04">生产部</option>
+
+        </select>*@
+                        @Html.DropDownList("major_kind_id", @ViewBag.dt1 as IEnumerable<SelectListItem>, "--请选择--", new { @class = "SELECT_STYLE1", @id = "majorKindId123"})
+                    </td>
+                    <td class="TD_STYLE1">
+                        职位名称
+                    </td>
+                    <td class="TD_STYLE2" id="td4">
+                        @*<select name="emajorRelease.majorId" id="majorId" class="SELECT_STYLE1">
+                            <option value="">--请选择--</option>
+                            <option value="11">区域经理</option>
+                        </select>*@
+                    </td>
+                    <td class="TD_STYLE1">
+                        招聘人数
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.humanAmount" id="humanAmount" class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model=>model.human_amount, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanAmount" } })
+                    </td>
+                    <td class="TD_STYLE1">
+                        截止日期
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="item.str_startTime" readonly
+                               class="INPUT_STYLE2" id="date_start">*@
+                        @Html.EditorFor(model => model.deadline, new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = true, @id = "Text2" } })
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        登记人
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.register" value="admin" class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.register,  new { htmlAttributes = new { @class = "INPUT_STYLE2", @Value = @ViewData["us"] } })
+                    </td>
+                    <td class="TD_STYLE1">
+                        登记时间
+                    </td>
+                    <td class="TD_STYLE2">
+
+                        @*<input type="text" name="emajorRelease.registTime"
+                               id="nowTime" readonly="readonly"
+                               class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.regist_time,  new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = true, @id = "nowTime" } })
+
+                    </td>
+
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位描述
+                    </td>
+                    <td class="TD_STYLE2" colspan="8">
+                        @*<textarea name="emajorRelease.majorDescribe" rows="4" cols="80" class="TEXTAREA_STYLE1"></textarea>*@
+                        @Html.TextAreaFor(model => model.major_describe, new { @class = "TEXTAREA_STYLE1", @rows = "4", @cols = "80" })
+
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        招聘要求
+                    </td>
+                    <td class="TD_STYLE2" colspan="8">
+                        @*<textarea name="emajorRelease.engageRequired" rows="4" cols="80" class="TEXTAREA_STYLE1"></textarea>*@
+                        @Html.TextAreaFor(model => model.engage_required,new { @class = "TEXTAREA_STYLE1", @rows = "4", @cols = "80" })
+
+
+                    </td>
+
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/javascript/vue.js"></script>
+<script type="text/javascript">
+    function qc() {
+        $("#firstKindId").val("");
+        $("#secondKindId").val("");
+        $("#engageType").val("");
+        $("#majorKindId").val("");
+        $("#humanAmount").val("");
+        $("#Text2").val("");
+        $("#register").val("");
+        $("#major_describe").val("");
+        $("#engage_required").val("");
+    }
+    $(function () {
+        $(document).on("focus", "#Text2", function () {
+            WdatePicker();
+        })
+    })
+    $("#majorKindId123").change(function () {
+        var mid = $("#majorKindId123").val();
+        $("#td4 #majorId").remove();
+        $.ajax({
+            url: "/engage_major_release/mrxlk",
+            type: "post",
+            data: "Mid=" + mid,
+            success: function (msg) {
+                var dt = eval("(" + msg + ")");
+                var $select = $("<select name='emajorReleasemajorId' id='majorId' class='SELECT_STYLE1'></select>");
+                var $option1 = $(" <option value=''>--请选择--</option>");
+                for (var i = 0; i < dt.length; i++) {
+                    var $option2 = $("<option value=" + dt[i].major_id + ">" + dt[i].major_name + "</option>");
+                    $select.append($option1, $option2);
+                    $("#td4").append($select);
+                }
+            }
+        })
+    })
+    $("#firstKindId").change(function () {
+        var fid = $("#firstKindId").val();
+        $("#td2 #secondKindId").remove();
+        $.ajax({
+            url: "/engage_major_release/fxlk",
+            type: "post",
+            data: "Fid=" + fid,
+            success: function (msg) {
+                var dt = eval("(" + msg + ")");
+                var $select = $("<select name='emajorReleasesecondKindId' id='secondKindId' class='SELECT_STYLE1'  onchange='xlk()'></select>");
+               var $option1 = $(" <option value=''>--请选择--</option>");
+                for (var i = 0; i <dt.length; i++) {
+                    var $option2 = $("<option value=" + dt[i].second_kind_id + ">" +  dt[i].second_kind_name + "</option>");
+                    $select.append($option1, $option2);
+                    $("#td2").append($select);
+                }
+            }
+        })
+    })
+    function xlk() {
+        var sid = $("#secondKindId").val();
+        $("#td3 #thirdKindId").remove();
+        $.ajax({
+            url: "/engage_major_release/sxlk",
+            type: "post",
+            data: "Sid=" + sid,
+            success: function (msg) {
+                var dt = eval("(" + msg + ")");
+                var $select = $("<select name='emajorReleasethirdKindId' id='thirdKindId' class='SELECT_STYLE1'></select>");
+                var $option1 = $(" <option value=''>--请选择--</option>");
+                for (var i = 0; i < dt.length; i++) {
+                    var $option2 = $("<option value=" + dt[i].third_kind_id + ">" + dt[i].third_kind_name + "</option>");
+                    $select.append($option1, $option2);
+                    $("#td3").append($select);
+                }
+            }
+        })
+    }
+ 			window.onload=check;
+		function tick() {
+			var now = new Date();
+			var hours, minutes, seconds, noon;
+			var intHours, intMinutes, intSeconds;
+			intHours = now.getHours();
+			intMinutes = now.getMinutes();
+			intSeconds = now.getSeconds();
+			if (intHours < 24) {
+				hours = intHours+":";
+				noon = "A.M.";
+			} else {
+				intHours = intHours - 24;
+				hours = intHours + ":";
+				noon = "P.M.";
+			}
+			if (intMinutes < 10) {
+				minutes = "0"+intMinutes+":";
+			} else {
+				minutes = intMinutes+":";
+			}
+			if (intSeconds < 10) {
+				seconds = "0"+intSeconds+" ";
+			} else {
+				seconds = intSeconds+" ";
+			}
+			timeString = hours+minutes+seconds;
+			var now = new Date();
+		  	document.getElementById("nowTime").value=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+timeString;
+			window.setTimeout("tick();", 1000);
+		}
+		
+		//load事件
+		function check(){
+			//获得系统当前时间的方法
+		  	tick();
+		}
+
+</script>
+<script type="text/javascript">
+        function mysubmit() {
+            if($("#firstKindId").val()==""){
+               alert("请选择一级机构");
+               return ;
+            }
+            if ($("#secondKindId").val() == "") {
+                alert("请选择二级机构");
+                return;
+            }
+            if ($("#thirdKindId").val() == "") {
+                alert("请选择三级机构");
+                return;
+            }
+            if ($("#engageType").val() == "") {
+               alert("请选择招聘类型");
+               return ;
+               }
+            if ($("#majorKindId123").val() == "") {
+               alert("请选择职位分类");
+               return ;
+               }
+            if ($("#majorId").val() == "") {
+               alert("请选择职位名称");
+               return ;
+               }
+            if ($("#humanAmount").val() == "") {
+           alert("请填写招聘人数");
+               return ;
+          }
+            if ($("#Text2").val() == "") {
+           alert("请选择截止日期");
+               return ;
+          }
+            if ($("#major_describe").val() == "") {
+                alert("请选择职位描述");
+                return;
+            }
+            if ($("#engage_required").val() == "") {
+                alert("请选择招聘要求");
+                return;
+            }
+            var dt1 = $("#Text2").val();
+            var dt2 = $("#nowTime").val();
+            var v1 = new Date(dt1.replace(/\-/g, "\/"));
+            var v2 = new Date(dt2.replace(/\-/g, "\/"));
+            if (v1 <= v2) {
+                alert("截止日期不能小于当前日期");
+                return;
+            }
+          $("form").submit();
+        }
+
+
+    </script> 

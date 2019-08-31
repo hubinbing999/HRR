@@ -59,7 +59,9 @@
     <Compile Include="CodeFirst\config_majorConfig.cs" />
     <Compile Include="CodeFirst\config_major_kindConfig.cs" />
     <Compile Include="CodeFirst\config_public_charConfig.cs" />
+    <Compile Include="CodeFirst\engage_interviewConfig.cs" />
     <Compile Include="CodeFirst\engage_major_releaseConfig.cs" />
+    <Compile Include="CodeFirst\engage_resumeConfig.cs" />
     <Compile Include="CodeFirst\human_fileConfig.cs" />
     <Compile Include="CodeFirst\human_file_digConfig.cs" />
     <Compile Include="CodeFirst\usersConfig.cs" />
@@ -69,7 +71,9 @@
     <Compile Include="CodeFirst\config_file_second_kindConfig.cs" />
     <Compile Include="CodeFirst\config_file_third_kindConfig.cs" />
     <Compile Include="config_file_first_kind.cs" />
+    <Compile Include="engage_interview.cs" />
     <Compile Include="engage_major_release.cs" />
+    <Compile Include="engage_resume.cs" />
     <Compile Include="human_file.cs" />
     <Compile Include="config_file_second_kind.cs" />
     <Compile Include="config_file_third_kind.cs" />

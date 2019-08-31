@@ -100,5 +100,24 @@ namespace DAO
             }
             return db;
         }
+
+        public List<config_majorModel> selectxlk(string id)
+        {
+            List<config_major> list = SeleteBy(e => e.major_kind_id == id);
+
+
+            List<config_majorModel> li = new List<config_majorModel>();
+            foreach (config_major item in list)
+            {
+                config_majorModel ko = new config_majorModel();
+                ko.mak_id = item.id;
+                ko.major_kind_id = item.major_kind_id;
+                ko.major_kind_name = item.major_kind_name;
+                ko.major_id = item.major_id;
+                ko.major_name = item.major_name;
+                ko.test_amount = item.test_amount; li.Add(ko);
+            }
+            return li;
+        }
     }
 }

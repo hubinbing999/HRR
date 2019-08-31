@@ -14,7 +14,7 @@ namespace IDAO
         int update(engage_major_releaseModel st);
         List<engage_major_releaseModel> selectupdate(int id);
         int delete(int id);
-
+        FenYeModel Fenye(int currentPage,int rl);
 
     }
 } 

@@ -14,7 +14,7 @@ namespace IDAO
         int update(config_majorModel st);
         List<config_majorModel> selectupdate(int id);
         int delete(int id);
-
+        List<config_majorModel> selectxlk(string id);
 
     }
 } 

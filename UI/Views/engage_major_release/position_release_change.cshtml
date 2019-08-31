@@ -1,0 +1,290 @@
+﻿@model Model.engage_major_releaseModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>position_release_change</title>
+    <link rel="stylesheet"
+          href="../../css/table.css" type="text/css">
+    <link rel="stylesheet"
+          href="../../css/cwcalendar.css" type="text/css">
+    <script type="text/javascript"
+            src="../../javascript/jquery-1.7.2.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/jquery.messager.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/comm/comm.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/comm/select.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/calendar-ch.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/time.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/human_register.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/human_input_check.js">
+    </script>
+    <script src="~/javascript/jquery-1.11.1.js"></script>
+    <script src="~/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+    <div> 
+@using (Ajax.BeginForm("position_release_change",new AjaxOptions() {HttpMethod="post" })) {
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--职位发布管理--职位发布变更 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="button" value="提交" class="BUTTON_STYLE1" onclick="mysubmit()">
+                        <input type="button" value="清除" class="BUTTON_STYLE1" onclick="qc()">
+                    </td>
+                </tr>
+            </table>
+            @Html.HiddenFor(model=>model.id)
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td class="TD_STYLE1" width="11%">
+                        I级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE2">
+                        @*<input type="hidden" name="emajorRelease.firstKindName" value="&#38598;&#22242;" />*@
+                        @Html.EditorFor(model => model.first_kind_name, new { htmlAttributes = new { @readonly=true , @class = "INPUT_STYLE2" } })
+                        <input type="hidden" name="emajorRelease.firstKindId" value="01" />
+                        
+
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        II级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE2">
+                        @*<input type="hidden" name="emajorRelease.secondKindName" value="&#29983;&#29289;&#31185;&#25216;&#26377;&#38480;&#20844;&#21496;" />*@
+                        @Html.EditorFor(model => model.second_kind_name, new { htmlAttributes = new { @readonly = true, @class = "INPUT_STYLE2" } })
+                        <input type="hidden" name="emajorRelease.secondKindId" value="02" />
+
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        III级机构
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="hidden" name="emajorRelease.thirdKindName" value="&#33647;&#24215;" />*@
+                        @Html.EditorFor(model => model.third_kind_name, new { htmlAttributes = new { @readonly = true , @class = "INPUT_STYLE2" } })
+                        <input type="hidden" name="emajorRelease.thirdKindId" value="01" />
+
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        招聘类型
+                    </td>
+                    <td class="TD_STYLE2" colspan="2">
+
+                        @*<select name="emajorRelease.engageType" id="engageType" class="SELECT_STYLE1">
+
+                            <option value="校园招聘" selected>校园招聘</option>
+
+                            <option value="社会招聘" selected>社会招聘</option>
+
+                        </select>*@
+                        @Html.DropDownList("engage_type", @ViewBag.dt2 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1"})
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="hidden" name="emajorRelease.majorKindName" value="&#38144;&#21806;" />*@
+                        @Html.EditorFor(model => model.major_kind_name, new { htmlAttributes = new { @readonly = true , @class = "INPUT_STYLE2" } })
+                        <input type="hidden" name="emajorRelease.majorKindId" value="01" />
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        职位名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="hidden" name="emajorRelease.majorName" value="&#24635;&#32463;&#29702;" />*@
+                        @Html.EditorFor(model => model.major_name, new { htmlAttributes = new { @readonly = true, @class = "INPUT_STYLE2" } })
+                        <input type="hidden" name="emajorRelease.majorId" value="02" />
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        招聘人数
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.humanAmount" value="2" class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.human_amount, new { htmlAttributes = new { @class = "INPUT_STYLE2",@id= "humanAmount" } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        截止日期
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.deadline"
+                               class="INPUT_STYLE2" onclick="aa('emajorRelease.deadline')" value="2012-11-15">*@
+                        @Html.EditorFor(model => model.deadline, new { htmlAttributes = new { @class = "INPUT_STYLE2" ,@id="Text2" } })
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        变更人
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.changer" value="zhangsan" class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.changer, new { htmlAttributes = new { @class = "INPUT_STYLE2",@Value= @ViewData["us"] } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        变更时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.changeTime"
+                               value="12-11-18 19:26:58.000" id="nowTime"
+                               class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.change_time, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "nowTime" } })
+
+
+                    </td>
+
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位描述
+                    </td>
+                    <td class="TD_STYLE2" colspan="8">
+                        @*<textarea name="emajorRelease.majorDescribe" rows="4" cols="100%" class="TEXTAREA_STYLE1">&#19982;&#26102;&#20465;&#36827;</textarea>*@
+                        @Html.TextAreaFor(model => model.major_describe, new { htmlAttributes = new { @class = "TEXTAREA_STYLE1", @rows = "4" ,@cols = "100%"  } })
+
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        招聘要求
+                    </td>
+                    <td class="TD_STYLE2" colspan="8">
+                        @*<textarea name="emajorRelease.engageRequired" rows="4" cols="100%" class="TEXTAREA_STYLE1">&#20570;&#20107;&#32454;&#24515;</textarea>*@
+                        @Html.TextAreaFor(model => model.engage_required, new { htmlAttributes = new { @class = "TEXTAREA_STYLE1", @rows = "4", @cols = "100%" } })
+
+
+                    </td>
+
+                </tr>
+            </table>
+}
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/javascript/vue.js"></script>
+<script type="text/javascript">
+    function qc() {
+        $("#humanAmount").val("");
+        $("#Text2").val("");
+        $("#major_describe").val("");
+        $("#engage_required").val("");
+    }
+    $(function () {
+        $(document).on("focus", "#Text2", function () {
+            WdatePicker();
+        })
+    })
+
+
+ 			window.onload=check;
+		function tick() {
+			var now = new Date();
+			var hours, minutes, seconds, noon;
+			var intHours, intMinutes, intSeconds;
+			intHours = now.getHours();
+			intMinutes = now.getMinutes();
+			intSeconds = now.getSeconds();
+			if (intHours < 24) {
+				hours = intHours+":";
+				noon = "A.M.";
+			} else {
+				intHours = intHours - 24;
+				hours = intHours + ":";
+				noon = "P.M.";
+			}
+			if (intMinutes < 10) {
+				minutes = "0"+intMinutes+":";
+			} else {
+				minutes = intMinutes+":";
+			}
+			if (intSeconds < 10) {
+				seconds = "0"+intSeconds+" ";
+			} else {
+				seconds = intSeconds+" ";
+			}
+			timeString = hours+minutes+seconds;
+			var now = new Date();
+		  	document.getElementById("nowTime").value=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+timeString;
+			window.setTimeout("tick();", 1000);
+		}
+
+		//load事件
+		function check(){
+			//获得系统当前时间的方法
+		  	tick();
+		}
+</script>
+
+<script type="text/javascript">
+        function mysubmit() {
+            if ($("#humanAmount").val() == "") {
+           alert("请填写招聘人数");
+               return ;
+          }
+            if ($("#Text2").val() == "") {
+           alert("请选择截止日期");
+               return ;
+          }
+            if ($("#major_describe").val() == "") {
+                alert("请选择职位描述");
+                return;
+            }
+            if ($("#engage_required").val() == "") {
+                alert("请选择招聘要求");
+                return;
+            }
+            var dt1 = $("#Text2").val();
+            var dt2 = $("#nowTime").val();
+            var v1 = new Date(dt1.replace(/\-/g, "\/"));
+            var v2 = new Date(dt2.replace(/\-/g, "\/"));
+            if (v1 <= v2) {
+                alert("截止日期不能小于当前日期");
+                return;
+            }
+            $("form").submit();
+        }
+
+
+</script>

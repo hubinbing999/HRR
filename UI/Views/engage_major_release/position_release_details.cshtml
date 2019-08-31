@@ -1,0 +1,225 @@
+﻿@model Model.engage_major_releaseModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>position_release_details</title>
+    <link rel="stylesheet"
+          href="../../../css/table.css" type="text/css">
+    <link rel="stylesheet"
+          href="../../../css/cwcalendar.css" type="text/css">
+    <script type="text/javascript"
+            src="../../../javascript/comm/comm.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/comm/list.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/calendar-ch.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/jquery-1.7.2.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/locate.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/select.js">
+    </script>
+    <script src="~/javascript/jquery-1.11.1.js"></script>
+    <script src="~/DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+    <div id="div123"> 
+        @using (Ajax.BeginForm("position_release_details",new AjaxOptions() { HttpMethod="post"})) {
+            <input type="hidden" name="emajorRelease.mreId" value="531" />
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--职位发布管理--职位发布查询--详细  </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="submit" value="确认申请"  class="BUTTON_STYLE1" />
+                        <input type="button" value="返回" class="BUTTON_STYLE1" v-on:click="fh">
+                    </td>
+                </tr>
+            </table>
+            @Html.HiddenFor(model => model.id);
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td class="TD_STYLE1" width="11%">
+                        I级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE2">
+                        @*<select name="emajorRelease.firstKindName">
+                            <option value="&#38598;&#22242;">&#38598;&#22242;</option>
+                        </select>*@
+                        @Html.DropDownList("first_kind_name",@ViewBag.dt as IEnumerable<SelectListItem>,new {@class= "SELECT_STYLE1" })
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        II级机构
+                    </td>
+                    <td width="14%" class="TD_STYLE2">
+                        @*<select name="emajorRelease.secondKindName">
+                            <option value="&#29983;&#29289;&#31185;&#25216;&#26377;&#38480;&#20844;&#21496;">&#29983;&#29289;&#31185;&#25216;&#26377;&#38480;&#20844;&#21496;</option>
+                        </select>*@
+                        @Html.DropDownList("second_kind_name", @ViewBag.dt1 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1" })
+
+
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        III级机构
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="emajorRelease.thirdKindId">
+                            <option value="&#33647;&#24215;">&#33647;&#24215;</option>
+                        </select>*@
+                        @Html.DropDownList("third_kind_name", @ViewBag.dt2 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1" })
+
+
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        招聘类型
+                    </td>
+                    <td class="TD_STYLE2" colspan="2">
+                        @*<select name="emajorRelease.engageType" class="SELECT_STYLE1">
+                            <option value="&#31038;&#20250;&#25307;&#32856;">&#31038;&#20250;&#25307;&#32856;</option>
+                        </select>*@
+                        @Html.DropDownList("engage_type", @ViewBag.dt3 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1" })
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="emajorRelease.majorKindName">
+                            <option value="&#38144;&#21806;">&#38144;&#21806;</option>
+                        </select>*@
+                        @Html.DropDownList("major_kind_name", @ViewBag.dt4 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        职位名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="emajorRelease.majorName">
+                            <option value="&#24635;&#32463;&#29702;">&#24635;&#32463;&#29702;</option>
+                        </select>*@
+                        @Html.DropDownList("major_name", @ViewBag.dt5 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        招聘人数
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.humanAmount" value="2 " class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model=>model.human_amount,new { htmlAttributes = new {@class= "INPUT_STYLE2", @readonly = true } })
+                    </td>
+                    <td class="TD_STYLE1">
+                        截止日期
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.deadline" readonly
+                               class="INPUT_STYLE2" value="2012-11-15 12:00:00">*@
+                        @Html.EditorFor(model => model.deadline, new { htmlAttributes = new { @class = "INPUT_STYLE2",@readonly=true,@id="Text2" } })
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        登记人
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.register" value="&#26446;&#22235;" class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.register, new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = true } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        登记时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="emajorRelease.registTime"
+                               value="2012-08-02 12:00:00" readonly="readonly"
+                               class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.regist_time, new { htmlAttributes = new { @class = "INPUT_STYLE2", @readonly = true } })
+                    </td>
+
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+                    <td>&nbsp; </td>
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位描述
+                    </td>
+                    <td class="TD_STYLE2" colspan="8">
+                        @*<textarea name="emajorRelease.majorDescribe" rows="4" cols="100%" class="TEXTAREA_STYLE1" readonly="readonly">&#19982;&#26102;&#20465;&#36827;</textarea>*@
+                        @Html.TextAreaFor(model => model.major_describe, new { htmlAttributes = new { @class = "TEXTAREA_STYLE1"}, @readonly = true, @rows = "4", @cols = "100%" })
+
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        招聘要求
+                    </td>
+                    <td class="TD_STYLE2" colspan="8">
+                        @*<textarea name="emajorRelease.engageRequired" rows="4" cols="100%" class="TEXTAREA_STYLE1" readonly="readonly">&#20570;&#20107;&#32454;&#24515;</textarea>*@
+                        @Html.TextAreaFor(model => model.engage_required, new { htmlAttributes = new { @class = "TEXTAREA_STYLE1" }, @readonly = true, @rows = "4", @cols = "100%" })
+
+
+                    </td>
+
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/javascript/vue.js"></script>
+<script type="text/javascript">
+    
+    $(function () {
+        $(document).on("focus", "#Text2", function () {
+            WdatePicker();
+        })
+    })
+    var vm = new Vue({
+        el: "#div123",
+        data: {
+            row1:null
+        }, methods: {
+            fh: function () {
+                window.location.href = "/engage_major_release/position_change_update";
+            }
+        }, created: function () {
+            this.load();
+        }
+    })
+		//function search(id){
+		// // document.fm.submit();
+ 		//window.location.href="/HR_Fist/recruit/recruitAction!register?id="+id;
+		//}
+</script>

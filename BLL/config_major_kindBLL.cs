@@ -34,6 +34,8 @@ namespace BLL
             return st1.selectupdate(id);
         }
 
+        
+
         public int update1(config_major_kindModel1 st)
         {
             return st1.update(st);
