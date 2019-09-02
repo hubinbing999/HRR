@@ -65,8 +65,8 @@
 </head>
 
 <body>
-   @using (Ajax.BeginForm("hu", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "TR" }))
-   {
+  @using (Ajax.BeginForm("hu", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "TR" }))
+  {
         <table width="100%">
             <tr>
                 <td>
@@ -103,9 +103,9 @@
                 <td width="11%" class="TD_STYLE1">
                     III级机构
                 </td>
-                <td class="TD_STYLE2" colspan="2">
-                    @Html.DropDownListFor(model => model.third_kind_id, ViewData["sj"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "thirdKind" } })
-                    @Html.ValidationMessageFor(e => e.third_kind_id)
+                <td class="TD_STYLE2" colspan="2" id="td2">
+                    @*@Html.DropDownListFor(model => model.third_kind_id, ViewData["sj"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "thirdKind" } })
+                    @Html.ValidationMessageFor(e => e.third_kind_id)*@
                     <input type="hidden" name="humanFile.thirdKindName" />
                 </td>
                 <td rowspan="5" style="text-align: center;"></td>
@@ -122,9 +122,9 @@
                 <td class="TD_STYLE1">
                     职位名称
                 </td>
-                <td class="TD_STYLE2">
-                    @Html.DropDownListFor(model => model.hunma_major_name, ViewData["zwmc"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "majorName" } })
-                    @Html.ValidationMessageFor(e => e.hunma_major_name)
+                <td class="TD_STYLE2" id="td3">
+                    @*@Html.DropDownListFor(model => model.hunma_major_name, ViewData["zwmc"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "majorName" } })
+                    @Html.ValidationMessageFor(e => e.hunma_major_name)*@
                     <input type="hidden" name="humanFile.hunmaMajorName" />
                 </td>
                 <td class="TD_STYLE1">
@@ -382,7 +382,9 @@
 </html>
 <script type="text/javascript">
     $(function () {
+         
         $("#first_kind_id").change(function () {
+           
             var id = $("#first_kind_id").val();
             $("#td1 .INPUT_STYLE1").remove();
             $.ajax({
@@ -391,7 +393,7 @@
                 data: "id=" + id,
                 success: function (msg) {
                     var dt = eval("(" + msg + ")");
-                    var $select = $("<select name='second_kind_id' id='secondKindId' class='INPUT_STYLE1' style ='width: 90px;'></select>");
+                    var $select = $("<select name='second_kind_id' id='secondKindId' class='INPUT_STYLE1' style ='width: 90px;' onchange='xlk()'></select>");
                     var $option1 = $("<option value>请选择II机构名称</option>")
                     for (var i = 0; i < dt.length; i++) {
                         var $option = $("<option value=" + dt[i]["second_kind_id"] + ">" + dt[i]["second_kind_name"] + "</option>");
@@ -401,7 +403,46 @@
                 }
             })
         })
+        $(document).on("change", "#secondKindId", function () {
+            var sid = $("#secondKindId").val();
+            $("#td2 #thirdKindId").remove();
+            $.ajax({
+                url: "/engage_major_release/sxlk",
+                type: "post",
+                data: "Sid=" + sid,
+                success: function (msg) {
+                    var dt = eval("(" + msg + ")");
+                    var $select = $("<select name='third_kind_id' id='thirdKindId' class='SELECT_STYLE1'></select>");
+                    var $option1 = $(" <option value=''>--请选择--</option>");
+                    for (var i = 0; i < dt.length; i++) {
+                        var $option2 = $("<option value=" + dt[i].third_kind_id + ">" + dt[i].third_kind_name + "</option>");
+                        $select.append($option1, $option2);
+                        $("#td2").append($select);
+                    }
+                }
+            })
+        })
+        $("#human_major_kind_id").change(function () {
+            var id = $("#human_major_kind_id").val();
+            $("#hunma_major_name option").remove();
+            $.ajax({
+                url: "/human_file/chaxun",
+                type: "post",
+                data: "id=" + id,
+                success: function (msg) {
+                    var dt = eval("(" + msg + ")");
+                    var $select = $("<select name='hunma_major_name' id='hunma_major_name' class='INPUT_STYLE1' style ='width: 150px;'></select>");
+                    var $option1 = $("<option value>请选择职位名称</option>")
+                    for (var i = 0; i < dt.length; i++) {
+                        
+                        var $option = $("<option value=" + dt[i]["major_id"] + ">" + dt[i]["major_name"] + "</option>");
+                        $select.append($option1, $option);
+                        $("#td3").append($select);
+                    }
+                }
+            })
 
+        })
     })
 
 </script>

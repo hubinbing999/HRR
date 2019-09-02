@@ -17,6 +17,7 @@ namespace UI.Controllers
     {
         human_fileIBLL hhhhh = iocComm.human_fileBLL();
         human_file_digIBLL huuu = iocComm.human_file_digBLL();
+        config_majorIBLL ctb = iocComm.config_majorBLL();
         // GET: human_file
         public ActionResult Index()
         {
@@ -1423,5 +1424,13 @@ namespace UI.Controllers
                 return Content("删除失败！");
             }
         }
+        //职位下拉框
+        public ActionResult chaxun() {
+            string Sid = Request["id"];
+            Sid = "0" + Sid;
+            List<config_majorModel> list = ctb.selectxlk1(Sid);
+            return Content(JsonConvert.SerializeObject(list));
+        }
+
     }
 }
