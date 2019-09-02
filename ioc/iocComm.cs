@@ -75,7 +75,7 @@ namespace ioc
         public static engage_major_releaseIBLL engage_major_releaseBLL()
         {
             UnityContainer ioc = CreatIoc("containerTwo");
-            return ioc.Resolve<engage_major_releaseIBLL>("engage_major_releaseIBLL");
+            return ioc.Resolve<engage_major_releaseIBLL>("engage_major_releaseBLL");
         }
 
         
@@ -138,12 +138,37 @@ namespace ioc
             return ioc.Resolve<human_fileIBLL>("human_fileBLL");
 
         }
+
+        public static engage_interviewIDAO engage_interviewDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<engage_interviewDAO>("engage_interviewDAO");
+        }
+        public static engage_interviewIBLL engage_interviewBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<engage_interviewIBLL>("engage_interviewBLL");
+
+        }
+
+
+        public static engage_resumeIDAO engage_resumeDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<engage_resumeDAO>("engage_resumeDAO");
+        }
+        public static engage_resumeIBLL engage_resumeBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<engage_resumeIBLL>("engage_resumeBLL");
+
+        }
         private static UnityContainer CreatIoc(string name)
         {
             UnityContainer ioc = new UnityContainer();
             //生成文件(Unity.config)对象
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = @"E:\最后\UI\Unity.config";
+            ecf.ExeConfigFilename = @"D:\Y2Net\EF\新建文件夹 (4)\UI\Unity.config";
             //生成配置对象
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
             //读取配置对象的unity节点区                                                               

@@ -67,10 +67,12 @@
     <Compile Include="config_majorIDAO.cs" />
     <Compile Include="config_major_kindIDAO.cs" />
     <Compile Include="config_public_charIDAO.cs" />
+    <Compile Include="engage_interviewIDAO.cs" />
     <Compile Include="engage_major_releaseIDAO.cs" />
     <Compile Include="config_file_first_kindIDAO.cs" />
     <Compile Include="config_file_second_kindIDAO.cs" />
     <Compile Include="config_file_third_kindIDAO.cs" />
+    <Compile Include="engage_resumeIDAO.cs" />
     <Compile Include="human_fileIDAO.cs" />
     <Compile Include="human_file_digIDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -46,7 +46,9 @@
     <Compile Include="config_majorBLL.cs" />
     <Compile Include="config_major_kindBLL.cs" />
     <Compile Include="config_public_charBLL.cs" />
+    <Compile Include="engage_interviewBLL.cs" />
     <Compile Include="engage_major_releaseBLL.cs" />
+    <Compile Include="engage_resumeBLL.cs" />
     <Compile Include="human_fileBLL.cs" />
     <Compile Include="human_file_digBLL.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />

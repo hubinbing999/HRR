@@ -11,10 +11,10 @@ using DAO;
 using IDAO;
 namespace BLL
 {
-    public class config_file_third_kindBLL : config_file_third_kindIBLL
+    public class engage_resumeBLL : engage_resumeIBLL
     {
-        config_file_third_kindIDAO st1 = iocComm.config_file_third_kindDAO();
-        public int Add1(config_file_third_kindModel st)
+        engage_resumeIDAO st1 = iocComm.engage_resumeDAO();
+        public int Add1(engage_resumeModel st)
         {
             return st1.Add(st);
         }
@@ -24,22 +24,17 @@ namespace BLL
             return st1.delete(id);
         }
 
-        public List<config_file_third_kindModel> select1()
+        public List<engage_resumeModel> select1()
         {
             return st1.select();
         }
 
-        public List<config_file_third_kindModel> selectupdate(int id)
+        public List<engage_resumeModel> selectupdate(int id)
         {
             return st1.selectupdate(id);
         }
 
-        public List<config_file_third_kindModel> selectxlk1(string id)
-        {
-            return st1.selectxlk(id);
-        }
-
-        public int update1(config_file_third_kindModel st)
+        public int update1(engage_resumeModel st)
         {
             return st1.update(st);
         }

@@ -14,7 +14,7 @@ namespace IDAO
         int update(config_major_kindModel1 st);
         List<config_major_kindModel1> selectupdate(string id);
         int delete(int id);
-
+        
 
     }
 } 

@@ -24,6 +24,11 @@ namespace BLL
             return st1.delete(id);
         }
 
+        public FenYeModel Fenye(int currentPage, int rl)
+        {
+            return st1.Fenye(currentPage, rl);
+        }
+
         public List<engage_major_releaseModel> select1()
         {
             return st1.select();

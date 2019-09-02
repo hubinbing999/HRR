@@ -104,8 +104,5 @@ namespace DAO
             }
             return list2;
         }
-
-
-
     }
 }

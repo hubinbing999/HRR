@@ -220,10 +220,12 @@
     <Compile Include="Controllers\config_file_first_kindController.cs" />
     <Compile Include="Controllers\config_file_second_kindController.cs" />
     <Compile Include="Controllers\config_file_third_kindController.cs" />
+    <Compile Include="Controllers\engage_resumeController.cs" />
     <Compile Include="Controllers\human_fileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\usserController.cs" />
     <Compile Include="Filters\DlFilterAttibute .cs" />
+    <Compile Include="Filters\engage_resumeAttibute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -251,21 +253,6 @@
     <Content Include="css\cwcalendar.css" />
     <Content Include="css\style.css" />
     <Content Include="css\table.css" />
-    <Content Include="css\webuploader.css" />
-    <Content Include="DatePicker\calendar.js" />
-    <Content Include="DatePicker\config.js" />
-    <Content Include="DatePicker\lang\en.js" />
-    <Content Include="DatePicker\lang\zh-cn.js" />
-    <Content Include="DatePicker\lang\zh-tw.js" />
-    <Content Include="DatePicker\My97DatePicker.htm" />
-    <Content Include="DatePicker\skin\datePicker.gif" />
-    <Content Include="DatePicker\skin\default\datepicker.css" />
-    <Content Include="DatePicker\skin\default\img.gif" />
-    <Content Include="DatePicker\skin\WdatePicker.css" />
-    <Content Include="DatePicker\skin\whyGreen\bg.jpg" />
-    <Content Include="DatePicker\skin\whyGreen\datepicker.css" />
-    <Content Include="DatePicker\skin\whyGreen\img.gif" />
-    <Content Include="DatePicker\WdatePicker.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -916,7 +903,7 @@
     <Content Include="Views\config_public_char\Index.cshtml" />
     <Content Include="Views\config_public_char\SELECT.cshtml" />
     <Content Include="Views\config_public_char\XZCreate.cshtml" />
-    <Content Include="Views\engage_major_release\Index.cshtml" />
+    <Content Include="Views\engage_major_release\position_release_search.cshtml" />
     <Content Include="Views\usser\Index.cshtml" />
     <Content Include="Views\config_file_first_kind\config_file_first_kind.cshtml" />
     <Content Include="Views\config_file_first_kind\config_file_first_kindCreate.cshtml" />
@@ -925,20 +912,6 @@
     <Content Include="Views\config_file_first_kind\first_kind_change_success.cshtml" />
     <Content Include="Views\config_file_first_kind\first_kind_register_success.cshtml" />
     <Content Include="Views\human_file\Index.cshtml" />
-    <Content Include="Views\human_file\wenjian.cshtml" />
-    <Content Include="Views\human_file\fuhe.cshtml" />
-    <Content Include="Views\human_file\tijiao.cshtml" />
-    <Content Include="Views\human_file\query_locate.cshtml" />
-    <Content Include="Views\human_file\dacx.cshtml" />
-    <Content Include="Views\human_file\change_keywords.cshtml" />
-    <Content Include="Views\human_file\biandeng.cshtml" />
-    <Content Include="Views\human_file\bian.cshtml" />
-    <Content Include="Views\human_file\delete_locate.cshtml" />
-    <Content Include="Views\human_file\delete_locateDEL.cshtml" />
-    <Content Include="Views\human_file\delete_locateDEL12.cshtml" />
-    <Content Include="Views\human_file\recovery_locate.cshtml" />
-    <Content Include="Views\human_file\recovery_locatChan.cshtml" />
-    <Content Include="Views\human_file\delete_forever_list.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

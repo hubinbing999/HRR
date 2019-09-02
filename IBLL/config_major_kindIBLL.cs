@@ -14,5 +14,6 @@ namespace IBLL
         int update1(config_major_kindModel1 st);
         List<config_major_kindModel1> selectupdate(string id);
         int delete(int id);
+        
     }
 }

@@ -44,13 +44,15 @@
     <Compile Include="bangzhu\Cansh.cs" />
     <Compile Include="canshulei.cs" />
     <Compile Include="config_majorModel.cs" />
-    <Compile Include="config_major_kindModel.cs" />
     <Compile Include="config_major_kindModel1.cs" />
     <Compile Include="config_public_char.cs" />
-    <Compile Include="engage_major_release.cs" />
+    <Compile Include="engage_interviewModel.cs" />
+    <Compile Include="engage_major_releaseModel.cs" />
     <Compile Include="config_file_first_kindModel.cs" />
     <Compile Include="config_file_second_kindModel.cs" />
     <Compile Include="config_file_third_kindModel.cs" />
+    <Compile Include="engage_resumeModel.cs" />
+    <Compile Include="FenYeModel.cs" />
     <Compile Include="human_file.cs" />
     <Compile Include="human_file_dig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

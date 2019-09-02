@@ -9,13 +9,13 @@ namespace MVC_8
 {
    public class engage_major_release
     {
-        public System.Int32 id { get; set; }
+        public int id { get; set; }
    
                          
-        public System.String first_kind_id { get; set; }
+        public string first_kind_id { get; set; }
    
                          
-        public System.String first_kind_name { get; set; }
+        public string first_kind_name { get; set; }
    
                          
         public System.String second_kind_id { get; set; }
@@ -42,7 +42,7 @@ namespace MVC_8
         public System.String major_name { get; set; }
    
                          
-        public System.Int32 human_amount { get; set; }
+        public int human_amount { get; set; }
    
                          
         public System.String engage_type { get; set; }

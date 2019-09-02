@@ -12,7 +12,7 @@ namespace MVC_8
     {
         public MyDbContext() : base("name=sql")
         {
-           //Database.SetInitializer<MyDbContext>(null);
+            Database.SetInitializer<MyDbContext>(null);
         }
         //加载所有的配置类对象
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -33,7 +33,9 @@ namespace MVC_8
         public DbSet<config_file_third_kind> config_file_third_kinds { get; set; }
         public DbSet<human_file_dig> human_file_dig { get; set; }
         public DbSet<human_file> human_file { get; set; }
-        
+        public DbSet<engage_resume> engage_resumes { get; set; }
+        public DbSet<engage_interview> engage_interviews { get; set; }
+
     }
 }
 
