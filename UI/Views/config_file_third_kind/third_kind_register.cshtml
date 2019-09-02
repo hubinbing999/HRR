@@ -66,13 +66,7 @@
                         II级机构名称
                     </td>
                     <td width="81%" class="TD_STYLE2" id="td1">
-                        @*<select name="cftk.secondKindId" onchange="change2()" id="secondKindId" class="INPUT_STYLE1">
-                            <option value="0">
-                                请选择II机构名称
-                            </option>
-
-                        </select>*@
-                        @*@Html.DropDownList("second_kind_id", @ViewBag.dt1 as IEnumerable<SelectListItem>, new { @id = "secondKindId", @name = "cfsk.firstKindId" })*@
+                       
                     </td>
                 </tr>
                 <tr>
@@ -153,7 +147,7 @@
             success: function (msg) {
                 var dt = eval("(" + msg + ")");
                 var $select = $("<select name='cftk.secondKindId' id='secondKindId' class='INPUT_STYLE1'></select>");
-                var $option1 = $("<option value='0'>请选择I机构名称</option>")
+                var $option1 = $("<option value='0'>请选择II机构名称</option>")
                 for (var i = 0; i < dt.length; i++) {
                     var $option = $("<option value=" + dt[i]["second_kind_id"] + ">" + dt[i]["second_kind_name"] + "</option>");
                     $select.append($option1, $option);

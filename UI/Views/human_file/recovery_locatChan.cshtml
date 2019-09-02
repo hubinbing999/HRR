@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "recovery_locatChan";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet"
+          href="../../css/table.css" type="text/css">
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Content/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/javascript/vue.js"></script>
+
+</head>
+
+<body>
+    <form action="" id="ji" method="post">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案恢复查询 </font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    符合条件的人力资源档案总数：{{ message }}例
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=5 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr class="TR_STYLE1">
+                <td width="16%" class="TD_STYLE1">
+                    档案编号
+                </td>
+                <td width="13%" class="TD_STYLE1">
+                    姓名
+                </td>
+                <td width="8%" class="TD_STYLE1">
+                    性别
+                </td>
+                <td width="14%" class="TD_STYLE1">
+                    I级机构
+                </td>
+                <td width="14%" class="TD_STYLE1">
+                    II级机构
+                </td>
+                <td width="14%" class="TD_STYLE1">
+                    III级机构
+                </td>
+                <td width="14%" class="TD_STYLE1">
+                    职位分类
+                </td>
+                <td width="7%" class="TD_STYLE1">
+                    职位名称
+                </td>
+                <td width="14%" class="TD_STYLE1">
+                    恢复
+                </td>
+            </tr>
+
+
+            <tr class="TR_STYLE2" v-for="(item,index) in dt">
+                <td width="16%" class="TD_STYLE2">
+                    <a href="query_list_information.html">{{item.human_id}}</a>
+                </td>
+                <td width="13%" class="TD_STYLE2">{{item.human_name}}</td>
+                <td width="8%" class="TD_STYLE2">{{item.human_sex}}</td>
+                <td width="14%" class="TD_STYLE2">{{item.first_kind_name}}</td>
+                <td width="14%" class="TD_STYLE2">{{item.second_kind_name}}</td>
+                <td width="14%" class="TD_STYLE2">{{item.third_kind_name}}</td>
+                <td width="14%" class="TD_STYLE2">{{item.human_major_kind_name}}</td>
+                <td width="7%" class="TD_STYLE2">{{item.hunma_major_name}}</td>
+                <td width="14%" class="TD_STYLE2"><a v-on:click="cz(item.id)" v-bind:href="['/human_file/reupdate/'+item.human_id]">恢复</a></td>
+            </tr>
+
+
+
+        </table>
+        <p style="text-align: center;">
+
+            <a style="color:black;" v-on:click="sy()">首页</a>
+
+
+            <a style="color:black;" v-on:click="syy()">上一页</a>
+
+            <a style="color:black;" v-on:click="xyy()">下一页</a>
+
+
+
+            <a style="color:black;" v-on:click="wy()">尾页</a>
+
+        </p>
+    </form>
+</body>
+</html>
+<script type="text/javascript">
+    //总页数
+    var currentPage = 1;
+    var pages = 1;
+    //当前页
+    var zdy = 1;
+    var vr = new Vue({
+            el: "#ji",
+            data: {
+                dt: null,
+                message: null,
+                zys: null,
+                dqy:null
+            },
+            methods: {
+                load: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/human_file/recovery?id=" + zdy,
+                        type: "post",
+                        data: "",
+                        success: function (msg) {
+                            console.info(msg)
+                            var dd = eval("(" + msg + ")");
+                            console.info(dd);
+                            t.dt = dd.li;
+                            t.message = dd.MyProperty;
+                            currentPage = dd.zys;
+
+                        }
+                    });
+                },
+                tj: function () {
+                    window.location.href = "config_major_kindxg";
+                },
+                sy: function () {
+                    zdy = 1;
+                    this.load();
+                },
+                wy: function () {
+                    zdy = currentPage;
+                    this.load();
+                },
+                syy: function () {
+                    if (zdy > 1) {
+                        zdy--;
+                    } else {
+                        zdy = 1;
+                    }
+                    this.load();
+                },
+                xyy: function () {
+                    if (zdy < currentPage) {
+                        zdy++;
+                    } else {
+                        zdy = currentPage;
+                    }
+                    this.load();
+                }
+            }
+            ,
+            created: function () {
+                this.load();
+            }
+        })
+</script>
+

@@ -62,7 +62,7 @@ namespace DAO
         public List<T> FenYe<K>(Expression<Func<T, K>> order, Expression<Func<T, bool>> where, ref int rows, int currentPage, int pageSize)
         {
             var data = db.Set<T>().OrderBy(order).Where(where).AsNoTracking();
-            rows = data.Count();//获取总行数
+            //rows = data.Count();//获取总行数
             List<T> list = data.Skip((currentPage - 1) * pageSize)
                    .Take(pageSize)
                    .ToList();
@@ -84,6 +84,8 @@ namespace DAO
             }
             db.Configuration.ValidateOnSaveEnabled = false;
             return db.SaveChanges();
+           
+           
         }
         private Boolean RemoveHoldingEntityInContext(T entity)
         {

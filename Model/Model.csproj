@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bangzhu\Cansh.cs" />
+    <Compile Include="canshulei.cs" />
     <Compile Include="config_majorModel.cs" />
     <Compile Include="config_major_kindModel.cs" />
     <Compile Include="config_major_kindModel1.cs" />

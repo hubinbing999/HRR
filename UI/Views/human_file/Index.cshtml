@@ -35,6 +35,33 @@
     <script type="text/javascript"
             src="../../javascript/human_input_check.js">
     </script>
+    <script src="~/DatePicker/WdatePicker.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript" src="../../javascript/jquery-1.7.2.js"></script>
+    <script src="~/Content/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/javascript/vue.js"></script>
+    <script type="text/javascript">
+        $(function () {
+           
+            $(document).on("focus", "#Text2", function () {
+                WdatePicker({ onpicking: function (dp) { if (dp.cal.getDateStr() != dp.cal.getNewDateStr()) { Func(dp.cal.getNewDateStr()) } } });
+                function Func(tim) {
+                    var v1 = tim;
+                    var sDate = new Date(tim);
+                    var ff = sDate.getFullYear();
+                    var myDate = new Date;
+                    var year = myDate.getFullYear();
+                    var total = (year-ff);
+                    $("#human_age").val(total);
+                }
+            })
+           
+
+        })
+
+    </script>
 </head>
 
 <body>
@@ -61,22 +88,24 @@
                     I级机构
                 </td>
                 <td width="14%" class="TD_STYLE2">
-                    @Html.DropDownListFor(model => model.first_kind_id, ViewData["yj"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "firstKind" } })
-
+                    @Html.DropDownListFor(model => model.first_kind_id, ViewData["yj"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "first_kind_id" } })
+                    @Html.ValidationMessageFor(e => e.first_kind_id)
                     <input type="hidden" name="humanFile.firstKindName" />
                 </td>
                 <td width="11%" class="TD_STYLE1">
                     II级机构
                 </td>
-                <td width="14%" class="TD_STYLE2">
-                    @Html.DropDownListFor(model => model.second_kind_id, ViewData["rj"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "firstKind" } })
-                    <input type="hidden" name="humanFile.thirdKindName" />
+                <td width="14%" class="TD_STYLE2" id="td1">
+                    @*@Html.DropDownListFor(model => model.second_kind_id, ViewData["rj"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "secondKind" } })
+                   @Html.ValidationMessageFor(e => e.second_kind_id)*@
+                     <input type="hidden" name="humanFile.thirdKindName" />
                 </td>
                 <td width="11%" class="TD_STYLE1">
                     III级机构
                 </td>
                 <td class="TD_STYLE2" colspan="2">
-                    @Html.DropDownListFor(model => model.third_kind_id, ViewData["sj"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "firstKind" } })
+                    @Html.DropDownListFor(model => model.third_kind_id, ViewData["sj"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "thirdKind" } })
+                    @Html.ValidationMessageFor(e => e.third_kind_id)
                     <input type="hidden" name="humanFile.thirdKindName" />
                 </td>
                 <td rowspan="5" style="text-align: center;"></td>
@@ -86,15 +115,16 @@
                     职位分类
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.DropDownListFor(model => model.human_major_kind_id, ViewData["zwfl"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "firstKind" } })
+                    @Html.DropDownListFor(model => model.human_major_kind_id, ViewData["zwfl"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "majorKind" } })
+                    @Html.ValidationMessageFor(e => e.human_major_kind_id)
                     <input type="hidden" name="humanFile.humanMajorKindName" />
                 </td>
                 <td class="TD_STYLE1">
                     职位名称
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.DropDownListFor(model => model.hunma_major_name, ViewData["zwmc"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "firstKind" } })
-
+                    @Html.DropDownListFor(model => model.hunma_major_name, ViewData["zwmc"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "majorName" } })
+                    @Html.ValidationMessageFor(e => e.hunma_major_name)
                     <input type="hidden" name="humanFile.hunmaMajorName" />
                 </td>
                 <td class="TD_STYLE1">
@@ -102,7 +132,7 @@
                 </td>
                 <td colspan="2" class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_pro_designation, ViewData["zc"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "firstKind" } })
-
+                    @Html.ValidationMessageFor(e => e.human_pro_designation)
                 </td>
             </tr>
             <tr>
@@ -110,20 +140,22 @@
                     姓名
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.EditorFor(model => model.human_name, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
-                   
+                    @Html.EditorFor(model => model.human_name, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id= "humanName" } })
+                    @Html.ValidationMessageFor(e => e.human_name)
                 </td>
                 <td class="TD_STYLE1">
                     性别
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_sex, ViewData["xb"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "firstKind" } })  
+                    @Html.ValidationMessageFor(e => e.human_sex)
                 </td>
                 <td class="TD_STYLE1">
                     EMAIL
                 </td>
                 <td colspan="2" class="TD_STYLE2">
-                    @Html.EditorFor(model => model.human_email, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                    @Html.EditorFor(model => model.human_email, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanEmail" } })
+                    @Html.ValidationMessageFor(e => e.human_email)
                 </td>
             </tr>
             <tr>
@@ -131,20 +163,23 @@
                     电话
                 </td>
                 <td class="TD_STYLE2">
-                   @Html.EditorFor(model => model.human_telephone, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
-                </td>
+                   @Html.EditorFor(model => model.human_telephone, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanTelephone" } })
+                    @Html.ValidationMessageFor(e => e.human_telephone)
+                 </td>
                 <td class="TD_STYLE1">
                     QQ
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.EditorFor(model => model.human_qq, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
-                </td>
+                    @Html.EditorFor(model => model.human_qq, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanQq" } })
+                    @Html.ValidationMessageFor(e => e.human_qq)
+                 </td>
                 <td class="TD_STYLE1">
                     手机
                 </td>
                 <td colspan="2" class="TD_STYLE2">
-                   @Html.EditorFor(model => model.human_mobilephone, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
-                </td>
+                   @Html.EditorFor(model => model.human_mobilephone, new { htmlAttributes = new { @class = "INPUT_STYLE2" , @id = "humanMobilephone" } })
+                    @Html.ValidationMessageFor(e => e.human_mobilephone)
+                 </td>
             </tr>
             <tr>
                 <td class="TD_STYLE1">
@@ -152,12 +187,14 @@
                 </td>
                 <td colspan="3" class="TD_STYLE2">
                    @Html.EditorFor(model => model.human_address, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
-                </td>
+                    @Html.ValidationMessageFor(e => e.human_address)
+                 </td>
                 <td class="TD_STYLE1">
                     邮编
                 </td>
                 <td colspan="2" class="TD_STYLE2">
                    @Html.EditorFor(model => model.human_postcode, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                    @Html.ValidationMessageFor(e => e.human_postcode)
                 </td>
             </tr>
             <tr>
@@ -166,26 +203,28 @@
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_nationality, ViewData["gj"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1", @id = "firstKind" } })
-                    
+                    @Html.ValidationMessageFor(e => e.human_nationality)
                 </td>
                 <td class="TD_STYLE1">
                     出生地
                 </td>
                 <td class="TD_STYLE2">
                     @Html.EditorFor(model => model.human_birthplace, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                    @Html.ValidationMessageFor(e => e.human_birthplace)
                 </td>
                 <td class="TD_STYLE1">
                     生日
                 </td>
                 <td width="13%" class="TD_STYLE2">
-                   @Html.EditorFor(model => model.human_birthday, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                   @Html.EditorFor(model => model.human_birthday, new { htmlAttributes = new { @class = "INPUT_STYLE2",@id= "Text2", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(e => e.human_birthday)
                 </td>
                 <td width="11%" class="TD_STYLE1">
                     民族
                 </td>
                 <td class="TD_STYLE2" width="14%">
                     @Html.DropDownListFor(model => model.human_race, ViewData["mz"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
-                    
+                    @Html.ValidationMessageFor(e => e.human_race)
                 </td>
             </tr>
             <tr>
@@ -194,26 +233,28 @@
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_religion, ViewData["zjxy"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
-                    
+                    @Html.ValidationMessageFor(e => e.human_religion)
                 </td>
                 <td class="TD_STYLE1">
                     政治面貌
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_party, ViewData["zzmm"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
-                   
+                    @Html.ValidationMessageFor(e => e.human_party)
                 </td>
                 <td class="TD_STYLE1">
                     身份证号码
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.EditorFor(model => model.human_id_card, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                    @Html.EditorFor(model => model.human_id_card, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanIdCard" } })
+                    @Html.ValidationMessageFor(e => e.human_id_card)
                 </td>
                 <td class="TD_STYLE1">
                     社会保障号码
                 </td>
                 <td class="TD_STYLE2">
                     @Html.EditorFor(model => model.human_society_security_id, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                    @Html.ValidationMessageFor(e => e.human_society_security_id)
                 </td>
             </tr>
             <tr>
@@ -221,28 +262,29 @@
                     年龄
                 </td>
                 <td class="TD_STYLE2">
-                   @Html.EditorFor(model => model.human_age, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
-                </td>
+                   @Html.EditorFor(model => model.human_age, new { htmlAttributes = new { @class = "INPUT_STYLE2" }, @id = "humanAge" })
+                    @Html.ValidationMessageFor(e => e.human_age)
+                 </td>
                 <td class="TD_STYLE1">
                     学历
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_educated_degree, ViewData["xl"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
-                    
+                    @Html.ValidationMessageFor(e => e.human_educated_degree)
                 </td>
                 <td class="TD_STYLE1">
                     教育年限
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_educated_years, ViewData["jylx"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
-                   
+                    @Html.ValidationMessageFor(e => e.human_educated_years)
                 </td>
                 <td class="TD_STYLE1">
                     学历专业
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_educated_major, ViewData["xlzy"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
-                   
+                    @Html.ValidationMessageFor(e => e.human_educated_major)
                 </td>
             </tr>
             <tr>
@@ -251,25 +293,28 @@
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.salary_standard_id, ViewData["bjcx"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
-                    
+                    @Html.ValidationMessageFor(e => e.salary_standard_id)
                 </td>
                 <td class="TD_STYLE1">
                     开户行
                 </td>
                 <td class="TD_STYLE2">
                     @Html.EditorFor(model => model.human_bank, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                    @Html.ValidationMessageFor(e => e.human_bank)
                 </td>
                 <td class="TD_STYLE1">
                     帐号
                 </td>
                 <td class="TD_STYLE2">
                    @Html.EditorFor(model => model.human_account, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                    @Html.ValidationMessageFor(e => e.human_account)
                 </td>
                 <td class="TD_STYLE1">
                     登记人
                 </td>
                 <td class="TD_STYLE2">
                     @Html.EditorFor(model => model.register, new { htmlAttributes = new { @class = "INPUT_STYLE2" } })
+                    @Html.ValidationMessageFor(e => e.register)
                 </td>
             </tr>
             <tr>
@@ -279,20 +324,21 @@
                 <td class="TD_STYLE2">
                     <input type="text" name="regist_time" id="create_time" readonly="readonly"
                            class="INPUT_STYLE2">
+                
                 </td>
                 <td class="TD_STYLE1">
                     特长
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_speciality, ViewData["tc"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
-                    
+                    @Html.ValidationMessageFor(e => e.human_speciality)
                 </td>
                 <td class="TD_STYLE1">
                     爱好
                 </td>
                 <td class="TD_STYLE2">
                     @Html.DropDownListFor(model => model.human_hobby, ViewData["ah"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
-                    
+                    @Html.ValidationMessageFor(e => e.human_hobby)
                 </td>
                 <td class="TD_STYLE1">
                     &nbsp;
@@ -308,7 +354,8 @@
                 <td colspan="7" class="TD_STYLE2">
                     <textarea name="human_histroy_records" rows="4"
                               class="TEXTAREA_STYLE1"></textarea>
-                </td>
+                    @Html.ValidationMessageFor(e => e.human_histroy_records)
+                 </td>
             </tr>
             <tr>
                 <td class="TD_STYLE1">
@@ -317,7 +364,8 @@
                 <td colspan="7" class="TD_STYLE2">
                     <textarea name="human_family_membership" rows="4"
                               class="TEXTAREA_STYLE1"></textarea>
-                </td>
+                    @Html.ValidationMessageFor(e => e.human_family_membership)
+                 </td>
             </tr>
             <tr>
                 <td class="TD_STYLE1">
@@ -325,10 +373,36 @@
                 </td>
                 <td colspan="7" class="TD_STYLE2">
                     <textarea name="remark" rows="4" class="TEXTAREA_STYLE1"></textarea>
-                </td>
+                    @Html.ValidationMessageFor(e => e.remark)
+                 </td>
             </tr>
         </table>
    }
 </body>
 </html>
+<script type="text/javascript">
+    $(function () {
+        $("#first_kind_id").change(function () {
+            var id = $("#first_kind_id").val();
+            $("#td1 .INPUT_STYLE1").remove();
+            $.ajax({
+                url: "/config_file_third_kind/third_kind_register2",
+                type: "post",
+                data: "id=" + id,
+                success: function (msg) {
+                    var dt = eval("(" + msg + ")");
+                    var $select = $("<select name='second_kind_id' id='secondKindId' class='INPUT_STYLE1' style ='width: 90px;'></select>");
+                    var $option1 = $("<option value>请选择II机构名称</option>")
+                    for (var i = 0; i < dt.length; i++) {
+                        var $option = $("<option value=" + dt[i]["second_kind_id"] + ">" + dt[i]["second_kind_name"] + "</option>");
+                        $select.append($option1, $option);
+                        $("#td1").append($select);
+                    }
+                }
+            })
+        })
+
+    })
+
+</script>
 

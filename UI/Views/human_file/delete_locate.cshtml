@@ -1,0 +1,135 @@
+﻿@model Model.human_fileModel
+@{
+    ViewBag.Title = "delete_locate";
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet"
+          href="../../css/table.css" type="text/css" />
+    <link rel="stylesheet"
+          href="../../css/cwcalendar.css" type="text/css">
+    <script type="text/javascript"
+            src="../../javascript/comm/comm.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/comm/list.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/calendar-ch.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/jquery-1.7.2.js">
+    </script>
+    <script type="text/javascript"
+            src="../../javascript/locate.js">
+    </script>
+    <script src="~/javascript/jquery-1.11.1.js"></script>
+    <script src="~/DatePicker/WdatePicker.js"></script>
+   
+    
+    <script type="text/javascript">
+        $(function () {
+
+            $(document).on("focus", "#date_start1", function () {
+                WdatePicker();
+            })
+            $(document).on("focus", "#date_end1", function () {
+                WdatePicker();
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+    @using (Ajax.BeginForm("delete_locateDEL", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "TR" }))
+    {
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--人力资源档案管理--人力资源档案删除 </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="查询" class="BUTTON_STYLE1" />
+                    <input type="button" value="搜索" class="BUTTON_STYLE1"
+                           onclick="location.href='query_keywords.html'">
+                    <input type="hidden" name="result" value="toQueryList" />
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr class="TR_STYLE1">
+                <td width="16%" class="TD_STYLE1">
+                    请选择员工所在I级机构
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    @Html.DropDownListFor(model => model.first_kind_id, ViewData["yj"] as IEnumerable<SelectListItem>, "全部", new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })
+
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    请选择员工所在II级机构
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    @Html.DropDownListFor(model => model.second_kind_id, ViewData["rj"] as IEnumerable<SelectListItem>, "全部", new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })
+
+
+                </td>
+            </tr>
+            <tr class="TR_STYLE1">
+                <td width="16%" class="TD_STYLE1">
+                    请选择员工所在III级机构
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    @Html.DropDownListFor(model => model.third_kind_id, ViewData["sj"] as IEnumerable<SelectListItem>, "全部", new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })
+
+
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    请选择职位分类
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    @Html.DropDownListFor(model => model.human_major_kind_id, ViewData["zwfl"] as IEnumerable<SelectListItem>, "全部", new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })
+
+                </td>
+            </tr>
+            <tr class="TR_STYLE1">
+                <td width="16%" class="TD_STYLE1">
+                    请选择职位名称
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    @Html.DropDownListFor(model => model.hunma_major_name, ViewData["zwmc"] as IEnumerable<SelectListItem>, "全部", new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })
+
+
+
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    请输入建档时间
+                </td>
+                <td width="84%" class="TD_STYLE2">
+                    <input type="text" name="utilBean.startDate" readonly
+                           style="width: 14%" class="INPUT_STYLE2" id="date_start1">
+                    至
+                    <input type="text" name="utilBean.endDate" readonly="readonly"
+                           style="width: 14%" class="INPUT_STYLE2" id="date_end1">
+                    <input type="hidden" name="utilBean.datePropertyName" value="registTime" />
+                </td>
+            </tr>
+        </table>
+    }
+</body>
+</html>
