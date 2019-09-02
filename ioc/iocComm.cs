@@ -150,6 +150,15 @@ namespace ioc
             return ioc.Resolve<engage_interviewIBLL>("engage_interviewBLL");
 
         }
+        public static RoleManagerIDAO RoleManagerDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<RoleManagerDAO>("RoleManagerDAO");
+        }
+        public static RoleManagerIBLL RoleManagerIBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<RoleManagerIBLL>("RoleManagerBLL");
 
 
         public static engage_resumeIDAO engage_resumeDAO()
@@ -162,6 +171,7 @@ namespace ioc
             UnityContainer ioc = CreatIoc("containerTwo");
             return ioc.Resolve<engage_resumeIBLL>("engage_resumeBLL");
 
+        }
         }
         private static UnityContainer CreatIoc(string name)
         {
@@ -177,5 +187,7 @@ namespace ioc
             return ioc;
 
         }
+
+       
     }
 }

@@ -36,6 +36,11 @@ namespace MVC_8
         public DbSet<engage_resume> engage_resumes { get; set; }
         public DbSet<engage_interview> engage_interviews { get; set; }
 
+        public DbSet<RoleManager> RoleManager { get; set; }
+        public DbSet<Access> Access { get; set; }
+        public DbSet<Permission> Permission { get; set; }
+
+
     }
 }
 

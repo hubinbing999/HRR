@@ -16,6 +16,7 @@ namespace MVC_8.CodeFirst
             this.Property(e => e.u_name).HasMaxLength(60);
             this.Property(e => e.u_password).HasMaxLength(60);
             this.Property(e => e.u_true_name).HasMaxLength(60);
+            this.Property(e => e.roleID).IsRequired();
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Model;
 using System.Data.Entity;
 using System.Runtime.Remoting.Messaging;
+using System.Data;
 
 namespace DAO
 {
@@ -20,7 +21,9 @@ namespace DAO
                     ko.id = item.id;  
                     ko.u_name = item.u_name;  
                     ko.u_true_name = item.u_true_name;  
-                    ko.u_password = item.u_password; return  Add(ko);
+                    ko.u_password = item.u_password;
+                    ko.roleID = item.roleID;
+                    return  Add(ko);
         }
 
         public List<usersModel> select()
@@ -33,7 +36,9 @@ namespace DAO
                     ko.id = item.id;  
                     ko.u_name = item.u_name;  
                     ko.u_true_name = item.u_true_name;  
-                    ko.u_password = item.u_password;  li.Add(ko);
+                    ko.u_password = item.u_password;
+                ko.roleID = item.roleID;
+                li.Add(ko);
             }
             return li;
         }
@@ -44,7 +49,9 @@ namespace DAO
                     ko.id = item.id;  
                     ko.u_name = item.u_name;  
                     ko.u_true_name = item.u_true_name;  
-                    ko.u_password = item.u_password;   return ModifyWithOutproNames(ko);
+                    ko.u_password = item.u_password;
+                     ko.roleID = item.roleID;
+                   return ModifyWithOutproNames(ko);
             }
         public List<usersModel> selectupdate(int id)
         {
@@ -58,7 +65,9 @@ namespace DAO
                     ko.id = item.id;  
                     ko.u_name = item.u_name;  
                     ko.u_true_name = item.u_true_name;  
-                    ko.u_password = item.u_password;   li.Add(ko);
+                    ko.u_password = item.u_password;
+                     ko.roleID = item.roleID;
+                li.Add(ko);
             }
             return li;
 
@@ -97,7 +106,7 @@ namespace DAO
         public int dl(usersModel us)
         {
             users u = new users();
-           List<users>  li=SeleteBy(e => e.u_true_name.Equals(us.u_true_name) && e.u_password.Equals(us.u_password));
+           List<users>  li=SeleteBy(e => e.u_name.Equals(us.u_name) && e.u_password.Equals(us.u_password));
             foreach (users item in li)
             {
                 if (item == null || item.Equals(""))
@@ -117,8 +126,48 @@ namespace DAO
             
         }
 
+        public List<usersModel> SelectList()
+        {
+            var result = db.Database.SqlQuery<usersModel>($@"select id, u_name, u_true_name, u_password, (select [RoleName] from [dbo].[RoleManager] rm where(rm.roleID=u.roleID))as RoleName from [dbo].[users] u").ToList();
+            return result;
+        }
 
+        public int SelectCount()
+        {
+            string sql = @"select count(*) from View_1 ";
+            return int.Parse(DBHelper.SelectSinger(sql).ToString());
+        }
 
+        public DataTable BandList()
+        {
+            string sql = @"select * from [dbo].[RoleManager]";
+            return DBHelper.SelectTable(sql);
+        }
+        //select * from View_1
+        public  DataTable ShowBYQX(object Aid, object id)
+        {
+            string sql = "";
+            if (id != null)
+            {
+                //查询子集
+                sql = string.Format(@"select id, text,A. PID, Aaddress, state from [dbo].[Access] A where  A.PID={0}", id);
 
+            }
+            else
+            {
+                sql = string.Format(@"select A.id, text, A.PID, Aaddress, state from [dbo].[Access] A  inner join Permisson p on a.id=p.Aid where p.roleID='{0}'and a.PID=0", Aid);
+
+            }
+            return DBHelper.SelectTable(sql);
+        }
+        /// <summary>
+        /// 查询角色根据UID
+        /// </summary>
+        /// <returns></returns>
+        public DataTable SelectJS(int Uid)
+        {
+            string sql = string.Format(@"select [roleID],u_true_name,(select  RoleName from RoleManager r where (u.roleID=r.[RoleID]))as RoleName from [dbo].[users] u  where id={0}", Uid);
+            return DBHelper.SelectTable(sql);
+        }
     }
 }

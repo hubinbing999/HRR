@@ -55,6 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Access.cs" />
+    <Compile Include="CodeFirst\AccessConfig.cs" />
     <Compile Include="CodeFirst\config_file_first_kindConfig.cs" />
     <Compile Include="CodeFirst\config_majorConfig.cs" />
     <Compile Include="CodeFirst\config_major_kindConfig.cs" />
@@ -63,6 +65,8 @@
     <Compile Include="CodeFirst\engage_major_releaseConfig.cs" />
     <Compile Include="CodeFirst\engage_resumeConfig.cs" />
     <Compile Include="CodeFirst\human_fileConfig.cs" />
+    <Compile Include="CodeFirst\PermissionConfig.cs" />
+    <Compile Include="CodeFirst\RoleManagerConfig.cs" />
     <Compile Include="CodeFirst\human_file_digConfig.cs" />
     <Compile Include="CodeFirst\usersConfig.cs" />
     <Compile Include="config_major.cs" />
@@ -77,10 +81,13 @@
     <Compile Include="human_file.cs" />
     <Compile Include="config_file_second_kind.cs" />
     <Compile Include="config_file_third_kind.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="human_file_dig.cs" />
     <Compile Include="MyDbContext .cs" />
+    <Compile Include="Permission.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleManager.cs" />
     <Compile Include="users.cs" />
   </ItemGroup>
   <ItemGroup>

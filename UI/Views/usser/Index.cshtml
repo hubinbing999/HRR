@@ -1,110 +1,69 @@
-﻿@model Model.usersModel
-
+﻿
 @{
     Layout = null;
 }
 
+<!DOCTYPE html>
+
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="te/html; charset=UTF-8">
-    <style type=text/css>
-        body {
-            font-size: 12px;
-            color: #ffffff;
-            font-family: 宋体;
-        }
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>欢迎使用Bette伯乐人力资源管理系统</title>
+    <script src="../jquery-easyui-1.3.5/jquery.min.js"></script>
+    <script src="../jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+    <link href="../jquery-easyui-1.3.5/themes/default/easyui.css" rel="stylesheet" />
+    <link href="../jquery-easyui-1.3.5/themes/icon.css" rel="stylesheet" />
+    <script src="../jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
 
-        td {
-            font-size: 12px;
-            color: #ffffff;
-            font-family: 宋体;
-        }
-    </style>
-    <script type="text/javascript"
-            src="~/javascript/jquery-1.7.2.js">
+    <script type="text/javascript">
+    $(function () {
+        $('#tt').tree({
+            url: "/usser/ShowBYQX?RoleID=" + localStorage.getItem("jsid"),
+            onClick: function (node) {
+                //子父的标准
+                var state = node.state;
+                if (state == "open") {
+                    //跳转的地址
+                    var url = node.Aaddress;
+                    var text = node.text;
+                    if ($("#tt1").tabs("exists", text)) {
+                        $("#tt1").tabs("select", text)
+                    } else {
+                        $('#tt1').tabs('add', {
+                            title: text,
+                            content: '<iframe frameborder="0" src=' + url + ' width="100%" height="100%"/>',
+                            closable: true,
+                            tools: [{
+                                iconCls: 'icon-mini-refresh',
+                                handler: function () {
+                                    alert('refresh');
+                                }
+                            }]
+                        });
+                    }
+                }
+            }
+        });
+    });
     </script>
-    <script type="text/javascript"
-            src="~/javascript/jquery.messager.js">
-    </script>
-    <script type="text/javascript"
-            src="~/javascript/login.js">
- </script>
-    <script src="~/Content/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/javascript/vue.js"></script>
 </head>
-<body>
-   
-        <div>
-            <table cellspacing=0 cellpadding=0 width=900 align=center border=0>
-                <tbody>
-                    <tr>
-                        <td style="height: 105px">
-                            <img src="~/images/login_11.gif" border=0>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td background=~/images/login_22.jpg height=300>
-                            <table height=300 cellpadding=0 width=900 border=0>
-                                <tbody>
-                                    <tr>
-                                        <td colspan=2 height=35></td>
-                                    </tr>
-                                    <tr>
-                                        <td width=360></td>
-                                        <td>
-                                          
-                                            <table cellspacing=0 cellpadding=2 border=0>
-                                                <tbody>
-                                                    @using (Ajax.BeginForm("dl", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "TR" }))
-                                                    {
-                                                        <tr>
-                                                            <td style="height: 28px" width=80>
-                                                                登 录 名：
-                                                            </td>
-                                                            <td style="height: 28px" width=150>
-                                                               
-                                                                @Html.EditorFor(model =>model.u_true_name, new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
 
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="height: 28px">
-                                                                登录密码：
-                                                            </td>
-                                                            <td style="height: 28px">
-                                                                
-                                                                @Html.EditorFor(model => model.u_password, new { htmlAttributes = new { @class = "INPUT_STYLE1" ,@type="password"} })
-                                                            </td>
-                                                        </tr>
+<body class="easyui-layout">
 
-                                                        <tr>
-                                                            <td style="height: 18px"></td>
-                                                            <td style="height: 18px"></td>
-                                                            <td style="height: 18px"></td>
-                                                        </tr>
-                                                        <tr>
-
-                                                            <td>
-                                                                <input type="submit" value="登录" style="cursor: pointer;" />
-                                                            </td>
-                                                        </tr>}
-                                                </tbody>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="~/images/login_33.jpg" border=0>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div data-options="region:'north',split:true" style="height:109px;">
+        <iframe src="/usser/top" width="100%" height="110px" frameborder="0"></iframe>
+     
+    </div>
+    <div data-options="region:'west',title:'',split:true" style="width:150px;">
+        <ul id="tt"></ul>
+    </div>
+    <div data-options="region:'center',title:'center title'" style="padding:5px;background:#eee;">
+        <div id="tt1" class="easyui-tabs" style="width:1000px;height:400px;">
+            <frameset cols="200,*" frameborder="NO" border="0" framespacing="0">
+                <frame src="/usser/mian" name="mainFrame">
+            </frameset>
         </div>
-    
+
+    </div>
 </body>
 </html>
-

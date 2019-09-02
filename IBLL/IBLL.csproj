@@ -52,6 +52,7 @@
     <Compile Include="human_fileIBLL.cs" />
     <Compile Include="human_file_digIBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleManagerIBLL.cs" />
     <Compile Include="usersIBLL.cs" />
   </ItemGroup>
   <ItemGroup>

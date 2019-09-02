@@ -76,6 +76,7 @@
     <Compile Include="human_fileIDAO.cs" />
     <Compile Include="human_file_digIDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleManagerIDAO.cs" />
     <Compile Include="usersIDAO.cs" />
   </ItemGroup>
   <ItemGroup>

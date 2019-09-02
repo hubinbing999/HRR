@@ -47,26 +47,35 @@
     <Reference Include="System.Xml" />
     <Reference Include="Unity.Abstractions">
       <HintPath>C:\Users\LENOVO\Desktop\压缩包\4.5\Unity.Abstractions.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Configuration">
       <HintPath>C:\Users\LENOVO\Desktop\压缩包\4.5\Unity.Configuration.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Container">
       <HintPath>C:\Users\LENOVO\Desktop\压缩包\4.5\Unity.Container.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Container.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception">
       <HintPath>C:\Users\LENOVO\Desktop\压缩包\4.5\Unity.Interception.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Interception.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception.Configuration">
       <HintPath>C:\Users\LENOVO\Desktop\压缩包\4.5\Unity.Interception.Configuration.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Interception.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RegistrationByConvention, Version=2.1.9.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\LENOVO\Desktop\压缩包\4.5\Unity.RegistrationByConvention.dll</HintPath>
+    <Reference Include="Unity.RegistrationByConvention">
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\LENOVO\Desktop\压缩包\4.5\Unity.ServiceLocation.dll</HintPath>
+    <Reference Include="Unity.ServiceLocation">
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.ServiceLocation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
