@@ -64,9 +64,7 @@ namespace DAO
         {
         config_public_char us = new config_public_char();
             //接收前台来的id与表的id匹配
-            us.id = id;//(必须与表的id进行匹配)
-            //接收前台来的id与表的id匹配
-            //us.id = id;
+            us.id = id;//(必须与表的id进行匹配，不然会报错)//报主键冲突
             ////开始删除
             //db.Entry<config_public_char>(us).State =EntityState.Deleted;
             ////保存            

@@ -1,0 +1,64 @@
+﻿@model Model.RoleManagerModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Create</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    @*<script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>*@
+</head>
+<body>
+  @using (Ajax.BeginForm("Create", new AjaxOptions() { HttpMethod = "post" })) {
+         
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--权限管理--添加角色</font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="保存" class="BUTTON_STYLE1" />
+                    <input type="button" value="返回" class="BUTTON_STYLE1"
+                           onclick="history.back()">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=3 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1">角色名称</td>
+                <td class="TD_STYLE2">
+                   @Html.EditorFor(model => model.RoleName, new {htmlAttributes= new { @class = "BUTTON_STYLE1" } })
+                    @*@Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })*@
+                    @*@Html.ValidationMessage("RoleName")*@
+                </td>
+                <td class="TD_STYLE1">角色说明</td>
+                <td class="TD_STYLE2">
+                    @Html.EditorFor(model => model.RoleState, new { htmlAttributes = new { @class = "BUTTON_STYLE1" } })
+                    @*@Html.ValidationMessageFor(model => model.RoleState, "", new { @class = "text-danger" })*@
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">角色是否可用</td>
+                <td colspan="3" class="TD_STYLE2">
+                    @Html.RadioButton("RoleOk", "是")@Html.Label("是") @Html.RadioButton("RoleOk", "否")@Html.Label("否")     
+                    @*@Html.ValidationMessageFor(model => model.RoleOk, "", new { @class = "text-danger" })*@ 
+                                
+                </td>
+            </tr>
+        </table>
+}
+  
+</body>
+</html>

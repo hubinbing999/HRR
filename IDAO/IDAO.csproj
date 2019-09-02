@@ -72,6 +72,7 @@
     <Compile Include="config_file_second_kindIDAO.cs" />
     <Compile Include="config_file_third_kindIDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleManagerIDAO.cs" />
     <Compile Include="usersIDAO.cs" />
   </ItemGroup>
   <ItemGroup>

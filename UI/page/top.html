@@ -20,6 +20,8 @@
             $(function () {
                 $(function () { 
                     $("#hu1").text(localStorage.getItem("a"));
+                    $("#JSName").text(localStorage.getItem("jsName"));
+                    
                 })
             })
 
@@ -36,9 +38,10 @@
 				</td>
 				<td style="text-align: right;font-size:17px;width:35%;color:black;" id="hu">
 					<br />
-					欢迎你：<span id="hu1"></span>
-					<input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href='/usser/Index'"/>&nbsp;&nbsp;&nbsp;&nbsp;
+					欢迎你：<span id="hu1"></span>(<span id="JSName"></span>)
+					<input type="button" value="退出系统" class="BUTTON_STYLE1" onclick="parent.location.href='/usser/Login'"/>&nbsp;&nbsp;&nbsp;&nbsp;
 				</td>
 			</tr>
 		</table>
 	</body>
+</html>

@@ -17,7 +17,7 @@ namespace MVC_8
                 {
                     Console.WriteLine(sql);
                 };
-               
+
 
                 config_major_kind jj = new config_major_kind()
                 {
@@ -34,7 +34,7 @@ namespace MVC_8
                     major_name = "区域经理",
                     test_amount = 0
                 };
-               
+
                 mc.config_major.Add(ko);
                 config_public_char c = new config_public_char()
                 {
@@ -47,27 +47,49 @@ namespace MVC_8
                 {
                     u_name = "123",
                     u_password = "123",
-                    u_true_name = "123"
+                    u_true_name = "123",
+                    roleID = 1
+
                 };
                 mc.users.Add(us);
 
                 engage_major_release eng = new engage_major_release()
                 {
-                     human_amount=2, changer=null, change_time=DateTime.Now,  deadline= DateTime.Now, engage_required="张的帅", engage_type="校园招聘", first_kind_id="1", first_kind_name="啦", major_describe="你开心就好", major_id="03", major_name="运营部", major_kind_id="03", major_kind_name="经理", register="hbb", regist_time=DateTime.Now, second_kind_id="09", second_kind_name="胡彬冰", third_kind_id="07", third_kind_name="22"
+                    human_amount = 2,
+                    changer = null,
+                    change_time = DateTime.Now,
+                    deadline = DateTime.Now,
+                    engage_required = "张的帅",
+                    engage_type = "校园招聘",
+                    first_kind_id = "1",
+                    first_kind_name = "啦",
+                    major_describe = "你开心就好",
+                    major_id = "03",
+                    major_name = "运营部",
+                    major_kind_id = "03",
+                    major_kind_name = "经理",
+                    register = "hbb",
+                    regist_time = DateTime.Now,
+                    second_kind_id = "09",
+                    second_kind_name = "胡彬冰",
+                    third_kind_id = "07",
+                    third_kind_name = "22"
                 };
                 mc.engage_major_release.Add(eng);
-               
-                
-                config_file_second_kind cf = new config_file_second_kind() {
+
+
+                config_file_second_kind cf = new config_file_second_kind()
+                {
                     first_kind_id = "01",
-                    first_kind_name= "集团",
-                    second_kind_id= "01",
+                    first_kind_name = "集团",
+                    second_kind_id = "01",
                     second_kind_name = "软件公司",
                     second_salary_id = "1",
                     second_sale_id = "1"
                 };
-                config_file_third_kind ck = new config_file_third_kind() {
-                    first_kind_id = "01",
+                config_file_third_kind ck = new config_file_third_kind()
+                {
+                    first_kind_id = "08",
                     first_kind_name = "集团",
                     second_kind_id = "01",
                     second_kind_name = "软件公司",
@@ -78,16 +100,48 @@ namespace MVC_8
                 };
                 config_file_first_kind cc = new config_file_first_kind()
                 {
-                    first_kind_id = "01",
+                    first_kind_id = "08",
                     first_kind_name = "集团",
                     first_kind_salary_id = "1",
                     first_kind_sale_id = "1"
                 };
-
+                users uu = new users()
+                {
+                    id = 1,
+                    u_name = "XXXX",
+                    u_true_name = "易烊千玺",
+                    u_password = "1128",
+                    roleID = 2
+                };
+                RoleManager rr = new RoleManager()
+                {
+                    RoleID = 1,
+                    RoleName = "人事专员",
+                    RoleState = "完善公司的人事制度与招聘计划，员工培训与发展计划",
+                    RoleOk = "是"
+                };
+                Access aa = new Access()
+                {
+                    id = 1,
+                    text= "招聘管理",
+                    PID=0,
+                    Aaddress="狗头",
+                    state= "closed"
+                };
+                Permission pp = new Permission()
+                {
+                    Pid=1,
+                    roleID=1,
+                    Aid=20
+                };
                 mc.config_file_second_kinds.Add(cf);
                 mc.config_file_first_kinds.Add(cc);
                 mc.config_file_third_kinds.Add(ck);
-                mc.SaveChanges();
+                mc.users.Add(uu);
+                mc.RoleManager.Add(rr);
+                mc.Access.Add(aa);
+                mc.Permission.Add(pp);
+               // mc.SaveChanges();
                 int pd = mc.SaveChanges();
                 Console.WriteLine(pd);
                 Console.WriteLine("ok");

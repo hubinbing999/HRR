@@ -18,5 +18,7 @@ namespace MVC_8
 
 
         public System.String u_password { get; set; }
+
+        public System.Int32 roleID { get; set; }
     }
 }

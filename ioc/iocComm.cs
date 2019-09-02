@@ -114,13 +114,23 @@ namespace ioc
             return ioc.Resolve<config_file_third_kindIBLL>("config_file_third_kindBLL");
            
         }
+        public static RoleManagerIDAO RoleManagerDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<RoleManagerDAO>("RoleManagerDAO");
+        }
+        public static RoleManagerIBLL RoleManagerIBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<RoleManagerIBLL>("RoleManagerBLL");
 
+        }
         private static UnityContainer CreatIoc(string name)
         {
             UnityContainer ioc = new UnityContainer();
             //生成文件(Unity.config)对象
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = @"E:\最后\UI\Unity.config";
+            ecf.ExeConfigFilename = @"D:\Source\Repos\823HRR19.25\UI\Unity.config";
             //生成配置对象
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
             //读取配置对象的unity节点区                                                               
@@ -129,5 +139,7 @@ namespace ioc
             return ioc;
 
         }
+
+       
     }
 }

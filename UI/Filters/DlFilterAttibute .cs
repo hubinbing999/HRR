@@ -13,7 +13,7 @@ namespace UI.Filters
             {
                 if (filterContext.HttpContext.Session["user"] == null)
                 {
-                    filterContext.HttpContext.Response.Redirect("/usser/Index");
+                    filterContext.HttpContext.Response.Redirect("/usser/Login");
                 }
             }
         

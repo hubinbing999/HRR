@@ -1,0 +1,188 @@
+﻿@model Model.RoleManagerModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/jquery-easyui-1.3.5/jquery.min.js"></script>
+    <script src="~/javascript/easyui/jquery.easyui.min.js"></script>
+    <link href="~/jquery-easyui-1.3.5/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/jquery-easyui-1.3.5/themes/icon.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            CreateTree();
+
+            var hidRadio = $("#hidSex").val();
+            var radios = document.getElementsByName("RoleOK");
+            if (hidRadio == "是") {
+                radios[0].checked = true;
+            } else {
+                radios[1].checked = true;
+            }
+
+
+            $("#Button1").click(function () {
+                //alert($("#rid").text());
+                //alert($("#RoleName").val());
+                //alert($("#RoleState").val());
+                //alert($("input[name='RoleOK']:checked").val());
+                var rid=$("#rid").text();
+                //alert(rid);
+                var RoleManager={
+                    RoleID:$("#rid").text(),
+                    RoleName:$("#RoleName").val(),
+                    RoleState:$("#RoleState").val(),
+                    RoleOK:$("input[name='RoleOK']:checked").val()
+                }
+                //根据角色id修改角色表
+                $.ajax({
+                    url: "/RoleManager/RoleUpdate2",
+                    type: "post",
+                    data: "RoleManager=" +JSON.stringify(RoleManager),
+                    success: function (xgjg) {
+                        var d= eval("(" + xgjg + ")");
+                        if(d>0){
+                            //根据角色id删除角色权限表
+                            $.ajax({
+                                url: "/RoleManager/PerDelete",
+                                type: "post",
+                                data: "rid=" +rid,
+                                success: function (scjg) {
+                                    var b = eval("(" + scjg + ")");
+                                    if (b >= 0) {
+                                        //新增此角色下权限（角色权限表）
+                                        var nodes = $('#tt').tree('getChecked');
+                                        for(var f = 0; f < nodes; f++){
+                                            $.ajax({
+                                                url: "/RoleManager/PerADD1",
+                                                type: "post",
+                                                data: "rid=" + rid+"&dsd=" + nodes[f]["id"],
+                                                success: function (xzjg1) {
+                                                    var jg3 = eval("(" + xzjg1 + ")");
+                                                    if (jg3 > 0) {
+                                                        
+                                                    }
+                                                }
+                                            }); 
+                                            //alert(nodes[f]["id"])
+                                        }    
+                                        var nodes2 = $('#tt').tree('getChecked','indeterminate');
+                                        for (var b = 0; b <nodes2.length; b++) {
+                                            //增加子
+                                            $.ajax({
+                                                url: "/RoleManager/PerADD1",
+                                                type: "post",
+                                                data: "rid=" +rid+ "&dsd=" + nodes2[b]["id"],
+                                                success: function (xzjg2) {
+                                                    var jg4 = eval("(" + xzjg2 + ")");
+                                                    if (jg4 > 0) {
+                                                         
+                                                    }
+                                                }
+                                            });
+                                           // alert(nodes2[b]["id"])
+                                        }
+                                        alert("修改成功!!!");
+                                        window.location.href = '/RoleManager/right_list';
+                                    }
+                                }
+                                })
+
+
+                        } 
+
+                    }
+                    
+                    
+                    })
+                
+
+
+            })
+            $("#But").click(function () {
+                window.location.href = '/RoleManager/right_list';
+            })
+        })
+
+        function CreateTree() {
+            $('#tt').tree({
+                url: '/RoleManager/ShowQX?RoleID=' + @ViewData["id"],
+                checkbox: true,
+                onLoadSuccess: function (node, data) {
+                    var t = $(this);//t代表的是树控件
+                    for (var i = 0; i < data.length; i++) {
+                        var d = data[i];
+
+                        if (d.state == "closed") {
+                            //根节点
+                            $(t).tree("expandAll");//展开所有节点
+                        }
+                    }
+                }
+            });
+        }
+        
+        
+
+    </script>
+
+</head>
+<body>
+@*@using (Ajax.BeginForm("RoleUpdate2", new AjaxOptions() { HttpMethod = "post" }))
+{*@
+      <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--权限管理--编辑角色</font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" id="Button1" value="&#20445;&#23384;" class="BUTTON_STYLE1" />
+
+                    <input type="button" id="But" value="返回" class="BUTTON_STYLE1"
+                           onclick="history.back()">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=3 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1">角色编号</td>
+                <td class="TD_STYLE2">
+                    @*@Html.LabelFor(model => model.RoleID, new { htmlAttributes = new { @class = "TD_STYLE2", @readonly ="readonly" } })*@
+                    @Html.Label("RoleID",ViewData["id"].ToString(),new { @readonly="readonly",@id="rid"})
+                </td>
+                <td class="TD_STYLE1">角色名称</td>  
+                <td class="TD_STYLE2">          
+                    @Html.TextBoxFor(model => model.RoleName, new { @class= "INPUT_STYLE2",@id= "RoleName" })           
+                </td> 
+                    </tr>
+                 <tr>
+                <td class="TD_STYLE1">角色说明</td>
+                 <td class="TD_STYLE2"> 
+                     @Html.TextBoxFor(model => model.RoleState, new { @class = "INPUT_STYLE2", @id = "RoleState" })
+                     
+                </td>
+               <td class="TD_STYLE1">角色是否可用</td>
+                 <td class="TD_STYLE2">
+                     <input type="hidden" id="hidSex" value="@Model.RoleOk" />
+                     <input type="radio" name="RoleOK" value="是" />是<input type="radio" name="RoleOK" value="否" />否
+
+                </td>
+            </tr>
+        </table>
+    @*//权限角色表树控件*@
+    <ul id="tt">     </ul>
+@*}*@  
+
+</body>
+</html>

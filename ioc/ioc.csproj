@@ -46,25 +46,25 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Unity.Abstractions">
-      <HintPath>..\..\..\T11\Unity\Unity.5.8.11\lib\net45\Unity.Abstractions.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Configuration">
-      <HintPath>..\..\..\T11\Unity\Unity.5.8.11\lib\net45\Unity.Configuration.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Container">
-      <HintPath>..\..\..\T11\Unity\Unity.5.8.11\lib\net45\Unity.Container.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Container.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception">
-      <HintPath>..\..\..\T11\Unity\Unity.5.8.11\lib\net45\Unity.Interception.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Interception.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception.Configuration">
-      <HintPath>..\..\..\T11\Unity\Unity.5.8.11\lib\net45\Unity.Interception.Configuration.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.Interception.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RegistrationByConvention">
-      <HintPath>..\..\..\T11\Unity\Unity.5.8.11\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ServiceLocation">
-      <HintPath>..\..\..\T11\Unity\Unity.5.8.11\lib\net45\Unity.ServiceLocation.dll</HintPath>
+      <HintPath>C:\Users\Lenovo\Desktop\biji\Y2复习课\Y2\复习课\T11\Unity\Unity.5.8.11\lib\net45\Unity.ServiceLocation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -48,6 +48,7 @@
     <Compile Include="config_public_charBLL.cs" />
     <Compile Include="engage_major_releaseBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleManagerBLL.cs" />
     <Compile Include="usersBLL.cs" />
   </ItemGroup>
   <ItemGroup>

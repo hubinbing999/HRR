@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Model.usersModel>
+
+@{
+    ViewBag.Title = "User_List";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/javascript/vue.js"></script>
+</head>
+<body>
+    <div id="div1">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是：人力资源--权限管理--用户管理 </font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    当前角色总数：@ViewData["zs"]例
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    @Html.ActionLink("添加", "UserAdd", new { @class = "BUTTON_STYLE1" })
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=5 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr class="TR_STYLE1">
+                <td class="TD_STYLE1">
+                    用户编号
+                </td>
+                <td class="TD_STYLE1">
+                    用户名称
+                </td>
+                <td class="TD_STYLE1">
+                    真实姓名
+                </td>
+                <td class="TD_STYLE1">
+                    用户密码
+                </td>
+                <td class="TD_STYLE1">
+                    用户身份
+                </td>
+                <td class="TD_STYLE1">
+                    操作
+                </td>
+            </tr>
+            <tr v-for="(item,index) in dt">
+                <td class="TD_STYLE2">{{item.id}}</td>
+                <td class="TD_STYLE2">{{item.u_name}}</td>
+                <td class="TD_STYLE2">{{item.u_true_name}}</td>
+                <td class="TD_STYLE2">{{item.u_password}}</td>
+                <td class="TD_STYLE2">{{item.RoleName}}</td>
+                <td class="TD_STYLE2">
+                    <a v-bind:href="['/usser/UserUpdate/'+item.id]"><img src="../../images/bt_edit.gif" title="编辑" style="cursor:pointer;" /></a>
+                    <a v-bind:href="['/usser/UserDelete/'+item.id]" onclick="return confirm('是否确定删除')"><img src="../../images/bt_del.gif" title="删除" style="cursor:pointer;" /></a>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#div1",
+        data: {
+            dt: null
+        },
+        methods: {
+            load: function () {
+                var t = this;
+                $.ajax({
+                    url: "/usser/selectUser",
+                    type: "post",
+                    data: "",
+                    success: function (msg) {
+                        var dd = eval("(" + msg + ")");
+                        t.dt = dd;
+                        console.info(dd);
+                    }
+                })
+            }
+        },
+        created: function () {
+            this.load();
+        }
+    })
+
+
+</script>
+
+
+</body>
+</html>
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.u_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.u_true_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.u_password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.roleID)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.u_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.u_true_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.u_password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.roleID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            </td>
+        </tr>
+    }
+
+    </table>*@

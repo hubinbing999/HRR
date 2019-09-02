@@ -15,7 +15,7 @@ namespace UI
                 routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "config_public_char", action = "SELECT", id = UrlParameter.Optional }
+                defaults: new { controller = "usser", action = "User_List", id = UrlParameter.Optional }
 
             );
         }
