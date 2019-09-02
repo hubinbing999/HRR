@@ -73,21 +73,21 @@
                 </td>
             </tr>
             <tr>
-                <td class="TD_STYLE1">
+                <td class="TD_STYLE1" >
                     请选择员工所在II级机构
                 </td>
-                <td width="84%" class="TD_STYLE2">
-                    @Html.DropDownListFor(model => model.second_kind_id, ViewData["rj"] as IEnumerable<SelectListItem>, "全部",new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })
+                <td width="84%" class="TD_STYLE2" id="td1">
+                    @*@Html.DropDownListFor(model => model.second_kind_id, ViewData["rj"] as IEnumerable<SelectListItem>, "全部",new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })*@
 
 
                 </td>
             </tr>
             <tr class="TR_STYLE1">
-                <td width="16%" class="TD_STYLE1">
+                <td width="16%" class="TD_STYLE1" >
                     请选择员工所在III级机构
                 </td>
-                <td width="84%" class="TD_STYLE2">
-                    @Html.DropDownListFor(model => model.third_kind_id, ViewData["sj"] as IEnumerable<SelectListItem>, "全部",new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })
+                <td width="84%" class="TD_STYLE2" id="td2">
+                    @*@Html.DropDownListFor(model => model.third_kind_id, ViewData["sj"] as IEnumerable<SelectListItem>, "全部",new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })*@
 
 
                 </td>
@@ -97,7 +97,7 @@
                     请选择职位分类
                 </td>
                 <td width="84%" class="TD_STYLE2">
-                    @Html.DropDownListFor(model => model.human_major_kind_id, ViewData["zwfl"] as IEnumerable<SelectListItem>, "全部",new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })
+                    @Html.DropDownListFor(model => model.human_major_kind_id, ViewData["zwfl"] as IEnumerable<SelectListItem>, "全部",new { @class = "INPUT_STYLE1", @id = "firstKind111", size = "5" })
 
                 </td>
             </tr>
@@ -105,8 +105,8 @@
                 <td width="16%" class="TD_STYLE1">
                     请选择职位名称
                 </td>
-                <td width="84%" class="TD_STYLE2">
-                    @Html.DropDownListFor(model => model.hunma_major_name, ViewData["zwmc"] as IEnumerable<SelectListItem>, "全部", new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })
+                <td width="84%" class="TD_STYLE2" id="td3">
+                    @*@Html.DropDownListFor(model => model.hunma_major_name, ViewData["zwmc"] as IEnumerable<SelectListItem>, "全部", new { @class = "INPUT_STYLE1", @id = "firstKind", size = "5" })*@
 
 
 
@@ -129,4 +129,70 @@
    }
 </body>
 </html>
+<script type="text/javascript">
+    $(function () {
+        
+        $("#firstKind").click(function () {
+
+            var id = $("#firstKind").val();
+            $("#td1 option").remove();
+            $.ajax({
+                url: "/config_file_third_kind/third_kind_register2",
+                type: "post",
+                data: "id=" + id,
+                success: function (msg) {
+                    var dt = eval("(" + msg + ")");
+                    var $select = $("<select name='second_kind_id' id='secondKindId' class='INPUT_STYLE1' size='5'></select>");
+                    var $option1 = $("<option value>选择全部</option>")
+                    for (var i = 0; i < dt.length; i++) {
+                        var $option = $("<option value=" + dt[i]["second_kind_id"] + ">" + dt[i]["second_kind_name"] + "</option>");
+                        $select.append($option1, $option);
+                        $("#td1").append($select);
+                    }
+                }
+            })
+        })
+        $(document).on("click", "#secondKindId", function () {
+            var sid = $("#secondKindId").val();
+            $("#td2 #thirdKindId").remove();
+            $.ajax({
+                url: "/engage_major_release/sxlk",
+                type: "post",
+                data: "Sid=" + sid,
+                success: function (msg) {
+                    var dt = eval("(" + msg + ")");
+                    var $select = $("<select name='third_kind_id' id='thirdKindId' class='INPUT_STYLE1' size='5'></select>");
+                    var $option1 = $(" <option value=''>选择全部</option>");
+                    for (var i = 0; i < dt.length; i++) {
+                        var $option2 = $("<option value=" + dt[i].third_kind_id + ">" + dt[i].third_kind_name + "</option>");
+                        $select.append($option1, $option2);
+                        $("#td2").append($select);
+                    }
+                }
+            })
+        })
+        $("#firstKind111").click(function () {
+            var id = $("#firstKind111").val();
+            $("#hunma_major_name option").remove();
+            $.ajax({
+                url: "/human_file/chaxun",
+                type: "post",
+                data: "id=" + id,
+                success: function (msg) {
+                    var dt = eval("(" + msg + ")");
+                    var $select = $("<select name='hunma_major_name' id='hunma_major_name' class='INPUT_STYLE1' size='5'></select>");
+                    var $option1 = $("<option value>选择全部</option>")
+                    for (var i = 0; i < dt.length; i++) {
+
+                        var $option = $("<option value=" + dt[i]["major_id"] + ">" + dt[i]["major_name"] + "</option>");
+                        $select.append($option1, $option);
+                        $("#td3").append($select);
+                    }
+                }
+            })
+
+        })
+    })
+
+</script>
 

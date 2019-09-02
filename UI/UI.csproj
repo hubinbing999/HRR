@@ -1417,6 +1417,32 @@
     <Content Include="Views\config_file_first_kind\first_kind_change.cshtml" />
     <Content Include="Views\config_file_first_kind\first_kind_change_success.cshtml" />
     <Content Include="Views\config_file_first_kind\first_kind_register_success.cshtml" />
+    <Content Include="Views\engage_resume\register.cshtml" />
+    <Content Include="Views\engage_resume\resumechoose.cshtml" />
+    <Content Include="Views\human_file\bian.cshtml" />
+    <Content Include="Views\human_file\biandeng.cshtml" />
+    <Content Include="Views\human_file\change_keywords.cshtml" />
+    <Content Include="Views\human_file\dacx.cshtml" />
+    <Content Include="Views\human_file\delete_forever_list.cshtml" />
+    <Content Include="Views\human_file\delete_locate.cshtml" />
+    <Content Include="Views\human_file\delete_locateDEL.cshtml" />
+    <Content Include="Views\human_file\delete_locateDEL12.cshtml" />
+    <Content Include="Views\human_file\fuhe.cshtml" />
+    <Content Include="Views\human_file\Index.cshtml" />
+    <Content Include="Views\human_file\query_locate.cshtml" />
+    <Content Include="Views\human_file\recovery_locatChan.cshtml" />
+    <Content Include="Views\human_file\recovery_locate.cshtml" />
+    <Content Include="Views\human_file\tijiao.cshtml" />
+    <Content Include="Views\human_file\wenjian.cshtml" />
+    <Content Include="Views\RoleManager\right_list.cshtml" />
+    <Content Include="Views\RoleManager\RoleAdd.cshtml" />
+    <Content Include="Views\usser\Login.cshtml" />
+    <Content Include="Views\usser\mian.cshtml" />
+    <Content Include="Views\usser\top.cshtml" />
+    <Content Include="Views\usser\User_List.cshtml" />
+    <Content Include="Views\usser\UserAdd.cshtml" />
+    <Content Include="Views\usser\UserUpdate.cshtml" />
+    <Content Include="Views\RoleManager\RoleXG.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

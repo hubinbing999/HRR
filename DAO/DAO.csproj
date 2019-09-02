@@ -58,6 +58,7 @@
     <Compile Include="config_file_third_kindDAO.cs" />
     <Compile Include="Daobase.cs" />
     <Compile Include="DBHaipu.cs" />
+    <Compile Include="DBHelper.cs" />
     <Compile Include="engage_interviewDAO.cs" />
     <Compile Include="engage_major_releaseDao.cs" />
     <Compile Include="engage_resumeDAO.cs" />
