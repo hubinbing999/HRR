@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Model;
 using System.Data.Entity;
 using System.Runtime.Remoting.Messaging;
+using System.Data.Entity.Infrastructure;
+
 namespace DAO
 {
     public class engage_major_releaseDAO : Daobase<engage_major_release>, engage_major_releaseIDAO
@@ -125,15 +127,31 @@ namespace DAO
         public int delete(int id)
         {
             engage_major_release us = new engage_major_release();
+            RemoveHoldingEntityInContext(us);
             //接收前台来的id与表的id匹配
             us.id = id;
+           
             //开始删除
             db.Entry<engage_major_release>(us).State = EntityState.Deleted;
             //保存            
             return db.SaveChanges();
+        }
+        private Boolean RemoveHoldingEntityInContext(engage_major_release entity)
+        {
+            var objContext = ((IObjectContextAdapter)db).ObjectContext;
+            var objSet = objContext.CreateObjectSet<engage_major_release>();
+            var entityKey = objContext.CreateEntityKey(objSet.EntitySet.Name, entity);
+
+            Object foundEntity;
+            var exists = objContext.TryGetObjectByKey(entityKey, out foundEntity);
+
+            if (exists)
+            {
+                objContext.Detach(foundEntity);
+            }
 
 
-            
+            return (exists);
         }
         private static MyDbContext CreateDbContext()
         {

@@ -168,7 +168,7 @@ namespace ioc
             UnityContainer ioc = new UnityContainer();
             //生成文件(Unity.config)对象
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = @"D:\Y2Net\EF\新建文件夹 (4)\UI\Unity.config";
+            ecf.ExeConfigFilename = @"E:\最后\UI\Unity.config";
             //生成配置对象
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
             //读取配置对象的unity节点区                                                               

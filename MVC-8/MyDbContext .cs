@@ -12,7 +12,7 @@ namespace MVC_8
     {
         public MyDbContext() : base("name=sql")
         {
-            Database.SetInitializer<MyDbContext>(null);
+            //Database.SetInitializer<MyDbContext>(null);
         }
         //加载所有的配置类对象
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
