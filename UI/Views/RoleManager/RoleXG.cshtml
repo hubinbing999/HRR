@@ -108,13 +108,13 @@
 
             })
             $("#But").click(function () {
-                window.location.href = '/Role/right_list';
+                window.location.href = '/RoleManager/right_list';
             })
         })
 
         function CreateTree() {
             $('#tt').tree({
-                url: '/RoleManager/ShowQX?RoleID=' + @ViewData["id"],
+                url: '/RoleManager/ShowQX?RoleID=' +  @ViewData["id"],
                 checkbox: true,
                 onLoadSuccess: function (node, data) {
                     var t = $(this);//t代表的是树控件
@@ -145,8 +145,7 @@
             <td align="right">
                 <input type="submit" id="Button1" value="&#20445;&#23384;" class="BUTTON_STYLE1" />
 
-                <input type="button" id="But" value="返回" class="BUTTON_STYLE1"
-                       onclick="history.back()">
+                <input type="button" id="But" value="返回" class="BUTTON_STYLE1" >
             </td>
         </tr>
     </table>

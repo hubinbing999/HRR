@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>resumechoose</title>
+    <title>validresume</title>
     <link rel="stylesheet"
           href="../../../css/table.css" type="text/css">
     <link rel="stylesheet"
@@ -35,7 +35,7 @@
     <script src="~/DatePicker/WdatePicker.js"></script>
 </head>
 <body>
-    <div id="div123"> 
+    <div id="div123">
         <form id="form" name="resumeChooseForm" action="/engage_resume/" method="post">
             <input type="hidden" name="engageResume.humanMajorKindName"
                    id="majorKindName" />
@@ -47,7 +47,7 @@
             <table width="100%">
                 <tr>
                     <td>
-                        <font color="black">您正在做的业务是：人力资源--招聘管理--简历管理--简历筛选 </font>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--简历查询--有效简历查询 </font>
                     </td>
                 </tr>
                 <tr>
@@ -156,7 +156,7 @@
                 var gjz = $("#gjz").val();
                 var startDate = $("#text1").val();
                 var endDate = $("#text2").val();
-                window.location.href = "/engage_resume/resumelist?major_kind_id=" + major_kind_id + "&major_id=" + major_id + "&gjz=" + gjz + "&startDate=" + startDate + "&endDate=" + endDate;
+                window.location.href = "/engage_resume/validlist?major_kind_id=" + major_kind_id + "&major_id=" + major_id + "&gjz=" + gjz + "&startDate=" + startDate + "&endDate=" + endDate;
             }
         }, created: function () {
             this.load();

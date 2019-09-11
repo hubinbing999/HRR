@@ -24,6 +24,11 @@ namespace BLL
             return st1.delete(id);
         }
 
+        public FenYeModel3 Fenye4(int currentPage, int rl)
+        {
+            return st1.Fenye4(currentPage, rl);
+        }
+
         public List<engage_interviewModel> select1()
         {
             return st1.select();
@@ -34,9 +39,29 @@ namespace BLL
             return st1.selectupdate(id);
         }
 
+        public List<engage_interviewModel> selectupdate2(int id)
+        {
+            return st1.selectupdate2(id);
+        }
+
         public int update1(engage_interviewModel st)
         {
             return st1.update(st);
+        }
+
+        public int update2(engage_interviewModel st)
+        {
+            return st1.update2(st);
+        }
+
+        public int update3(engage_interviewModel st)
+        {
+            return st1.update3(st);
+        }
+
+        public int update4(engage_interviewModel st)
+        {
+            return st1.update4(st);
         }
     }
 }

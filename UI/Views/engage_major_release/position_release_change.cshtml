@@ -151,7 +151,10 @@
                     </td>
                     <td class="TD_STYLE2">
                         @*<input type="text" name="emajorRelease.changer" value="zhangsan" class="INPUT_STYLE2">*@
-                        @Html.EditorFor(model => model.changer, new { htmlAttributes = new { @class = "INPUT_STYLE2",@Value= @ViewData["us"] } })
+                        @*@Html.EditorFor(model => model.changer, new { htmlAttributes = new { @class = "INPUT_STYLE2",@Value= @ViewData["us"] } })*@
+                        @Html.DropDownListFor(model => model.changer, @ViewBag.dl as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "register" })
+
+
 
 
                     </td>

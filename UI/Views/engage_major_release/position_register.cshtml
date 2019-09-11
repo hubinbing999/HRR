@@ -43,7 +43,7 @@
 </head>
 <body>
     <div id="div123"> 
-        @using (Ajax.BeginForm("position_register",new AjaxOptions() {HttpMethod="post" })) {
+        @using (Ajax.BeginForm("position_register1", new AjaxOptions() {HttpMethod="post" })) {
             <table width="100%">
                 <tr>
                     <td>
@@ -159,7 +159,10 @@
                     </td>
                     <td class="TD_STYLE2">
                         @*<input type="text" name="emajorRelease.register" value="admin" class="INPUT_STYLE2">*@
-                        @Html.EditorFor(model => model.register,  new { htmlAttributes = new { @class = "INPUT_STYLE2", @Value = @ViewData["us"] } })
+                        @*@Html.EditorFor(model => model.register,  new { htmlAttributes = new { @class = "INPUT_STYLE2", @Value = @ViewData["us"] } })*@
+                        @Html.DropDownListFor(model=>model.register, @ViewBag.dl as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "register" })
+
+
                     </td>
                     <td class="TD_STYLE1">
                         登记时间

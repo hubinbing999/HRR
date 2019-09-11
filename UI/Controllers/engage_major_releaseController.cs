@@ -8,6 +8,7 @@ using ioc;
 using IBLL;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using UI.Filters;
 
 namespace UI.Controllers
 {
@@ -20,7 +21,9 @@ namespace UI.Controllers
         config_major_kindIBLL cmb = iocComm.config_major_kindBLL();
         config_majorIBLL cmib = iocComm.config_majorBLL();
         config_public_charIBLL cpb = iocComm.config_public_charBLL();
+        usersIBLL ub = iocComm.usersBLL();
         // GET: engage_major_release
+        [DlFilterAttibute]
         public ActionResult position_release_search()
         {
             return View();
@@ -193,16 +196,37 @@ namespace UI.Controllers
             return JavaScript("window.location='/engage_resume/register'");
         }
         // GET: engage_major_release/Create
+        [DlFilterAttibute]
         public ActionResult position_register()
         {
-            string us = "123";
-            ViewData["us"] = us;
+            ViewBag.dl = xlkdl();
+            string us = HttpContext.Session["us"].ToString();
+            engage_major_releaseModel emr = new engage_major_releaseModel()
+            {
+                register = us
+            };
             ViewBag.dt = xlk();
                 ViewBag.dt1 = xlk2();
                 ViewBag.dt2 = xlk3();
-                
+            ViewData.Model = emr;
             return View();
         }
+        private List<SelectListItem> xlkdl()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            List<usersModel> list2 = ub.select1();
+            foreach (usersModel item in list2)
+            {
+                    SelectListItem sl = new SelectListItem()
+                    {
+                        Text = item.u_name,
+                        Value = item.u_true_name
+                    };
+                    list.Add(sl);
+            }
+            return list;
+        }
+
         private List<SelectListItem> xlk3() {
             List<SelectListItem> list = new List<SelectListItem>();
             string s1 = "招聘类型";
@@ -266,8 +290,9 @@ namespace UI.Controllers
             return Content(JsonConvert.SerializeObject(list));
         }
         // POST: engage_major_release/Create
+       
         [HttpPost]
-        public ActionResult position_register(FormCollection collection)
+        public ActionResult position_register1(FormCollection collection)
         {
             string fkid = Request["first_kind_id"];
             List<config_file_first_kindModel> list = cfb.select1();
@@ -348,13 +373,14 @@ namespace UI.Controllers
                     return View();
                 }
             }
-
+       
         // GET: engage_major_release/Edit/5
+        [DlFilterAttibute]
         public ActionResult position_release_change(int id)
         {
+            ViewBag.dl = xlkdl();
             ViewBag.dt2 = xlk3();
-            string us = "123";
-            ViewData["us"] = us;
+            string us123 = HttpContext.Session["us"].ToString();
             List<engage_major_releaseModel> list = eng.selectupdate(id);
             engage_major_releaseModel emm = new engage_major_releaseModel() {
                  id = list[0].id,
@@ -372,7 +398,7 @@ namespace UI.Controllers
                 engage_type = list[0].engage_type,
                 deadline = list[0].deadline,
                 register = list[0].register,
-                changer = list[0].changer,
+                changer = us123,
                 regist_time = list[0].regist_time,
                 change_time = list[0].change_time,
                 major_describe = list[0].major_describe,

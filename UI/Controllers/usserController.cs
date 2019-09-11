@@ -217,7 +217,7 @@ namespace UI.Controllers
                     jsName = item["RoleName"].ToString();//角色名字
                         Session["user"] = pd;
                         Session["us"] = trueName;
-                        return JavaScript("alert('登录成功'); localStorage.setItem('a', '" + trueName + "'); localStorage.setItem('jsid', '" + jsID + "');localStorage.setItem('jsName', '" + jsName + "');  window.location.href='/usser/index'");//page/index.html
+                        return JavaScript("alert('登录成功'); localStorage.setItem('a', '" + trueName + "'); localStorage.setItem('jsid', '" + jsID + "');localStorage.setItem('jsName', '" + jsName + "');  window.location.href='/usser/Index'");//page/index.html
 
                 }
 
