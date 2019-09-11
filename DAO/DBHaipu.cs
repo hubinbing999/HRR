@@ -128,8 +128,9 @@ namespace DAO
             SqlDataAdapter ad = new SqlDataAdapter(sql, cn);
             if (ps != null)
             {
+                SqlParameter[] pp = (SqlParameter[])((ICloneable)ps).Clone();
                 //把参数对象放入命令对象中
-                ad.SelectCommand.Parameters.AddRange(ps);
+                ad.SelectCommand.Parameters.AddRange(pp);
             }
             //执行的是存储过程
             ad.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -137,11 +138,38 @@ namespace DAO
             try
             {
                 ad.Fill(dt);
+                
             }
             catch (Exception ex)
             {
 
                 WRZ("",ex);
+            }
+            return dt;
+        }
+        public static DataTable SelectProc1(string sql, SqlParameter ps, string fileName)
+        {
+            SqlConnection cn = GetConnection();
+            //读取学生表的信息
+            SqlDataAdapter ad = new SqlDataAdapter(sql, cn);
+            if (ps != null)
+            {
+                
+                //把参数对象放入命令对象中
+                ad.SelectCommand.Parameters.Add(ps);
+            }
+            //执行的是存储过程
+            ad.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataTable dt = new DataTable();
+            try
+            {
+                ad.Fill(dt);
+
+            }
+            catch (Exception ex)
+            {
+
+                WRZ("", ex);
             }
             return dt;
         }

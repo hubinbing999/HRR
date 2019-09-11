@@ -1,0 +1,385 @@
+﻿@model Model.salary_grantModel
+
+@{
+    ViewBag.Title = "check";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../../css/table.css" type="text/css" />
+
+    <script src="~/javascript/jquery-1.11.1.js"></script>
+    <link href="~/javascript/文件上传/bootstrap.css" rel="stylesheet" />
+    <script src="~/javascript/文件上传/bootstrap.js"></script>
+    <script src="~/Content/jquery.unobtrusive-ajax.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../../css/table.css" type="text/css" />
+    <title>无标题文档</title>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Content/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/javascript/vue.js"></script>
+   
+   
+    <style type="text/css">
+        <!--
+        .style3 {
+            color: #0000CC;
+        }
+
+        td {
+            text-align: center;
+        }
+        -->
+    </style>
+
+
+</head>
+
+<body>
+    @using (Ajax.BeginForm("Tio", new AjaxOptions() { HttpMethod = "Post", OnSuccess = "TR" }))
+    {
+        <table width="100%" id="ji">
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    <font color="black">
+                        您正在做的业务是：人力资源--薪酬标准管理--薪酬发放复核
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right;">
+                    <input type="submit" value="提交" class="BUTTON_STYLE1">
+                    <input type="button" value="返回" onclick="javascript:window.history.back();" class="BUTTON_STYLE1">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    薪酬单编号：{{dt}}
+                    <input type="hidden" name="salaryGrant.salaryGrantId" value="HS1353753198460">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    机构：
+
+                    {{message}}
+
+
+
+
+
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    本机构总人数:{{zys}}
+                    <input type="hidden" name="salaryGrant.humanAmount" value="5">
+                    ，基本薪酬总数:{{dqy}}<input type="hidden" name="salaryGrant.salaryStandardSum" value="139823.0" />
+                    ，实发总额:<span id="salarySum_sum">{{sfje}}</span>
+                    <input type="hidden" id="salaryPaidSum" name="salaryGrant.salaryPaidSum" value="139823.0" />
+
+                </td>
+                <td style="text-align: right;">
+
+                    复核人:
+                    @Html.DropDownListFor(model => model.checker, ViewData["djr"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
+                    @Html.ValidationMessageFor(e => e.checker)
+
+                    复核时间：<span id="Tdate"></span>
+                    <input type="hidden" name="salaryGrant.registTime" id="Tdate2">
+                </td>
+            </tr>
+        </table>
+
+
+        <table width="100%" border="1" id="fa" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1">
+                    <span>序号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>档案编号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>姓名</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>工资详情</span>
+                </td>
+                @*<td class="TD_STYLE1">
+                        出差补助
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        交通补贴
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        住房补贴
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        基本工资
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        年终奖
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        误餐补助
+                    </td>*@
+
+                <td class="TD_STYLE1" width="7%">
+                    奖励金额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    销售绩效总额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    应扣金额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    实发金额
+                </td>
+            </tr>
+
+
+
+        </table>
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                                data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            您正在做的业务是：人力资源--薪酬标准管理--薪酬详细
+                        </h4>
+                    </div>
+                    <table width="100%" border="1" cellpadding=0 cellspacing=1
+                           bordercolorlight=#848284 bordercolordark=#eeeeee
+                           class="TABLE_STYLE1">
+                        <tr>
+                            <td class="TD_STYLE1">
+                                出差补助
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                交通补贴
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                住房补贴
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                基本工资
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                年终奖
+                            </td>
+
+                            <td class="TD_STYLE1">
+                                误餐补助
+                            </td>
+                        </tr>
+                        <tr id="gz"></tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    }
+    <SCRIPT type="text/javascript">
+
+		function onKeyPress(i){
+
+		var size=5;
+		var bounsSum=document.getElementById("bounsSum"+i);
+		var saleSum =document.getElementById("saleSum"+i);
+		var deductSum=document.getElementById("deductSum"+i);
+		var salaryPaidSum=document.getElementById("salaryPaidSum"+i);
+		if (isNaN(bounsSum.value) || bounsSum.value < 0) {
+		alert("金额填写错误!");
+		bounsSum.value="0.00";
+		return;
+	}
+		if (isNaN(saleSum.value) || saleSum.value < 0) {
+		alert("金额填写错误!");
+		saleSum.value="0.00";
+		return;
+	}
+		if (isNaN(deductSum.value) || deductSum.value < 0) {
+		alert("金额填写错误!");
+		deductSum.value="0.00";
+		return;
+	}
+		salaryPaidSum.value=Number(bounsSum.value)+Number(saleSum.value)-Number(deductSum.value)+Number(document.getElementById("salaryStandardSum"+i).value);
+
+		var sum=0;
+		for(var j=1;j<=size;j++){
+			sum=Number(sum)+Number(document.getElementById("salaryPaidSum"+j).value);
+		}
+	 		 document.getElementById("salarySum_sum").innerHTML=sum;
+	 		  document.getElementById("salaryPaidSum").value=sum;
+
+		}
+        function time(){
+ 					var tdate=document.getElementById("Tdate");
+ 					var d=new Date();
+ 					var y=d.getFullYear();
+ 					var moth=d.getMonth()+1;
+ 					var date=d.getDate();
+ 					var h=d.getHours();
+ 					var m=d.getMinutes();
+ 					var s=d.getSeconds();
+					var hh=20-1-h;
+					var mm=60-1-m;
+					var ss=60-s;
+					if(hh>0){
+							mm=mm+60*hh;
+					}
+ 					if(moth<10){
+ 							moth="0"+moth;
+ 					}
+ 					if(date<10){
+ 							date="0"+date;
+ 					}
+ 					if(h<10){
+ 							h="0"+h;
+ 					}
+ 					if(m<10){
+ 							m="0"+m;
+ 					}
+ 					if(s<10){
+ 							s="0"+s;
+ 					}
+ 					if(mm<10){
+ 							mm="0"+mm;
+ 					}
+ 					if(ss<10){
+ 							ss="0"+ss;
+ 					}
+
+ 					tdate.innerHTML=y+"-"+moth+"-"+date+" "+h+":"+m+":"+s;
+					 document.getElementById("Tdate2").value=tdate.innerHTML;
+ 				}
+ 		window.onload=time;
+ 		var out = window.setInterval(time, 1000);
+ 		$(function () {
+ 		    $("#DJR").val(localStorage.getItem('a'));
+ 		  	    $.ajax({
+ 		        url: "/salary_grant/Fan",
+ 		        type: "post",
+ 		        data: "",
+ 		        success: function (msg) {
+ 		            console.info(msg)
+ 		            var dd = eval("(" + msg + ")");
+ 		            for (var i = 0; i < dd.length; i++) {
+ 		                //详细
+ 		                var xx=dd[i].salary_grant_details;
+ 		                var hi = $('<input type="hidden" name="grantDetails[' + i + '].salaryGrantId" value="'+ xx.salary_grant_id+'">')
+ 		                var hi1 = $('<input type="hidden" id="salaryStandardSum' + (i + 1) + '" name="grantDetails[' + i + '].salaryStandardSum" value="' + xx.salary_standard_sum + '" />');
+ 		                var tr=$('<tr class="TD_STYLE2"></tr>');
+ 		                var td=$('<td>'+xx.id+'</td>');
+ 		                var td1 = $('<td>'+ xx.human_id + '</td>');
+ 		                var input=$('<input type="hidden" name="grantDetails['+i+'].humanId" value="'+xx.human_id+'" />');
+ 		                td1.append(input);
+ 		                var td2=$('<td>'+xx.human_name+'</td>');
+ 		                var td3=$('<input type="hidden" name="grantDetails['+i+'].humanName" value="'+xx.human_name+'" />');
+ 		                td2.append(td3);
+ 		                var xc = dd[i].salary_standard_detailsModel;
+ 		                var gzxq = $('<td></td>');
+ 		                var gzxq1 = $('<a href="#" id="gzxq" s=' + xc[i].standard_id+ ' data-toggle="modal" data-target="#myModal3">工资详情</a>');
+ 		                gzxq.append(gzxq1);
+ 		                tr.append(td, td1, td2, gzxq);
+ 		                //for (var ii = 0; ii < xc.length; ii++) {
+ 		                //    var td4=$('<td>'+xc[ii].salary+'</td>');
+ 		                //    tr.append(td4);
+ 		                //}
+ 		                var tdu=$('<td></td>');
+ 		                var tdu1 = $('<input type="text" name="grantDetails[' + i + '].bounsSum" id="bounsSum' + (i + 1) + '" onkeyup="onKeyPress(' + (i + 1) + ')" value="' + xx.bouns_sum+ '"  class="INPUT_STYLE2" />');
+ 		                tdu.append(tdu1);
+ 		                var tdu2=$('<td></td>');
+ 		                var tdu3 = $('<input type="text" name="grantDetails[' + i + '].saleSum" id="saleSum' + (i + 1) + '" onkeyup="onKeyPress(' + (i + 1) + ')"  value="' + xx.sale_sum + '" class="INPUT_STYLE2" />')
+ 		                tdu2.append(tdu3);
+ 		                var tdu4=$('<td></td>');
+ 		                var tdu5 = $('<input type="text" name="grantDetails[' + i + '].deductSum" id="deductSum' + (i + 1) + '" onkeyup="onKeyPress(' + (i + 1) + ')" value="' + xx.deduct_sum + '" class="INPUT_STYLE2" />')
+ 		                tdu4.append(tdu5);
+ 		                var tdu6=$('<td></td>');
+ 		                var tdu7 = $('<input type="text" name="grantDetails[' + i + '].salaryPaidSum" readonly="readonly" id="salaryPaidSum' + (i + 1) + '" value="' + xx.salary_paid_sum + '" class="INPUT_STYLE2" />')
+ 		                tdu6.append(tdu7);
+ 		                tr.append(tdu,tdu2,tdu4,tdu6);
+ 		                $("#fa").append(hi,hi1,tr);
+ 		            }
+ 		        }
+ 		  	    })
+ 		  	    $(document).on("click", "#gzxq", function () {
+ 		  	        var id = $(this).attr("s");
+ 		  	        $.ajax({
+ 		  	            url: "/salary_grant/FanCha",
+ 		  	            type: "post",
+ 		  	            data: "id="+id,
+ 		  	            success: function (msg) {
+ 		  	                console.info(msg)
+ 		  	                var dd = eval("(" + msg + ")");
+ 		  	                $("#gz td").remove();
+ 		  	                for (var ii = 0; ii < dd.length; ii++) {
+ 		  	                    var td4=$('<td>'+dd[ii].salary+'</td>');
+ 		  	                    $("#gz").append(td4);
+ 		  	                }
+ 		  	            }
+ 		  	        })
+ 		  	    })
+ 		})
+ 		var vr = new Vue({
+ 		    el: "#ji",
+ 		    data: {
+ 		        dt: null,
+ 		        message: null,
+ 		        zys: null,
+ 		        dqy: null,
+ 		        sfje: null
+ 		    },
+ 		    methods: {
+ 		        load: function () {
+ 		            var t = this;
+ 		            $.ajax({
+ 		                url: "/salary_grant/Shuju1",
+ 		                type: "post",
+ 		                data: "",
+ 		                success: function (msg) {
+ 		                    console.info(msg)
+ 		                    var dd = eval("(" + msg + ")");
+ 		                    console.info(dd);
+ 		                    t.dt = dd.salary_standard_id;
+ 		                    t.message = dd.third_kind_name;
+ 		                    t.zys = dd.human_amount;
+ 		                    t.dqy = dd.salary_standard_sum;
+ 		                    //currentPage = dd.zys;
+ 		                    t.sfje = dd.salary_paid_sum;
+ 		                }
+ 		            });
+ 		        }
+
+ 		    },
+ 		    created: function () {
+ 		        this.load();
+ 		    }
+ 		})
+    </SCRIPT>
+</body>
+</html>
+

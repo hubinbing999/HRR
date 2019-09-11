@@ -153,7 +153,22 @@ namespace UI.Controllers
                     int i1 = ctb.Add1(ctm);
                     if (i1 > 0)
                     {
-                        return JavaScript("window.location='/config_file_third_kind/third_kind_register_success'");
+                            //新增发放表数据
+
+                            salary_grantIBLL sa = iocComm.salary_grantBLL();
+                            salary_grantModel grant = new salary_grantModel();
+                            grant.first_kind_id = id;
+                            grant.first_kind_name = mc;
+                            grant.second_kind_id = id1;
+                            grant.second_kind_name = mc1;
+                            grant.third_kind_id = Request["third_kind_id"];
+                            grant.third_kind_name = Request["third_kind_name"];
+                            grant.human_amount = 0;
+                            grant.salary_standard_sum = 0;
+                            grant.salary_paid_sum = 0;
+                            grant.check_status = 0;
+                      int iii=      sa.Add1(grant);
+                            return JavaScript("window.location='/config_file_third_kind/third_kind_register_success'");
                     }
                     else
                     {

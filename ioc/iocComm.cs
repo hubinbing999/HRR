@@ -174,6 +174,55 @@ namespace ioc
             return ioc.Resolve<engage_resumeIBLL>("engage_resumeBLL");
 
         }
+        //salary_standard_details
+        public static salary_standard_detailsIDAO salary_standard_detailsDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<salary_standard_detailsDAO>("salary_standard_detailsDAO");
+        }
+        public static salary_standard_detailsIBLL salary_standard_detailsBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<salary_standard_detailsIBLL>("salary_standard_detailsBLL");
+
+        }
+        //salary_standard
+        public static salary_standardIDAO salary_standardDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<salary_standardDAO>("salary_standardDAO");
+        }
+        public static salary_standardIBLL salary_standardBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<salary_standardIBLL>("salary_standardBLL");
+
+        }
+        //salary_grant_details
+        public static salary_grant_detailsIDAO salary_grant_detailsDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<salary_grant_detailsDAO>("salary_grant_detailsDAO");
+        }
+        public static salary_grant_detailsIBLL salary_grant_detailsBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<salary_grant_detailsIBLL>("salary_grant_detailsBLL");
+
+        }
+        //salary_grant
+        public static salary_grantIDAO salary_grantDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<salary_grantDAO>("salary_grantDAO");
+        }
+        public static salary_grantIBLL salary_grantBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<salary_grantIBLL>("salary_grantBLL");
+
+        }
+
         private static UnityContainer CreatIoc(string name)
         {
             UnityContainer ioc = new UnityContainer();

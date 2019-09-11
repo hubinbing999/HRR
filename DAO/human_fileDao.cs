@@ -96,6 +96,12 @@ namespace DAO
                     ko.delete_time = DateTime.Now;  
                     ko.recovery_time = DateTime.Now;  
                     ko.human_file_status = item.human_file_status;
+            ko.salary_standard_name = item.salary_standard_name;
+            ko.salary_standard_id = item.salary_standard_id;
+            ko.salary_sum = item.salary_sum;
+            ko.register = item.register;
+
+
             if (Add(ko) > 0)
             {
                 return r;
@@ -243,7 +249,7 @@ namespace DAO
 
             ko.human_account = item.human_account;
 
-            ko.register = item.register;
+            ko.checker = item.checker;
 
             ko.check_time = item.check_time;
 

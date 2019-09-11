@@ -210,6 +210,37 @@ namespace MVC_8
                 };
                 mc.human_file.Add(hu);
 
+                salary_standard sala = new salary_standard()
+                {
+                    Id = 1,
+                    standard_id = "123312321",
+                    changer = "123",
+                    change_status = 0,
+                    change_time = DateTime.Now,
+                    checker = "123",
+                    check_comment = "没意见",
+                    check_status = 0,
+                    check_time = DateTime.Now,
+                    designer="胡彬冰",
+                    register="123",
+                    regist_time=DateTime.Now,
+                    remark="董事长说的",
+                    salary_sum=1314.34M,
+                    standard_name="吃饭"
+                };
+                mc.salary_standard.Add(sala);
+
+                salary_standard_details details = new salary_standard_details()
+                {
+                    Id = 1,
+                    item_id = 1,
+                    item_name = "吃饭",
+                    salary = 1314.25m,
+                     standard_id="1",
+                      standard_name="吃饭"
+
+                };
+                mc.salary_standard_details.Add(details);
                 mc.SaveChanges();
                 int pd = mc.SaveChanges();
                 Console.WriteLine(pd);

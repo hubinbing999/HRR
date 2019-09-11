@@ -42,6 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bangzhu\Cansh.cs" />
+    <Compile Include="bangzhu\CXinCan.cs" />
+    <Compile Include="bangzhu\query_locateCan.cs" />
+    <Compile Include="bangzhu\salarystandard_query_locateCan.cs" />
+    <Compile Include="bangzhu\salary_grantCan.cs" />
+    <Compile Include="bangzhu\salary_grant_detailsASsalary_standard.cs" />
+    <Compile Include="bangzhu\salary_standardFenYe.cs" />
+    <Compile Include="bangzhu\XCcan.cs" />
     <Compile Include="canshulei.cs" />
     <Compile Include="config_majorModel.cs" />
     <Compile Include="config_major_kindModel1.cs" />
@@ -57,6 +64,10 @@
     <Compile Include="human_file_dig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleManagerModel.cs" />
+    <Compile Include="salary_grant.cs" />
+    <Compile Include="salary_grant_details.cs" />
+    <Compile Include="salary_standard.cs" />
+    <Compile Include="salary_standard_details.cs" />
     <Compile Include="usersModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

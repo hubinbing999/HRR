@@ -45,8 +45,8 @@ namespace DAO
             }
         public List<config_major_kindModel1> selectupdate(string id)
         {
-            int k1o = (int.Parse(id));
-            List<config_major_kind> list = SeleteBy(e => e.id==k1o);
+           
+            List<config_major_kind> list = SeleteBy(e => e.major_kind_id.Equals(id));
 
 
             List<config_major_kindModel1> li = new List<config_major_kindModel1>();

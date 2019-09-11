@@ -40,7 +40,10 @@ namespace MVC_8
         public DbSet<Access> Access { get; set; }
         public DbSet<Permission> Permission { get; set; }
 
-
+        public DbSet<salary_standard_details> salary_standard_details { get; set; }
+        public DbSet<salary_standard> salary_standard { get; set; }
+        public DbSet<salary_grant_details> salary_grant_details { get; set; }
+        public DbSet<salary_grant> salary_grant { get; set; }
     }
 }
 

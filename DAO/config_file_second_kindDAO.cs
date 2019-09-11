@@ -75,6 +75,27 @@ namespace DAO
             return li;
 
         }
+        public List<config_file_second_kindModel> selectupdate1(int id)
+        {
+            string jj = id.ToString();
+            List<config_file_second_kind> list = SeleteBy(e => e.second_kind_id.Equals(jj));
+
+
+            List<config_file_second_kindModel> li = new List<config_file_second_kindModel>();
+            foreach (config_file_second_kind item in list)
+            {
+                config_file_second_kindModel ko = new config_file_second_kindModel();
+                ko.Id = item.Id;
+                ko.first_kind_id = item.first_kind_id;
+                ko.first_kind_name = item.first_kind_name;
+                ko.second_kind_id = item.second_kind_id;
+                ko.second_kind_name = item.second_kind_name;
+                ko.second_salary_id = item.second_salary_id;
+                ko.second_sale_id = item.second_sale_id; li.Add(ko);
+            }
+            return li;
+
+        }
 
         static MyDbContext db = CreateDbContext();
         public int delete(int id)

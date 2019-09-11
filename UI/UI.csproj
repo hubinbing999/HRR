@@ -98,6 +98,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="StackExchange.Redis">
+      <HintPath>C:\Users\LENOVO\Desktop\压缩包\T缓存+静态页面\T10\Code\WebApplication1\packages\StackExchange.Redis.2.0.601\lib\net461\StackExchange.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -224,12 +227,16 @@
     <Compile Include="Controllers\human_fileController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleManagerController.cs" />
+    <Compile Include="Controllers\salary_grantController.cs" />
+    <Compile Include="Controllers\salary_standardController.cs" />
     <Compile Include="Controllers\usserController.cs" />
     <Compile Include="Filters\DlFilterAttibute .cs" />
     <Compile Include="Filters\engage_resumeAttibute.cs" />
+    <Compile Include="Filters\JsonNetAction .cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -237,6 +244,7 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Result\JsonNetResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -702,6 +710,12 @@
     <Content Include="javascript\winopen\winopenm.js" />
     <Content Include="javascript\winopen\winopenn.js" />
     <Content Include="javascript\winopen\winopens.js" />
+    <Content Include="javascript\文件上传\bootstrap.css" />
+    <Content Include="javascript\文件上传\bootstrap.js" />
+    <Content Include="javascript\文件上传\bootstrap.min.js" />
+    <Content Include="javascript\时间\index.html" />
+    <Content Include="javascript\时间\jquery.monthpicker.css" />
+    <Content Include="javascript\时间\jquery.monthpicker.js" />
     <Content Include="jquery-easyui-1.3.5\demo\accordion\actions.html" />
     <Content Include="jquery-easyui-1.3.5\demo\accordion\ajax.html" />
     <Content Include="jquery-easyui-1.3.5\demo\accordion\basic.html" />
@@ -1443,6 +1457,28 @@
     <Content Include="Views\usser\UserAdd.cshtml" />
     <Content Include="Views\usser\UserUpdate.cshtml" />
     <Content Include="Views\RoleManager\RoleXG.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_register.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_register_success.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_check_list.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_check.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_check_success.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_query_locate.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_query_locateSrlete.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_change_locate.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_change_list.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_change.cshtml" />
+    <Content Include="Views\salary_grant\register_locate.cshtml" />
+    <Content Include="Views\salary_grant\register_list.cshtml" />
+    <Content Include="Views\salary_grant\register_list2.cshtml" />
+    <Content Include="Views\salary_grant\register_commit.cshtml" />
+    <Content Include="Views\salary_standard\salarystandard_query.cshtml" />
+    <Content Include="Views\salary_grant\register_success.cshtml" />
+    <Content Include="Views\salary_grant\check_list.cshtml" />
+    <Content Include="Views\salary_grant\check.cshtml" />
+    <Content Include="Views\salary_grant\check_success.cshtml" />
+    <Content Include="Views\salary_grant\query_locate.cshtml" />
+    <Content Include="Views\salary_grant\query_list.cshtml" />
+    <Content Include="Views\salary_grant\query.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

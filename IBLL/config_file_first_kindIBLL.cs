@@ -13,6 +13,7 @@ namespace IBLL
         int update1(config_file_first_kindModel st);
         List<config_file_first_kindModel> selectupdate(int id);
         int delete(int id);
+        List<config_file_first_kindModel> selectupdate1(int id);
     }
 }
 

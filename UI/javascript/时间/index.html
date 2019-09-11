@@ -1,0 +1,41 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>演示：jQuery选取月份插件</title>
+<meta name="keywords" content="jquery" />
+<meta name="description" content="Helloweba演示平台，演示XHTML、CSS、jquery、PHP案例和示例" />
+
+    <script src="../jquery-1.11.1.js"></script>
+<script src="jquery.monthpicker.js"></script>
+<script type="text/javascript">
+
+    var getCode = function () {
+        var ele = $("input").val();
+        var birth = ele.substring(6, 10) + "-" + ele.substring(10, 12) + "-" + ele.substring(12, 14);
+        console.log(birth);
+        var sex = "";
+        if (parseInt(ele.substr(16, 1)) % 2 == 1) {
+            sex = "男";
+        } else {
+            sex = "女";
+        }
+        console.log(sex);
+        //获取年龄
+        var myDate = new Date();
+        var month = myDate.getMonth() + 1;
+        var day = myDate.getDate();
+        var age = myDate.getFullYear() - ele.substring(6, 10) - 1;
+        if (ele.substring(10, 12) < month || ele.substring(10, 12) == month && ele.substring(12, 14) <= day) {
+            age++;
+        }
+        console.log(age);
+    };
+</script>
+</head>
+
+<body>
+    <input type="text" />
+    <input type="button" onclick="getCode()" value="查询" />
+</body>
+</html>

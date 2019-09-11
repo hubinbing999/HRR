@@ -54,7 +54,8 @@ namespace DAO
             }
         public List<config_majorModel> selectupdate(int id)
         {
-            List<config_major> list = SeleteBy(e => e.id == id);
+            string i ="0"+ id.ToString();
+            List<config_major> list = SeleteBy(e => e.major_id.Equals(i));
 
 
             List<config_majorModel> li = new List<config_majorModel>();

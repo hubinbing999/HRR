@@ -43,6 +43,9 @@ namespace BLL
         {
             return st1.update(st);
         }
+        public List<config_file_second_kindModel> selectupdate1(int id) {
+            return st1.selectupdate1(id);
+        }
     }
 }
                 

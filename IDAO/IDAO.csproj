@@ -77,6 +77,10 @@
     <Compile Include="human_file_digIDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleManagerIDAO.cs" />
+    <Compile Include="salary_grantIDAO.cs" />
+    <Compile Include="salary_grant_detailsIDAO.cs" />
+    <Compile Include="salary_standardIDAO.cs" />
+    <Compile Include="salary_standard_detailsIDAO.cs" />
     <Compile Include="usersIDAO.cs" />
   </ItemGroup>
   <ItemGroup>

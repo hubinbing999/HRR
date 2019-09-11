@@ -61,6 +61,12 @@ namespace UI.Controllers
             List<SelectListItem> list11 = zc("学历");
             ViewData["xl"] = list11;
 
+
+
+            //登记人
+            List<SelectListItem> lis = djr();
+            ViewData["djr"] = lis;
+            
             //教育年限
 
             List<SelectListItem> list12 = zc("教育年限");
@@ -70,7 +76,7 @@ namespace UI.Controllers
             ViewData["xlzy"] = list13;
 
             //薪酬标准bjcx
-            List<SelectListItem> list14 = zc("薪酬设置");
+            List<SelectListItem> list14 = salary_standard();
             ViewData["bjcx"] = list14;
 
             //特长
@@ -83,7 +89,30 @@ namespace UI.Controllers
             return View();
         }
         //性别
+        //登记人
        
+        private static List<SelectListItem> djr()
+        {
+            List<SelectListItem> list1 = new List<SelectListItem>();
+            usersIBLL us = iocComm.usersBLL();
+          
+          
+            foreach (usersModel item in us.select1())
+            {
+                SelectListItem sl = new SelectListItem()
+                {
+                    //设置文本值
+                    Text = item.u_true_name,
+                    //设置value值
+                    Value = item.u_true_name.ToString()
+                };
+                list1.Add(sl);
+            }
+
+            return list1;
+        }
+
+
         //职称 config_public_char
         private static List<SelectListItem> zc(string name)
         {
@@ -99,7 +128,7 @@ namespace UI.Controllers
                     //设置文本值
                     Text = item.attribute_name,
                     //设置value值
-                    Value = item.id.ToString()
+                    Value = item.attribute_name.ToString()
                 };
                 list1.Add(sl);
             }
@@ -120,7 +149,7 @@ namespace UI.Controllers
                     //设置文本值
                     Text = item.major_name,
                     //设置value值
-                    Value = item.mak_id.ToString()
+                    Value = item.major_id.ToString()
                 };
                 list1.Add(sl);
             }
@@ -140,7 +169,28 @@ namespace UI.Controllers
                     //设置文本值
                     Text = item.major_kind_name,
                     //设置value值
-                    Value = item.mfk_id.ToString()
+                    Value = item.major_kind_id.ToString()
+                };
+                list1.Add(sl);
+            }
+
+            return list1;
+        }
+
+        //职位分类config_major_kind
+        private static List<SelectListItem> salary_standard()
+        {
+            List<SelectListItem> list1 = new List<SelectListItem>();
+            salary_standardIBLL con = iocComm.salary_standardBLL();
+            List<salary_standardModel> li = con.select1();
+            foreach (salary_standardModel item in li)
+            {
+                SelectListItem sl = new SelectListItem()
+                {
+                    //设置文本值
+                    Text = item.standard_name,
+                    //设置value值
+                    Value = item.id.ToString()
                 };
                 list1.Add(sl);
             }
@@ -160,7 +210,7 @@ namespace UI.Controllers
                     //设置文本值
                     Text = item.second_kind_name,
                     //设置value值
-                    Value = item.Id.ToString()
+                    Value = item.second_kind_id.ToString()
                 };
                 list1.Add(sl);
             }
@@ -199,7 +249,7 @@ namespace UI.Controllers
                     //设置文本值
                     Text = item.first_kind_name,
                     //设置value值
-                    Value = item.Id.ToString()
+                    Value = item.first_kind_id.ToString()
                 };
                 list.Add(sl);
             }
@@ -231,7 +281,7 @@ namespace UI.Controllers
                 string first_kind_name = "";
                 if (first_kind_id!=null|| !first_kind_id.Equals("")) {
                     config_file_first_kindIBLL yj = iocComm.config_file_first_kindBLL();
-                    List<config_file_first_kindModel> con = yj.selectupdate(int.Parse(first_kindid));
+                    List<config_file_first_kindModel> con = yj.selectupdate1(int.Parse(first_kindid));
                     first_kind_name = con[0].first_kind_name;
                     first_kind_id = con[0].first_kind_id;
                 }
@@ -243,7 +293,7 @@ namespace UI.Controllers
                 if (second_kindid != null || !second_kindid.Equals(""))
                 {
                     config_file_second_kindIBLL yj = iocComm.config_file_second_kindBLL();
-                    List<config_file_second_kindModel> con = yj.selectupdate(int.Parse(second_kindid));
+                    List<config_file_second_kindModel> con = yj.selectupdate1(int.Parse(second_kindid));
                     second_kind_name = con[0].second_kind_name;
                     second_kind_id = con[0].second_kind_id;
                 }
@@ -286,12 +336,12 @@ namespace UI.Controllers
 
                 //职称
                 string human_prodesignation = Request["human_pro_designation"];
-                string   human_pro_designation = cha(human_prodesignation);
+                string   human_pro_designation = human_prodesignation;
                 //姓名
                 string human_name = Request["human_name"];
                 //性别
                 string humansex = Request["human_sex"];
-                string human_sex = cha(humansex);
+                string human_sex = humansex;
                 //EMAIL
                 string human_email = Request["human_email"];
                 //电话
@@ -306,7 +356,7 @@ namespace UI.Controllers
                 string human_postcode = Request["human_postcode"];
                 //国籍
                 string humannationality = Request["human_nationality"];
-                string human_nationality = cha(humannationality);
+                string human_nationality = humannationality;
                 //出生地
                 string human_birthplace = Request["human_birthplace"];
                 //生日
@@ -314,13 +364,13 @@ namespace UI.Controllers
                 DateTime human_birthday = Convert.ToDateTime(humanbirthday);
                 //民族
                 string humanrace = Request["human_race"];
-                string human_race = cha(humanrace);
+                string human_race = humanrace;
                 //宗教信仰
                 string humanreligion = Request["human_religion"];
-                string human_religion = cha(humanreligion);
+                string human_religion =humanreligion;
                 //政治面貌
                 string humanparty = Request["human_party"];
-                string human_party = cha(humanparty);
+                string human_party = humanparty;
                 //身份证号码
                 string human_id_card = Request["human_id_card"];
                 //社会保障号码
@@ -329,16 +379,31 @@ namespace UI.Controllers
                 string human_age = Request["human_age"];
                 //学历
                 string humaneducated_degree = Request["human_educated_degree"];
-                string human_educated_degree = cha(humaneducated_degree);
+                string human_educated_degree = humaneducated_degree;
                 //教育年限
                 string human_educatedyears = Request["human_educated_years"];
-                string human_educated_years = cha(human_educatedyears);
+                string human_educated_years = human_educatedyears;
                 //学历专业
                 string human_educatedmajor = Request["human_educated_major"];
-                string human_educated_major = cha(human_educatedmajor);
+                string human_educated_major =human_educatedmajor;
                 //薪酬标准
                 string salary_standardid = Request["salary_standard_id"];
-                string salary_standard_id = cha(salary_standardid);
+                //string salary_standard_id = cha(salary_standardid);
+
+               
+
+               
+                string salary_standard_name = "";
+                string salary_standard_id = "";
+                decimal salary_sum = 0m;
+                if (salary_standardid != null || !salary_standardid.Equals(""))
+                {
+                    salary_standardIBLL yj = iocComm.salary_standardBLL();
+                    List<salary_standardModel> con = yj.selectupdate(int.Parse(salary_standardid));
+                    salary_standard_name = con[0].standard_name;
+                    salary_standard_id = con[0].standard_id;
+                    salary_sum = con[0].salary_sum;                }
+
                 //开户行
                 string human_bank = Request["human_bank"];
                 //帐号
@@ -350,10 +415,10 @@ namespace UI.Controllers
                
                 //特长
                 string humanspeciality = Request["human_speciality"];
-                string human_speciality = cha(humanspeciality);
+                string human_speciality = humanspeciality;
                 //爱好
                 string humanhobby = Request["human_hobby"];
-                string human_hobby = cha(humanhobby);
+                string human_hobby = humanhobby;
                 //个人履历
                 string human_histroy_records = Request["human_histroy_records"];
                 //家庭关系信息
@@ -404,15 +469,17 @@ namespace UI.Controllers
                 human.human_speciality = human_speciality;
                 human.human_telephone = human_telephone;
                 human.hunma_major_name = hunma_major_name;
-                human.salary_standard_id = salary_standard_id;
+                human.register = register;
                 human.second_kind_id = second_kind_id;
                 human.second_kind_name = second_kind_name;
                 human.third_kind_id = third_kind_id;
                 human.third_kind_name = third_kind_name;
                 human.regist_time =DateTime.Now;
                 human.training_amount = 0;
-                
-
+                human.salary_standard_name = salary_standard_name;
+                human.salary_standard_id = salary_standard_id;
+                human.salary_sum = salary_sum;
+               
                 string pd=hhhhh.Add1(human);
                 if (pd !=null)
                 {
@@ -586,7 +653,7 @@ namespace UI.Controllers
                 ko.human_file_status = item.human_file_status;
             }
             string d = li[0].human_picture;
-            string[] st = d.Split('U');
+            string[] st = d.Split('U'); 
             ViewData["ttt"] ="../../U"+st[2];
             List<SelectListItem> list3 = config_major_kind();
             ViewData["zwfl"] = list3;
@@ -596,14 +663,17 @@ namespace UI.Controllers
             //职称
             List<SelectListItem> list5 = zc("职称");
             ViewData["zc"] = list5;
+
             //性别
             List<SelectListItem> list6 = zc("性别");
             ViewData["xb"] = list6;
-
+            this.ViewData["human_sex"] = ko.human_sex;
             //国籍
             List<SelectListItem> list7 = zc("国籍");
             ViewData["gj"] = list7;
-
+            //复核人
+            List<SelectListItem> lis = djr();
+            ViewData["djr"] = lis;
             //民族
             List<SelectListItem> list8 = zc("民族");
             ViewData["mz"] = list8;
@@ -629,7 +699,8 @@ namespace UI.Controllers
             ViewData["xlzy"] = list13;
 
             //薪酬标准bjcx
-            List<SelectListItem> list14 = zc("薪酬设置");
+            //薪酬标准bjcx
+            List<SelectListItem> list14 = salary_standard();
             ViewData["bjcx"] = list14;
 
             //特长
@@ -644,6 +715,17 @@ namespace UI.Controllers
 
             return View();
         }
+        public ActionResult xcsz()
+        {
+
+            config_public_charIBLL con = iocComm.config_public_charBLL();
+            config_public_charModel ko = new config_public_charModel();
+            ko.attribute_kind = "薪酬设置";
+            List<config_public_charModel> li = con.SelectByKind(ko);
+            string aa = JsonConvert.SerializeObject(li);
+            return Content(aa);
+        }
+
         public ActionResult qddd(FormCollection collection) {
             human_fileModel human = new human_fileModel();
             string hunma_majorname = Request["hunma_major_name"];
@@ -652,14 +734,14 @@ namespace UI.Controllers
             human.id = list[0].id;
             //职称
             string human_prodesignation = Request["human_pro_designation"];
-            string human_pro_designation = cha(human_prodesignation);
+            string human_pro_designation = human_prodesignation;
             human.human_pro_designation = human_pro_designation;
             //姓名
             string human_name = Request["human_name"];
             human.human_name = human_name;
             //性别
             string humansex = Request["human_sex"];
-            string human_sex = cha(humansex);
+            string human_sex = humansex;
             human.human_sex = human_sex;
             //EMAIL
             string human_email = Request["human_email"];
@@ -681,7 +763,7 @@ namespace UI.Controllers
             human.human_postcode = human_postcode;
             //国籍
             string humannationality = Request["human_nationality"];
-            string human_nationality = cha(humannationality);
+            string human_nationality = humannationality;
             human.human_nationality = human_nationality;
             //出生地
             string human_birthplace = Request["human_birthplace"];
@@ -692,15 +774,15 @@ namespace UI.Controllers
             human.human_birthday = human_birthday;
             //民族
             string humanrace = Request["human_race"];
-            string human_race = cha(humanrace);
+            string human_race = humanrace;
             human.human_race = human_race;
             //宗教信仰
             string humanreligion = Request["human_religion"];
-            string human_religion = cha(humanreligion);
+            string human_religion = humanreligion;
             human.human_religion = human_religion;
             //政治面貌
             string humanparty = Request["human_party"];
-            string human_party = cha(humanparty);
+            string human_party = humanparty;
             human.human_party = human_party;
             //身份证号码
             string human_id_card = Request["human_id_card"];
@@ -713,40 +795,59 @@ namespace UI.Controllers
             human.human_age = int.Parse(human_age);
             //学历
             string humaneducated_degree = Request["human_educated_degree"];
-            string human_educated_degree = cha(humaneducated_degree);
+            string human_educated_degree = humaneducated_degree;
             human.human_educated_degree = human_educated_degree;
             //教育年限
             string human_educatedyears = Request["human_educated_years"];
-            string human_educated_years = cha(human_educatedyears);
+            string human_educated_years = human_educatedyears;
             human.human_educated_years = int.Parse(human_educated_years);
             //学历专业
             string human_educatedmajor = Request["human_educated_major"];
-            string human_educated_major = cha(human_educatedmajor);
+            string human_educated_major = human_educatedmajor;
             human.human_educated_major = human_educated_major;
             //薪酬标准
+
             string salary_standardid = Request["salary_standard_id"];
-            string salary_standard_id = cha(salary_standardid);
-            human.salary_standard_id = salary_standard_id;
+            //string salary_standard_id = cha(salary_standardid);
+
+
+
+
+            string salary_standard_name = "";
+            string salary_standard_id = "";
+            decimal salary_sum = 0m;
+            if (salary_standardid != null || !salary_standardid.Equals(""))
+            {
+                salary_standardIBLL yj = iocComm.salary_standardBLL();
+                List<salary_standardModel> con = yj.selectupdate(int.Parse(salary_standardid));
+                salary_standard_name = con[0].standard_name;
+                salary_standard_id = con[0].standard_id;
+                salary_sum = con[0].salary_sum;
+            }
+
+
+
+
             //开户行
             string human_bank = Request["human_bank"];
             human.human_bank = human_bank;
             //帐号
             string human_account = Request["human_account"];
             human.human_account = human_account;
-            //登记人
+            //复核人
             string register = Request["checker"];
-            human.register = register;
+            human.checker = register;
             //复核时间
             string check_time = Request["check_time"];
             human.check_time =DateTime.Parse( check_time);
 
             //特长
             string humanspeciality = Request["human_speciality"];
-            string human_speciality = cha(humanspeciality);
+            string human_speciality = humanspeciality;
             human.human_speciality = human_speciality;
             //爱好
             string humanhobby = Request["human_hobby"];
-            string human_hobby = cha(humanhobby);
+            string human_hobby = humanhobby;
             human.human_hobby = human_hobby;
             //个人履历
             string human_histroy_records = Request["human_histroy_records"];
@@ -754,6 +855,8 @@ namespace UI.Controllers
             //家庭关系信息
             string human_family_membership = Request["human_family_membership"];
             human.human_family_membership = human_family_membership;
+            human.salary_standard_id = salary_standard_id;
+            human.salary_sum = salary_sum;
             //备注
             string remark = Request["remark"];
             human.remark = remark;
@@ -761,12 +864,46 @@ namespace UI.Controllers
             int pd=hhhhh.update12(human);
             if (pd > 0)
             {
-                //return  RedirectToAction("Index", new RouteValueDictionary(
-                // new { controller = "Index", action = "config_majorController1" }));
-                // return Content("ok");
+                //给薪酬发放添加数据
+                //一级编号
+                string ii = list[0].first_kind_id;
+                //2级编号
+                string i2 = list[0].second_kind_id;
+                //3级编号
+                string i3 = list[0].third_kind_id;
+                //查询薪酬发放
+                salary_grantIBLL sa = iocComm.salary_grantBLL();
+                //薪酬发放详情
+                salary_grant_detailsIBLL de = iocComm.salary_grant_detailsBLL();
+                List<salary_grantModel> salary=  sa.select1();
+                int p2d = 0;
+                foreach (salary_grantModel item in salary)
+                {
+                    //如果1 2 3 级相同  给薪酬发放详情 添加一条信息
+                    if (item.first_kind_id.Equals(ii) && item.second_kind_id.Equals(i2) && item.third_kind_id.Equals(i3)) {
+                        salary_grant_detailsModel details = new salary_grant_detailsModel();
+                        details.salary_grant_id= item.salary_grant_id;
+                        //档案编号
+                        details.human_id= list[0].human_id;
+                        details.human_name= list[0].human_name;
+                        details.salary_standard_sum= list[0].salary_sum;
+                        details.salary_paid_sum= list[0].salary_sum;
+                        p2d= de.Add1(details);
+                        //修改薪酬发放表
+                        salary_grantModel cgai = new salary_grantModel();
+                        cgai.sgr_id = item.sgr_id;
+                        cgai.human_amount = item.human_amount + 1;
+                        cgai.salary_standard_sum=item.salary_standard_sum+ list[0].salary_sum;
+                        cgai.salary_paid_sum=item.salary_paid_sum+ list[0].salary_sum;
+                        int xg=  sa.updateFan(cgai);
 
+                    }
+                }
                 return JavaScript("alert('修改成功'); window.location.href='/human_file/wenjian?uid=" + list[0].id + "'");
-                
+
+
+
+
                 // return RedirectToAction("Index");
                 //return RedirectToAction("config_majorController1", "Index");  //RedirectToAction("Index");
             }
@@ -1427,7 +1564,7 @@ namespace UI.Controllers
         //职位下拉框
         public ActionResult chaxun() {
             string Sid = Request["id"];
-            Sid = "0" + Sid;
+            //Sid = "0" + Sid;
             List<config_majorModel> list = ctb.selectxlk1(Sid);
             return Content(JsonConvert.SerializeObject(list));
         }

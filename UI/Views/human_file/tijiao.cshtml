@@ -285,7 +285,9 @@
                     复核人
                 </td>
                 <td class="TD_STYLE2">
-                    @Html.EditorFor(model => model.checker, new { htmlAttributes = new { @class = "INPUT_STYLE2" },@id="wmwm" })
+                    
+                    @Html.DropDownListFor(model => model.checker, ViewData["djr"] as IEnumerable<SelectListItem>, "请选择····", new { htmlAttributes = new { @class = "INPUT_STYLE1" } })
+                    @Html.ValidationMessageFor(e => e.checker)
                 </td>
             </tr>
             <tr>

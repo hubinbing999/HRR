@@ -15,5 +15,6 @@ namespace IBLL
         List<config_file_second_kindModel> selectupdate(int id);
         int delete(int id);
         List<config_file_second_kindModel> selectxlk1(string id);
+        List<config_file_second_kindModel> selectupdate1(int id);
     }
 }

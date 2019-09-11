@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "salarystandard_check_list";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-trasitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../../css/table.css" type="text/css" />
+    <script type="text/javascript" src="../../javascript/jquery-1.7.2.js"></script>
+    <title>无标题文档</title>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
+    <script src="~/Content/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/javascript/vue.js"></script>
+    <style type="text/css">
+        <!--
+        .style3 {
+            color: #0000CC;
+        }
+        -->
+    </style>
+</head>
+<body>
+    <form method="post"  id="ji" action="/HR_Fist/salaryCriterion/salaryCriterionAction!initSalaryStandardCheckList.action">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记复核</font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    当前等待复核的薪酬标准总数:
+                    {{message}}
+                    例
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="18%" class="TD_STYLE1">
+                    <span>薪酬标准编号</span>
+                </td>
+                <td width="19%" class="TD_STYLE1">
+                    <span>薪酬标准名称</span>
+                </td>
+                <td width="16%" class="TD_STYLE1">
+                    <span>制定人</span>
+                </td>
+                <td width="30%" class="TD_STYLE1">
+                    <span>登记时间</span>
+                </td>
+                <td width="13%" class="TD_STYLE1">
+                    薪酬总额
+                </td>
+                <td width="4%" class="TD_STYLE1">
+                    复核
+                </td>
+            </tr>
+            <tr class="TD_STYLE2" v-for="(item,index) in dt">
+                <td >
+                   {{item.standard_id}}
+                </td>
+                <td>{{item.standard_name}}</td>
+                <td>{{item.designer}}</td>
+                <td>{{item.regist_time}}</td>
+                <td>&nbsp;{{item.salary_sum}}</td>
+                <td><a v-on:click="cz(item.id)" v-bind:href="['/salary_standard/salarystandard_check/'+item.id]">复 核</a></td>
+            </tr>
+
+
+        </table>
+        <p style="text-align: center;">
+
+            <a style="color:black;" v-on:click="sy()">首页</a>
+
+
+            <a style="color:black;" v-on:click="syy()">上一页</a>
+
+            <a style="color:black;" v-on:click="xyy()">下一页</a>
+
+
+
+            <a style="color:black;" v-on:click="wy()">尾页</a>
+
+        </p>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+    //总页数
+    var currentPage = 1;
+    var pages = 1;
+    //当前页
+    var zdy = 1;
+    var vr = new Vue({
+            el: "#ji",
+            data: {
+                dt: null,
+                message: null,
+                zys: null,
+                dqy:null
+            },
+            methods: {
+                load: function () {
+                    var t = this;
+                    $.ajax({
+                        url: "/salary_standard/salarystandard_check_listSelete?dqy=" + zdy,
+                        type: "post",
+                        data: "",
+                        success: function (msg) {
+                            console.info(msg)
+                            var dd = eval("(" + msg + ")");
+                            console.info(dd);
+                            t.dt = dd.li;
+                            t.message = dd.MyProperty;
+                            currentPage = dd.zys;
+
+                        }
+                    });
+                },
+                tj: function () {
+                    window.location.href = "config_major_kindxg";
+                },
+                sy: function () {
+                    zdy = 1;
+                    this.load();
+                },
+                wy: function () {
+                    zdy = currentPage;
+                    this.load();
+                },
+                syy: function () {
+                    if (zdy > 1) {
+                        zdy--;
+                    } else {
+                        zdy = 1;
+                    }
+                    this.load();
+                },
+                xyy: function () {
+                    if (zdy < currentPage) {
+                        zdy++;
+                    } else {
+                        zdy = currentPage;
+                    }
+                    this.load();
+                }
+            }
+            ,
+            created: function () {
+                this.load();
+            }
+        })
+</script>
+
