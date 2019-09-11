@@ -17,7 +17,7 @@ namespace DAO
         public int Add(config_majorModel item)
         {
             config_major ko = new config_major(); 
-                    ko.id = item.mak_id;  
+                    ko.mak_id = item.mak_id;  
                     ko.major_kind_id = item.major_kind_id;  
                     ko.major_kind_name = item.major_kind_name;  
                     ko.major_id = item.major_id;  
@@ -32,7 +32,7 @@ namespace DAO
             foreach (config_major item in list)
             {
                 config_majorModel ko = new config_majorModel();  
-                    ko.mak_id = item.id;  
+                    ko.mak_id = item.mak_id;  
                     ko.major_kind_id = item.major_kind_id;  
                     ko.major_kind_name = item.major_kind_name;  
                     ko.major_id = item.major_id;  
@@ -45,7 +45,7 @@ namespace DAO
         public int update(config_majorModel item)
         {
             config_major ko = new config_major(); 
-                    ko.id = item.mak_id;  
+                    ko.mak_id = item.mak_id;  
                     ko.major_kind_id = item.major_kind_id;  
                     ko.major_kind_name = item.major_kind_name;  
                     ko.major_id = item.major_id;  
@@ -54,14 +54,14 @@ namespace DAO
             }
         public List<config_majorModel> selectupdate(int id)
         {
-            List<config_major> list = SeleteBy(e => e.id == id);
+            List<config_major> list = SeleteBy(e => e.mak_id == id);
 
 
             List<config_majorModel> li = new List<config_majorModel>();
             foreach (config_major item in list)
             {
                 config_majorModel ko = new config_majorModel(); 
-                    ko.mak_id = item.id;  
+                    ko.mak_id = item.mak_id;  
                     ko.major_kind_id = item.major_kind_id;  
                     ko.major_kind_name = item.major_kind_name;  
                     ko.major_id = item.major_id;  
@@ -77,7 +77,7 @@ namespace DAO
         {
             config_major us = new config_major();
             //接收前台来的id与表的id匹配
-            us.id = id;
+            us.mak_id = id;
             //开始删除
             db.Entry<config_major>(us).State = EntityState.Deleted;
             //保存            
@@ -110,12 +110,13 @@ namespace DAO
             foreach (config_major item in list)
             {
                 config_majorModel ko = new config_majorModel();
-                ko.mak_id = item.id;
+                ko.mak_id = item.mak_id;
                 ko.major_kind_id = item.major_kind_id;
                 ko.major_kind_name = item.major_kind_name;
                 ko.major_id = item.major_id;
                 ko.major_name = item.major_name;
-                ko.test_amount = item.test_amount; li.Add(ko);
+                ko.test_amount = item.test_amount;
+                li.Add(ko);
             }
             return li;
         }

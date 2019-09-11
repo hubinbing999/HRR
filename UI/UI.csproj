@@ -222,8 +222,10 @@
     <Compile Include="Controllers\config_file_third_kindController.cs" />
     <Compile Include="Controllers\engage_resumeController.cs" />
     <Compile Include="Controllers\human_fileController.cs" />
+    <Compile Include="Controllers\major_changeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleManagerController.cs" />
+    <Compile Include="Controllers\transferController.cs" />
     <Compile Include="Controllers\usserController.cs" />
     <Compile Include="Filters\DlFilterAttibute .cs" />
     <Compile Include="Filters\engage_resumeAttibute.cs" />
@@ -1443,6 +1445,16 @@
     <Content Include="Views\usser\UserAdd.cshtml" />
     <Content Include="Views\usser\UserUpdate.cshtml" />
     <Content Include="Views\RoleManager\RoleXG.cshtml" />
+    <Content Include="Views\transfer\register_locate.cshtml" />
+    <Content Include="Views\transfer\index2.cshtml" />
+    <Content Include="Views\transfer\index3.cshtml" />
+    <Content Include="Views\major_change\check_list.cshtml" />
+    <Content Include="Views\major_change\check.cshtml" />
+    <Content Include="Views\major_change\check_success.cshtml" />
+    <Content Include="Views\transfer\register_success.cshtml" />
+    <Content Include="Views\major_change\locate.cshtml" />
+    <Content Include="Views\major_change\list.cshtml" />
+    <Content Include="Views\major_change\detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

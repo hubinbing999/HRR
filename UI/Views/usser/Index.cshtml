@@ -9,12 +9,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>欢迎使用Bette伯乐人力资源管理系统</title>
+    <script src="~/javascript/jquery-1.7.2.js"></script>
     <script src="../jquery-easyui-1.3.5/jquery.min.js"></script>
     <script src="../jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
     <link href="../jquery-easyui-1.3.5/themes/default/easyui.css" rel="stylesheet" />
     <link href="../jquery-easyui-1.3.5/themes/icon.css" rel="stylesheet" />
     <script src="../jquery-easyui-1.3.5/locale/easyui-lang-zh_CN.js"></script>
-
+    <script src="~/javascript/jquery.messager.js"></script>
     <script type="text/javascript">
     $(function () {
         $('#tt').tree({
@@ -44,7 +45,9 @@
                 }
             }
         });
+        $.messager.show("<font style='font-family:宋体;'>消息提示", "欢迎你：" + localStorage.getItem("a") + "！</font>", 2000);
     });
+
     </script>
 </head>
 
@@ -58,7 +61,7 @@
         <ul id="tt"></ul>
     </div>
     <div data-options="region:'center',title:'center title'" style="padding:5px;background:#eee;">
-        <div id="tt1" class="easyui-tabs" style="width:1000px;height:400px;">
+        <div id="tt1" class="easyui-tabs" style="width:1106px;height:450px;">
             <frameset cols="200,*" frameborder="NO" border="0" framespacing="0">
                 <frame src="/usser/mian" name="mainFrame">
             </frameset>

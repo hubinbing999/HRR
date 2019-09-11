@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 using Model.bangzhu;
+using System.Data;
 
 namespace IDAO
 {
@@ -23,5 +24,7 @@ namespace IDAO
         int update13(human_fileModel item);
         int updateztai(human_fileModel item);
         canshulei fenye4(int dqy, int rl);
+        DataTable FenYe(int currentPage, out int rows, out int pages, string where, int pageSize);
+
     }
 } 

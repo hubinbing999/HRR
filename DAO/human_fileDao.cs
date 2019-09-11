@@ -114,7 +114,7 @@ namespace DAO
             foreach (human_file item in list)
             {
                 human_fileModel ko = new human_fileModel();  
-                    ko.id = item.id;  
+                    ko.huf_id = item.huf_id;  
                     ko.human_id = item.human_id;  
                     ko.first_kind_id = item.first_kind_id;  
                     ko.first_kind_name = item.first_kind_name;  
@@ -184,7 +184,7 @@ namespace DAO
         {
 
           
-            human_file st = db.human_file.Where(e => e.id.Equals(item.id)).FirstOrDefault();
+            human_file st = db.human_file.Where(e => e.huf_id.Equals(item.huf_id)).FirstOrDefault();
             //修改名称
             st.human_picture = item.human_picture;
 
@@ -194,7 +194,7 @@ namespace DAO
         public int updateztai(human_fileModel item)
         {
             
-            human_file st = db.human_file.Where(e => e.id.Equals(item.id)).FirstOrDefault();
+            human_file st = db.human_file.Where(e => e.huf_id.Equals(item.huf_id)).FirstOrDefault();
             if (item.delete_time == DateTime.MinValue) {
                 st.recovery_time = item.recovery_time;
             }
@@ -210,7 +210,7 @@ namespace DAO
             return db.SaveChanges(); ;
         }
         public int update12(human_fileModel item) {
-            human_file ko = db.human_file.Where(e => e.id.Equals(item.id)).FirstOrDefault();
+            human_file ko = db.human_file.Where(e => e.huf_id.Equals(item.huf_id)).FirstOrDefault();
             //修改名称
             ko.human_pro_designation = item.human_pro_designation;
             ko.human_name = item.human_name;
@@ -230,29 +230,17 @@ namespace DAO
             ko.human_id_card = item.human_id_card;
             ko.human_society_security_id = item.human_society_security_id;
             ko.human_age = item.human_age;
-
             ko.human_educated_degree = item.human_educated_degree;
-
             ko.human_educated_years = item.human_educated_years;
-
             ko.human_educated_major = item.human_educated_major;
-
             ko.salary_standard_id = item.salary_standard_id;
-
             ko.human_bank = item.human_bank;
-
             ko.human_account = item.human_account;
-
             ko.register = item.register;
-
             ko.check_time = item.check_time;
-
             ko.human_speciality = item.human_speciality;
-
             ko.human_hobby = item.human_hobby;
-
             ko.human_histroy_records = item.human_histroy_records;
-
             ko.human_family_membership = item.human_family_membership;
             ko.remark = item.remark;
             ko.check_status = item.check_status;
@@ -262,7 +250,7 @@ namespace DAO
 
         }
         public int update13(human_fileModel item) {
-            human_file ko = db.human_file.Where(e => e.id.Equals(item.id)).FirstOrDefault();
+            human_file ko = db.human_file.Where(e => e.huf_id.Equals(item.huf_id)).FirstOrDefault();
             //修改名称
             ko.human_pro_designation = item.human_pro_designation;
             ko.human_name = item.human_name;
@@ -313,16 +301,22 @@ namespace DAO
             return db.SaveChanges();
 
         }
+        /// <summary>
+        /// 根据id查询
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public List<human_fileModel> selectupdate(string id)
         {
-            List<human_file> list = SeleteBy(e => e.human_id.Equals(id));
+            int hid = int.Parse(id);
+            List<human_file> list = SeleteBy(e => e.huf_id.Equals(hid));
 
 
             List<human_fileModel> li = new List<human_fileModel>();
             foreach (human_file item in list)
             {
                 human_fileModel ko = new human_fileModel(); 
-                    ko.id = item.id;  
+                    ko.huf_id = item.huf_id;  
                     ko.human_id = item.human_id;  
                     ko.first_kind_id = item.first_kind_id;  
                     ko.first_kind_name = item.first_kind_name;  
@@ -383,7 +377,8 @@ namespace DAO
                     ko.lastly_change_time = item.lastly_change_time;  
                     ko.delete_time = item.delete_time;  
                     ko.recovery_time = item.recovery_time;  
-                    ko.human_file_status = item.human_file_status;   li.Add(ko);
+                    ko.human_file_status = item.human_file_status;
+                li.Add(ko);
             }
             return li;
 
@@ -394,7 +389,7 @@ namespace DAO
         {
             human_file us = new human_file();
             //接收前台来的id与表的id匹配
-            us.id = id;
+            us.huf_id = id;
             RemoveHoldingEntityInContext(us);
             //开始删除
             db.Entry<human_file>(us).State = EntityState.Deleted;
@@ -421,13 +416,13 @@ namespace DAO
             canshulei cs = new canshulei();
             List<human_fileModel> li = new List<human_fileModel>();
             int rows=0;
-            var data = db.Set<human_file>().OrderBy(e => e.id).Where(e => e.check_status==0).AsNoTracking();
+            var data = db.Set<human_file>().OrderBy(e => e.huf_id).Where(e => e.check_status==0).AsNoTracking();
             rows =data.Count();//获取总行数
-            List<human_file> list = FenYe<int>(e => e.id, e => e.check_status == 0, ref rows, dqy, rl);
+            List<human_file> list = FenYe<int>(e => e.huf_id, e => e.check_status == 0, ref rows, dqy, rl);
             foreach (human_file item in list)
             {
                 human_fileModel mo = new human_fileModel();
-                 mo.id = item.id;
+                 mo.huf_id = item.huf_id;
                  mo.human_name= item.human_name ;
                 mo.human_id = item.human_id;
                mo.human_sex = item.human_sex ;
@@ -450,7 +445,7 @@ namespace DAO
 
             List<human_fileModel> li = new List<human_fileModel>();
             int rows = 0;
-            var data = db.Set<human_file>().OrderBy(e => e.id).Where(expr.Compile()).ToList();
+            var data = db.Set<human_file>().OrderBy(e => e.huf_id).Where(expr.Compile()).ToList();
             rows = data.Count();//获取总行数
             List <human_file> list = data.Skip((ji.dqy - 1) * ji.rl)
                   .Take(ji.rl)
@@ -458,7 +453,7 @@ namespace DAO
             foreach (human_file item in list)
             {
                 human_fileModel mo = new human_fileModel();
-                mo.id = item.id;
+                mo.huf_id = item.huf_id;
                 mo.human_name = item.human_name;
                 mo.human_id = item.human_id;
                 mo.human_sex = item.human_sex;
@@ -507,13 +502,13 @@ namespace DAO
             canshulei cs = new canshulei();
             List<human_fileModel> li = new List<human_fileModel>();
             int rows = 0;
-            var data = db.Set<human_file>().OrderBy(e => e.id).Where(e => e.human_name.Contains(name) && e.check_status==0).AsNoTracking();
+            var data = db.Set<human_file>().OrderBy(e => e.huf_id).Where(e => e.human_name.Contains(name) && e.check_status==0).AsNoTracking();
             rows = data.Count();//获取总行数
-            List<human_file> list = FenYe<int>(e => e.id, e => e.human_name.Contains(name) &&e.check_status == 0, ref rows, dqy, rl);
+            List<human_file> list = FenYe<int>(e => e.huf_id, e => e.human_name.Contains(name) &&e.check_status == 0, ref rows, dqy, rl);
             foreach (human_file item in list)
             {
                 human_fileModel mo = new human_fileModel();
-                mo.id = item.id;
+                mo.huf_id = item.huf_id;
                 mo.human_name = item.human_name;
                 mo.human_id = item.human_id;
                 mo.human_sex = item.human_sex;
@@ -535,13 +530,13 @@ namespace DAO
             canshulei cs = new canshulei();
             List<human_fileModel> li = new List<human_fileModel>();
             int rows = 0;
-            var data = db.Set<human_file>().OrderBy(e => e.id).Where(e => e.human_file_status==true && e.check_status == 1).AsNoTracking();
+            var data = db.Set<human_file>().OrderBy(e => e.huf_id).Where(e => e.human_file_status==true && e.check_status == 1).AsNoTracking();
             rows = data.Count();//获取总行数
-            List<human_file> list = FenYe<int>(e => e.id, e => e.human_file_status == true && e.check_status == 1, ref rows, dqy, rl);
+            List<human_file> list = FenYe<int>(e => e.huf_id, e => e.human_file_status == true && e.check_status == 1, ref rows, dqy, rl);
             foreach (human_file item in list)
             {
                 human_fileModel mo = new human_fileModel();
-                mo.id = item.id;
+                mo.huf_id = item.huf_id;
                 mo.human_name = item.human_name;
                 mo.human_id = item.human_id;
                 mo.human_sex = item.human_sex;
@@ -574,5 +569,35 @@ namespace DAO
 
             return (exists);
         }
+        /// <summary>
+        /// 调动查询的分页显示
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="rows"></param>
+        /// <param name="pages"></param>
+        /// <param name="where"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public DataTable FenYe(int currentPage, out int rows, out int pages, string where, int pageSize)
+        {
+            string sql = "[dbo].[proc_FenYeAA]";
+            SqlParameter[] ps =
+            {
+                 new SqlParameter() {ParameterName="@pageSize ",Value=pageSize },
+                 new SqlParameter() {ParameterName="@keyName ",Value="[huf_id]" },
+                 new SqlParameter() {ParameterName="@tableName ",Value="[human_file]" },
+                  new SqlParameter() {ParameterName="@whereText ",Value=where },
+                   new SqlParameter() {ParameterName="@pageIndex",Value=currentPage },
+                   new SqlParameter() {ParameterName="@Filter",Value="*"},
+                   new SqlParameter() {ParameterName="@orderText",Value=""},
+                     new SqlParameter() {ParameterName="@pages ",Direction=ParameterDirection.Output,SqlDbType=SqlDbType.Int },
+                      new SqlParameter() {ParameterName="@rows ",Direction=ParameterDirection.Output,SqlDbType=SqlDbType.Int}
+            };
+            DataTable dt = DBHelper.SelectFenYe(sql, ps);
+            pages = (int)ps[7].Value;
+            rows = (int)ps[8].Value;
+            return dt;
+        }
+
     }
 }

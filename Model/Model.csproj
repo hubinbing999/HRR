@@ -55,8 +55,10 @@
     <Compile Include="FenYeModel.cs" />
     <Compile Include="human_file.cs" />
     <Compile Include="human_file_dig.cs" />
+    <Compile Include="major_changeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleManagerModel.cs" />
+    <Compile Include="salary_standard.cs" />
     <Compile Include="usersModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

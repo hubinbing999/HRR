@@ -198,17 +198,27 @@ namespace UI.Controllers
         // GET: RoleManager/Delete/5
         public ActionResult Delete(int id)
         {
-
-            if (ibl.delete(id) > 0)
+            //删除前查询此角色下有无用户，有用户则不可以删除
+            try
             {
-                return Content("<script>alert('删除成功！'); window.location.href='/RoleManager/right_list';</script>");
+                if (ibl.delete(id) > 0)
+                {
+                    return Content("<script>alert('删除成功！'); window.location.href='/RoleManager/right_list';</script>");
 
+                }
+                else
+                {
+                    return Content("<script>alert('删除失败！'); window.location.href='/RoleManager/right_list';</script>");
+
+                }
             }
-            else
+            catch (Exception)
             {
+
                 return Content("<script>alert('删除失败！此角色下有用户'); window.location.href='/RoleManager/right_list';</script>");
-
             }
+
+           
 
         }
 

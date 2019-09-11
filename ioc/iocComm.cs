@@ -21,6 +21,24 @@ namespace ioc
             UnityContainer ioc = CreatIoc("containerOne");
             return ioc.Resolve<usersDAO>("usersDAO");
         }
+
+        /// <summary>
+        /// 薪酬标准基本信息表
+        /// </summary>
+        /// <returns></returns>
+        public static salary_standardIDAO salary_standardDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<salary_standardDAO>("salary_standardDAO");
+
+        }
+        public static salary_standardIBLL salary_standardBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+
+            return ioc.Resolve<salary_standardIBLL>("salary_standardBLL");
+        }
+
         public static usersIBLL usersBLL()
         {
             UnityContainer ioc = CreatIoc("containerTwo");
@@ -166,7 +184,7 @@ namespace ioc
         public static engage_resumeIDAO engage_resumeDAO()
         {
             UnityContainer ioc = CreatIoc("containerOne");
-            return ioc.Resolve<engage_resumeDAO>("engage_resumeDAO");
+            return ioc.Resolve<engage_resumeIDAO>("engage_resumeDAO");
         }
         public static engage_resumeIBLL engage_resumeBLL()
         {
@@ -179,7 +197,7 @@ namespace ioc
             UnityContainer ioc = new UnityContainer();
             //生成文件(Unity.config)对象
             ExeConfigurationFileMap ecf = new ExeConfigurationFileMap();
-            ecf.ExeConfigFilename = @"E:\最后\UI\Unity.config";
+            ecf.ExeConfigFilename = @"D:\Source\Repos\902HRR20.10\UI\Unity.config";
             //生成配置对象
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(ecf, ConfigurationUserLevel.None);
             //读取配置对象的unity节点区                                                               
@@ -187,6 +205,17 @@ namespace ioc
             ioc.LoadConfiguration(ucs, name);
             return ioc;
 
+        }
+
+        public static major_changeIDAO major_changeDAO()
+        {
+            UnityContainer ioc = CreatIoc("containerOne");
+            return ioc.Resolve<major_changeIDAO>("major_changeDAO");
+        }
+        public static major_changeIBLL major_changeBLL()
+        {
+            UnityContainer ioc = CreatIoc("containerTwo");
+            return ioc.Resolve<major_changeIBLL>("major_changeBLL");
         }
     }
 }

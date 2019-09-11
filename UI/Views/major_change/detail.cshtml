@@ -1,0 +1,188 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model Model.major_changeModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>detail</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        @using (Ajax.BeginForm("detail", new AjaxOptions() { HttpMethod = "post" }))
+        {
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是:人力资源--培训管理--调动登记查看</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="button" class="BUTTON_STYLE1" onclick="parent.location.href = '/check_list/list'" value="返回">
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr height="21">
+                    <td class="TD_STYLE1" width="8%">
+                        档案编号
+                    </td>
+                    <td class="TD_STYLE2" width="10%">
+                        @Html.Label("human_id", Model.human_id, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="8%">
+                        姓名
+                    </td>
+                    <td class="TD_STYLE2" width="10%">
+                        @Html.Label("human_name", Model.human_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="8%"></td>
+                    <td class="TD_STYLE2" width="10%"></td>
+                    <td class="TD_STYLE1" width="8%"></td>
+                    <td class="TD_STYLE2" width="10%"></td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1" width="8%">
+                        原一级机构
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("first_kind_name", Model.first_kind_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="8%">
+                        原二级机构
+                    </td>
+                    <td class="TD_STYLE2" width="10%">
+                        @Html.Label("second_kind_name", Model.second_kind_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="8%">
+                        原三级机构
+                    </td>
+                    <td class="TD_STYLE2" width="10%">
+                        @Html.Label("third_kind_name", Model.third_kind_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="8%"></td>
+                    <td class="TD_STYLE2" width="10%"></td>
+                </tr>
+
+                <tr>
+                    <td class="TD_STYLE1">
+                        原职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("major_kind_name", Model.major_kind_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="12%">
+                        原职位名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("major_name", Model.major_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        原薪酬标准
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("salary_standard_name", Model.salary_standard_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        原薪酬总额
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.TextBox("salary_sum", Model.salary_sum, new { @class = "INPUT_STYLE1", @style = "width:160px" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        新一级机构名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("new_first_kind_name", Model.new_first_kind_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="12%">
+                        新二级机构名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("new_second_kind_name", Model.new_second_kind_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="12%">
+                        新三级机构名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("new_third_kind_name", Model.new_third_kind_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="8%"></td>
+                    <td class="TD_STYLE2" width="10%"></td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        新职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("new_major_kind_name", Model.new_major_kind_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1" width="12%">
+                        新职位名称
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("new_major_name", Model.new_major_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        新薪酬标准
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("new_salary_standard_name", Model.new_salary_standard_name, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        新薪酬总额
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.TextBox("new_salary_sum", Model.new_salary_sum, new { @class = "INPUT_STYLE1", @style = "width:160px" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="TD_STYLE1">
+                        登记人
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("register", Model.register, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        登记时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.TextBox("regist_time", Model.regist_time, new { @class = "INPUT_STYLE1", @style = "width:160px" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        复核人
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.Label("checker", Model.checker, new { @class = "INPUT_STYLE1" })
+                    </td>
+                    <td class="TD_STYLE1">
+                        复核时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.TextBox("check_time", Model.check_time, new { @class = "INPUT_STYLE1", @style = "width:160px" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        调动原因
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        @Html.TextArea("change_reason", Model.change_reason, new { @class = "TEXTAREA_STYLE1", @readonly = "readonly", @rows = "6" })
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</body>
+</html>

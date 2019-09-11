@@ -14,7 +14,7 @@ namespace MVC_8.CodeFirst
         {
 
             this.ToTable(nameof(config_major));
-            this.Property(e =>e.major_id);
+            this.Property(e =>e.mak_id);
             this.Property(e =>e.major_kind_id).HasMaxLength(2);
             this.Property(e => e.major_kind_name).HasMaxLength(60);
             this.Property(e => e.major_name).HasMaxLength(60);

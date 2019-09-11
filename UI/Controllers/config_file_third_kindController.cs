@@ -46,6 +46,10 @@ namespace UI.Controllers
             ViewBag.dt1 = sd();
             return View(csm);
         }
+        /// <summary>
+        /// 根据一级查询2级
+        /// </summary>
+        /// <returns></returns>
         public ActionResult third_kind_register2() {
             int s1 =int.Parse(Request["id"]);
             List<config_file_second_kindModel> list2 = csb.selectxlk1(s1.ToString());
@@ -84,7 +88,10 @@ namespace UI.Controllers
         //    }
         //    return list;
         //}
-
+        /// <summary>
+        /// 查询一级
+        /// </summary>
+        /// <returns></returns>
         private List<SelectListItem> XLK()
         {
             List<SelectListItem> list = new List<SelectListItem>();

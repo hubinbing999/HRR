@@ -10,6 +10,7 @@ using IBLL;
 using DAO;
 using IDAO;
 using Model.bangzhu;
+using System.Data;
 
 namespace BLL
 {
@@ -61,6 +62,10 @@ namespace BLL
         }
         public canshulei fenye4(int dqy, int rl) {
             return st1.fenye4(dqy,rl);
+        }
+        public DataTable FenYe(int currentPage, out int rows, out int pages, string where, int pageSize)
+        {
+            return st1.FenYe(currentPage, out rows, out pages, where, pageSize);
         }
     }
 }

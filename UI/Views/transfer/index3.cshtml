@@ -1,0 +1,449 @@
+﻿@model Model.human_fileModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/javascript/jquery-1.10.2.js"></script>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/javascript/json.js"></script>
+    <title>index3</title>
+    <script type="text/javascript">
+        $(function () {
+        
+            $("#tdd").change(function () {
+                var id = $(this).val();
+                //根据一级机构查二级机构
+                Bandder2(id);
+
+            });
+            $("#tdd2").change(function () {
+                var id = $(this).val();
+                //根据一级机构查二级机构
+                Banddrr3(id);
+
+            });
+            $("#ZW").change(function () {
+                var id = $(this).val();
+                BandZW(id);
+
+            })
+            $("#xc").change(function () {
+                var id = $(this).val();
+                $.ajax({
+                    url: "/transfer/BandMoney",
+                    type: "post",
+                    data: "id=" + id,
+                    success: function (msg) {
+                        var dd = eval("(" + msg + ")");
+                        for (var i = 0; i < dd.length; i++) {
+                            $("#money").val(dd[0].salary_sum);
+                        }
+                    }
+                })
+            })
+            $("#djr").text(localStorage.getItem("a"));
+            $(document).on("click", "#TJ", function () {
+                //新增职位调动表major_change   
+               //alert($('#djr').text())
+                var major_change = {   
+                    first_kind_id: $('#first_kind_id').val(),
+                first_kind_name:$('#first_kind_name').val(),                                                      
+                second_kind_id: $('#second_kind_id').val(),
+                second_kind_name:$('#second_kind_name').val(),
+                third_kind_id: $('#third_kind_id').val(),
+                third_kind_name: $('#third_kind_name').val(),
+              //  major_kind_id:$('#major_kind_id').val(),
+                major_kind_name: $('#human_major_kind_name').val(),
+               // major_id:$('#major_id').val(),
+                major_name: $('#hunma_major_name').val(),//原
+                    new_first_kind_id:$("#tdd option:selected").val(),                                                                 
+                    new_first_kind_name:$('#tdd option:selected').text(),                          
+                    new_second_kind_id :$("#tdd2 option:selected").val(),                 
+                    new_second_kind_name :$('#tdd2 option:selected').text(),                                                          
+                    new_third_kind_id :$("#tdd3 option:selected").val(),                       
+                    new_third_kind_name  :$('#tdd3 option:selected').text(),                                          
+                    new_major_kind_id  : $("#ZW option:selected").val(),                         
+                    new_major_kind_name : $("#ZW option:selected").text(),
+                    new_major_id : $("#ZW2 option:selected").val(),
+                    new_major_name: $("#ZW2 option:selected").text(),
+                human_id :$('#human_id').val(),                                                         
+                human_name: $('#human_name').val(),
+                //salary_standard_id: $('#salary_standard_id').val(),
+                salary_standard_name: $('#salary_standard_name').val(),
+                salary_sum: $('#demand_salaray_sum').val(),
+                new_salary_standard_id: $('#xc option:selected').val(),
+                new_salary_standard_name: $('#xc option:selected').text(),
+                new_salary_sum: $('#money').val(),
+                change_reason : $('#change_reason').val(),                                   
+                register: $('#djr').text(),
+                regist_time: $('#Tdate').val()
+                }
+                $.ajax({
+                    url: "/transfer/jueseTJ",
+                    type: "post",
+                    data: "major_change=" + JSON.stringify(major_change),
+                    success: function (xgjg) {
+                        if (xgjg>0) {
+                            alert("提交成功")
+                            location.href = "/transfer/register_success"
+                        } else {
+                            alert("提交失败")
+                        }
+                    }
+                })
+
+            })
+
+        })
+        function Bandder2(obj) {
+            var id = obj;
+         //   alert(id);
+            $("#tdd2 option").remove();
+            $.ajax({
+                url: "/config_file_third_kind/third_kind_register2",
+                type: "post",
+                data: "id=" + id,
+                success: function (msg) {
+                    var dt = eval("(" + msg + ")");
+                    for (var i = 0; i < dt.length; i++) {
+                        $oo = $("<option value='" + dt[i].second_kind_id + "'>" + dt[i].second_kind_name + "</option>");
+                        $("#tdd2").append($oo);
+                        var fid = $("#tdd2").val();
+                        //根据二级查询三级
+                        Banddrr3(fid);
+                    }
+                }
+            });
+        }
+        function Banddrr3(obj) {
+            var fid = obj;
+            $("#tdd3 option").remove();
+            $.ajax({
+                url: "/engage_major_release/sxlk",
+                type: "post",
+                data: "Sid=" + fid,
+                success: function (msg) {
+                    var dd1 = eval("(" + msg + ")");
+                    for (var i = 0; i < dd1.length; i++) {
+                        $oo1 = $("<option value='" + dd1[i].third_kind_id + "'>" + dd1[i].third_kind_name + "</option>");
+                        $("#tdd3").append($oo1);
+
+                    }
+
+                }
+
+            })
+        }
+        function BandZW(obj) {
+            var zid = obj;
+          //  alert(zid);
+            $("#ZW2 option").remove();
+            $.ajax({
+                url: "/transfer/BandZW",
+                type: "post",
+                data: "zid=" + zid,
+                success: function (msg) {
+                    var zw1 = eval("(" + msg + ")");
+                    for (var i = 0; i < zw1.length; i++) {
+                        $oo1 = $("<option value='" + zw1[i].major_id + "'>" + zw1[i].major_name + "</option>");
+                        $("#ZW2").append($oo1);
+
+                    }
+
+                }
+            })
+        }
+
+    </script>
+</head>
+<body>
+    <form >
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="#0000CC">您正在做的业务是:人力资源--调动管理--调动登记</font>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right">
+                    <input type="button" value="提交" class="BUTTON_STYLE1" id="TJ" >
+                    <input type="button" class="BUTTON_STYLE1"
+                           onclick="javascript:window.history.back();" value="返回">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr height="21">
+                <td class="TD_STYLE1" width="8%">
+                    档案编号
+                </td>
+                <td class="TD_STYLE2" width="10%">
+                 
+                    @Html.TextBoxFor(model => model.human_id, new { @class = "INPUT_STYLE2", @id = "human_id" ,@readonly= "readonly"})
+
+                </td>
+                <td class="TD_STYLE1" width="8%">
+                    姓名
+                </td>
+                <td class="TD_STYLE2" width="10%">
+                    @Html.TextBoxFor(model => model.human_name, new { @class = "INPUT_STYLE2", @id = "human_name", @readonly = "readonly" })
+                </td>
+                <td class="TD_STYLE1" width="8%"></td>
+                <td class="TD_STYLE2" width="10%"></td>
+                <td class="TD_STYLE1" width="8%"></td>
+                <td class="TD_STYLE2" width="10%"></td>
+            </tr>
+            <tr>
+
+                <td class="TD_STYLE1" width="8%">
+                    原一级机构
+                </td>
+                <td class="TD_STYLE2">
+
+                    @Html.TextBoxFor(model => model.first_kind_name, new { @class = "INPUT_STYLE2", @id = "first_kind_name", @readonly = "readonly",  })
+                    @Html.TextBoxFor(model => model.first_kind_id, new { @class = "INPUT_STYLE2", @id = "first_kind_id", @readonly = "readonly", @type = "hidden" })
+                </td>
+                <td class="TD_STYLE1" width="8%">
+                    原二级机构
+                </td>
+                <td class="TD_STYLE2" width="10%">
+                   @Html.TextBoxFor(model => model.second_kind_name, new { @class = "INPUT_STYLE2", @id = "second_kind_name", @readonly = "readonly",  })
+                    @Html.TextBoxFor(model => model.second_kind_id, new { @class = "INPUT_STYLE2", @id = "second_kind_id", @readonly = "readonly", @type = "hidden" })
+                 </td>
+                <td class="TD_STYLE1" width="8%">
+                    原三级机构
+                </td>
+                <td class="TD_STYLE2" width="10%">
+                    @Html.TextBoxFor(model => model.third_kind_name, new { @class = "INPUT_STYLE2", @id = "third_kind_name", @readonly = "readonly", })
+                    @Html.TextBoxFor(model => model.third_kind_id, new { @class = "INPUT_STYLE2", @id = "third_kind_id", @readonly = "readonly", @type = "hidden" })
+                   </td>
+                <td class="TD_STYLE1" width="8%"></td>
+                <td class="TD_STYLE2" width="10%"></td>
+            </tr>
+
+            <tr>
+                <td class="TD_STYLE1">
+                    原职位分类
+                </td>
+                <td class="TD_STYLE2">
+                    
+                    @Html.TextBoxFor(model => model.human_major_kind_name, new { @class = "INPUT_STYLE2", @id = "human_major_kind_name", @readonly = "readonly", })
+                    @Html.TextBoxFor(model => model.human_major_kind_id, new { @class = "INPUT_STYLE2", @id = "human_major_kind_id ", @readonly = "readonly", @type = "hidden" })
+               </td>
+                <td class="TD_STYLE1" width="12%">
+                    原职位名称
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.TextBoxFor(model => model.hunma_major_name, new { @class = "INPUT_STYLE2", @id = "hunma_major_name", @readonly = "readonly", })
+                    @Html.TextBoxFor(model => model.human_major_id, new { @class = "INPUT_STYLE2", @id = "human_major_id  ", @readonly = "readonly", @type = "hidden" })
+                </td>
+                <td class="TD_STYLE1">
+                    原薪酬标准
+                </td>
+                <td class="TD_STYLE2">
+                     
+                    @Html.TextBoxFor(model => model.salary_standard_name, new { @class = "INPUT_STYLE2", @id = "salary_standard_name", @readonly = "readonly", })
+                    @Html.TextBoxFor(model => model.salary_standard_id, new { @class = "INPUT_STYLE2", @id = "salary_standard_id  ", @readonly = "readonly", @type = "hidden" })
+                </td>
+                <td class="TD_STYLE1">
+                    原薪酬总额
+                </td>
+                <td class="TD_STYLE2">
+                     
+                    @Html.TextBoxFor(model => model.demand_salaray_sum, new { @class = "INPUT_STYLE2", @id = "demand_salaray_sum", @readonly = "readonly", })
+
+
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    新一级机构名称
+                </td>
+                <td class="TD_STYLE2">
+                    <script type="text/javascript">
+
+						function mySubmit(){
+						if(document.getElementById("firstKindId").value=='0'){
+							alert("请选择新一级结构！");
+								return ;
+						}
+						if(document.getElementById("newMajorKindId").value=='0'){
+							alert("请选择新职位分类！");
+								return ;
+						}
+						if(document.getElementById("newMajorId").value=='0'){
+							alert("请选择新职位名称！");
+								return ;
+						}
+						if(document.getElementById("newSalaryStandardId").value=='0'){
+							alert("请选择新薪酬标准！");
+								return ;
+						}
+
+						document.forms[0].submit();
+
+						}
+			$(function() {
+			var first=$("#firstKindId");
+			var second= $("#secondKindId");
+			var third=$("#thirdKindId");
+	 		 first.change(function(){
+			$("#newFirstKindName").val($('#firstKindId option:selected').html());
+	 		 	$.post('/HR_Fist/transfer/transferAction!findtwo.action',{ 'configThird.firstKindId' : $('#firstKindId option:selected').val() },
+		  			function(data){
+
+		  			 second.css("width",first.width());
+		  			second.empty();
+		  			second.append("<option value='0' >-----请选择-----</option>");
+		  		var items = $(data).find("item");
+		  		items.each(function(i){
+		  				var id = $(items[i]).attr("id");
+		  				var name = $(items[i]).attr("name");
+		  				second.append("<option value='"+id+"'>"+name+"</option>");
+
+
+		  		});
+					},'xml');
+	 		 	third.val('0');
+
+	 		 }); });
+                    </script>
+                    @Html.DropDownList("first_kind_id", ViewBag.dt as IEnumerable<SelectListItem>, "-----请选择-----", new { @class = "SELECT_STYLE2", @id = "tdd", @style = "width:160px" })
+                    <input type="hidden" name="majorChange.newFirstKindName" id="newFirstKindName">
+                </td>
+                <td class="TD_STYLE1" width="12%">
+                    新二级机构名称
+                </td>
+                <td class="TD_STYLE2">
+                    <select style="width:160px" name="configThird.secondKindId" id="tdd2" size="1" class="SELECT_STYLE2">
+                        <option value="0">-----请选择-----</option>
+                    </select>
+                </td>
+                <td class="TD_STYLE1" width="12%">
+                    新三级机构名称
+                </td>
+                <td class="TD_STYLE2">
+                    <select style="width:160px" name="configThird.thirdKindId" id="tdd3" size="1" class="SELECT_STYLE2">
+                        <option value="0">-----请选择-----</option>
+                    </select>
+                </td>
+                <td class="TD_STYLE1" width="8%"></td>
+                <td class="TD_STYLE2" width="10%"></td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    新职位分类
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownList("new_major_kind_id", @ViewBag.zw as IEnumerable<SelectListItem>, "-----请选择-----", new { @class = "SELECT_STYLE2", @id = "ZW", @style = "width:160px" })
+                </td>
+                <td class="TD_STYLE1" width="12%">
+                    新职位名称
+                </td>
+                <td class="TD_STYLE2">
+                    <select style="width:160px"  name="majorChange.newMajorId" id="ZW2" class="INPUT_STYLE2">
+                        <option value="0">-----请选择-----</option>
+                    </select>
+                </td>
+                <td class="TD_STYLE1">
+                    新薪酬标准
+                </td>
+                <td class="TD_STYLE2">
+                    @Html.DropDownList("ssd_id", @ViewBag.xc as IEnumerable<SelectListItem>, "-----请选择-----", new { @class = "SELECT_STYLE2", @id = "xc", @style = "width:160px" })  
+                </td>
+                <td class="TD_STYLE1">
+                    新薪酬总额
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="majorChange.newSalarySum" id="money" readonly="readonly"
+                           value="0.00" class="INPUT_STYLE2">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="TD_STYLE1">
+                    登记人
+                </td>
+                <td class="TD_STYLE2">
+                    <span id="djr"></span>
+                </td>
+                <td class="TD_STYLE1">
+                    登记时间
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" name="majorChange.registTime" readonly="readonly"
+                           id="Tdate" class="INPUT_STYLE2">
+                    <script type="text/javascript">
+					function time(){
+ 					var tdate=document.getElementById("Tdate");
+ 					var d=new Date();
+ 					var y=d.getFullYear();
+ 					var moth=d.getMonth()+1;
+ 					var date=d.getDate();
+ 					var h=d.getHours();
+ 					var m=d.getMinutes();
+ 					var s=d.getSeconds();
+					var hh=20-1-h;
+					var mm=60-1-m;
+					var ss=60-s;
+					if(hh>0){
+							mm=mm+60*hh;
+					}
+ 					if(moth<10){
+ 							moth="0"+moth;
+ 					}
+ 					if(date<10){
+ 							date="0"+date;
+ 					}
+ 					if(h<10){
+ 							h="0"+h;
+ 					}
+ 					if(m<10){
+ 							m="0"+m;
+ 					}
+ 					if(s<10){
+ 							s="0"+s;
+ 					}
+ 					if(mm<10){
+ 							mm="0"+mm;
+ 					}
+ 					if(ss<10){
+ 							ss="0"+ss;
+ 					}
+
+ 					tdate.value=y+"-"+moth+"-"+date+" "+h+":"+m+":"+s;
+
+
+ 				}
+				window.onload=time;
+ 				var out=window.setInterval(time, 1000);
+                    </script>
+
+                </td>
+                <td class="TD_STYLE1"></td>
+                <td class="TD_STYLE2"></td>
+                <td class="TD_STYLE1"></td>
+                <td class="TD_STYLE2"></td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    调动原因
+                </td>
+                <td colspan="7" class="TD_STYLE2">
+                    <textarea name="majorChange.changeReason" rows="6" class="TEXTAREA_STYLE1" id="change_reason"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
+ 

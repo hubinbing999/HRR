@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace MVC_8
 {
    public class human_file
     {
-        public System.Int32 id { get; set; }
+        [Key]
+        public System.Int32 huf_id { get; set; }
    
                          
         public System.String human_id { get; set; }

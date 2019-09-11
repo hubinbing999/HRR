@@ -9,8 +9,8 @@ namespace MVC_8
 {
   public  class config_major
     {
-       
-        public System.Int32 id { get; set; }
+       [Key]
+        public System.Int32 mak_id { get; set; }
 
 
         public System.String major_kind_id { get; set; }

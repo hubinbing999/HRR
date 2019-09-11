@@ -417,7 +417,7 @@ namespace UI.Controllers
                 if (pd !=null)
                 {
                      List<human_fileModel> list=  hhhhh.selectupdate(pd);
-                    return JavaScript("alert('新增成功'); window.location.href='/human_file/wenjian?uid=" + list[0].id + "'");
+                    return JavaScript("alert('新增成功'); window.location.href='/human_file/wenjian?uid=" + list[0].huf_id + "'");
                     
                 }
                 else {
@@ -465,7 +465,7 @@ namespace UI.Controllers
            
             //根据uid做表的修改
             human_fileModel bin = new human_fileModel();
-            bin.id =int.Parse(uid);
+            bin.huf_id = int.Parse(uid);
             bin.human_picture = fullPath;
             int pd = hhhhh.update1(bin);
             //如果存在puid 则修改数据
@@ -522,7 +522,7 @@ namespace UI.Controllers
             foreach (human_fileModel item in li)
             {
                 ko = new human_fileModel();
-                ko.id = item.id;
+                ko.huf_id = item.huf_id;
                 ko.human_id = item.human_id;
                 ko.first_kind_id = item.first_kind_id;
                 ko.first_kind_name = item.first_kind_name;
@@ -649,7 +649,7 @@ namespace UI.Controllers
             string hunma_majorname = Request["hunma_major_name"];
             string human_id = Request["human_id"];
              List<human_fileModel> list=  hhhhh.selectupdate(human_id);
-            human.id = list[0].id;
+            human.huf_id = list[0].huf_id;
             //职称
             string human_prodesignation = Request["human_pro_designation"];
             string human_pro_designation = cha(human_prodesignation);
@@ -765,7 +765,7 @@ namespace UI.Controllers
                 // new { controller = "Index", action = "config_majorController1" }));
                 // return Content("ok");
 
-                return JavaScript("alert('修改成功'); window.location.href='/human_file/wenjian?uid=" + list[0].id + "'");
+                return JavaScript("alert('修改成功'); window.location.href='/human_file/wenjian?uid=" + list[0].huf_id + "'");
                 
                 // return RedirectToAction("Index");
                 //return RedirectToAction("config_majorController1", "Index");  //RedirectToAction("Index");
@@ -834,6 +834,7 @@ namespace UI.Controllers
             string utilBeandatePropertyName = Request["utilBean.endDate"];
              DateTime ji=   DateTime.Parse(utilBeanstartDate);
             DateTime ji2 = DateTime.Parse(utilBeandatePropertyName);
+
             Cansh ba = new Cansh();
             ba.third_kind_id = third_kind_id;
             ba.second_kind_id = second_kind_id;
@@ -886,7 +887,7 @@ namespace UI.Controllers
             foreach (human_fileModel item in li)
             {
                 ko = new human_fileModel();
-                ko.id = item.id;
+                ko.huf_id = item.huf_id;
                 ko.human_id = item.human_id;
                 ko.first_kind_id = item.first_kind_id;
                 ko.first_kind_name = item.first_kind_name;
@@ -1016,7 +1017,7 @@ namespace UI.Controllers
             string hunma_majorname = Request["hunma_major_name"];
             string human_id = Request["human_id"];
             List<human_fileModel> list = hhhhh.selectupdate(human_id);
-            human.id = list[0].id;
+            human.huf_id = list[0].huf_id;
 
             yy.human_id = human_id;
             //职称
@@ -1172,7 +1173,7 @@ namespace UI.Controllers
                 // new { controller = "Index", action = "config_majorController1" }));
                 // return Content("ok");
 
-                return JavaScript("alert('修改成功'); window.location.href='/human_file/wenjian?uid=" + list[0].id + "'");
+                return JavaScript("alert('修改成功'); window.location.href='/human_file/wenjian?uid=" + list[0].huf_id + "'");
 
                 // return RedirectToAction("Index");
                 //return RedirectToAction("config_majorController1", "Index");  //RedirectToAction("Index");
@@ -1286,7 +1287,7 @@ namespace UI.Controllers
             else {
                 human_fileModel model = new human_fileModel();
                 model.human_file_status = true;
-                model.id = huameModel[0].id;
+                model.huf_id = huameModel[0].huf_id;
                 model.delete_time = DateTime.Now;
                 int pd=hhhhh.updateztai(model);
                 return Content("<script>alert('状态已删除！'); window.location.href='/human_file/delete_locateDEL12';</script>");
@@ -1386,7 +1387,7 @@ namespace UI.Controllers
             List<human_fileModel> huameModel = hhhhh.selectupdate(id);
             human_fileModel model = new human_fileModel();
             model.human_file_status = false;
-            model.id = huameModel[0].id;
+            model.huf_id = huameModel[0].huf_id;
             model.recovery_time = DateTime.Now;
             int pd = hhhhh.updateztai(model);
             if (pd > 0)
@@ -1412,7 +1413,7 @@ namespace UI.Controllers
         public ActionResult Deletefa() {
             string hu = Request["fa"].ToString();
             List<human_fileModel> huameModel = hhhhh.selectupdate(Request["fa"].ToString());
-            int it = huameModel[0].id;
+            int it = huameModel[0].huf_id;
             int pd = hhhhh.delete(it);
             if (pd > 0)
             {

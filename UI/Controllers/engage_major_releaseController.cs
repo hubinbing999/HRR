@@ -260,6 +260,10 @@ namespace UI.Controllers
             List<config_majorModel> list = cmib.selectxlk1(Mid);
             return Content(JsonConvert.SerializeObject(list));
         }
+        /// <summary>
+        /// 根据2级查3级
+        /// </summary>
+        /// <returns></returns>
         public ActionResult sxlk() {
             string Sid = Request["Sid"];
             List<config_file_third_kindModel> list = ctb.selectxlk1(Sid);

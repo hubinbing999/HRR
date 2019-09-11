@@ -1,0 +1,223 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/table.css" rel="stylesheet" />
+    <link href="~/javascript/calendar/calendar-win2k-cold-1.css" rel="stylesheet" />
+    <script src="~/javascript/calendar/cal.js"></script>
+    <script src="~/javascript/comm/comm.js"></script>
+    <script src="~/javascript/comm/list.js"></script>
+    <script src="~/javascript/jquery-1.10.2.js"></script>
+    <script src="~/javascript/calendar-ch.js"></script>
+    <script src="~/javascript/comm/time.js"></script>
+    <link href="~/css/cwcalendar.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            var sid = $("#bb").val();
+            var bid = $("#cc").val();
+            $.ajax({
+                url: "/major_change/SeByy",
+                type: "post",
+                data: "sid=" + sid,
+                success: function (msg) {
+                    $("#cc option").remove();
+                    var $qxz = $("<option value='' selected='selected'>全部</option>");
+                    $("#cc").append($qxz);
+                    var data = eval("(" + msg + ")");
+                    for (var i = 0; i < data.length; i++) {
+                        var $items = $("<option value='" + data[i]["second_kind_id"] + "'>" + data[i]["second_kind_name"] + "</option>");
+                        $("#cc").append($items);
+                    };
+                }
+            });
+            $("#bb").change(function () {
+                var sid = $("#bb").val();
+                $.ajax({
+                    url: "/major_change/SeByy",
+                    type: "post",
+                    data: "sid=" + sid,
+                    success: function (msg) {
+                        $("#cc option").remove();
+                        var $qxz = $("<option value='' selected='selected'>全部</option>");
+                        $("#cc").append($qxz);
+                        $("#dd option").remove();
+                        var $qxz1 = $("<option value='' selected='selected'>全部</option>");
+                        $("#dd").append($qxz1);
+                        var data = eval("(" + msg + ")");
+                        for (var i = 0; i < data.length; i++) {
+                            var $items = $("<option value='" + data[i]["second_kind_id"] + "'>" + data[i]["second_kind_name"] + "</option>");
+                            $("#cc").append($items);
+                        };
+                    }
+                });
+            });
+            var bid = $("#cc").val();
+            $.ajax({
+                url: "/major_change/SeByyy",
+                type: "post",
+                data: "bid=" + bid,
+                success: function (msg) {
+                    $("#dd option").remove();
+                    var $qxz = $("<option value='' selected='selected'>全部</option>");
+                    $("#dd").append($qxz);
+                    var data = eval("(" + msg + ")");
+                    for (var i = 0; i < data.length; i++) {
+                        var $items = $("<option value='" + data[i]["third_kind_id"] + "'>" + data[i]["third_kind_name"] + "</option>");
+                        $("#dd").append($items);
+                    };
+                }
+            });
+            $("#cc").click(function () {
+                var bid = $("#cc").val();
+                $.ajax({
+                    url: "/major_change/SeByyy",
+                    type: "post",
+                    data: "bid=" + bid,
+                    success: function (msg) {
+                        $("#dd option").remove();
+                        var $qxz = $("<option value='' selected='selected'>全部</option>");
+                        $("#dd").append($qxz);
+                        var data = eval("(" + msg + ")");
+                        for (var i = 0; i < data.length; i++) {
+                            var $items = $("<option value='" + data[i]["third_kind_id"] + "'>" + data[i]["third_kind_name"] + "</option>");
+                            $("#dd").append($items);
+                        };
+                    }
+                });
+            })
+            var qid = $("#ee").val();
+            $.ajax({
+                url: "/major_change/SeByyyy",
+                type: "post",
+                data: "qid=" + qid,
+                success: function (msg) {
+                    $("#ff option").remove();
+                    var $qxz = $("<option value='' selected='selected'>全部</option>");
+                    $("#ff").append($qxz);
+                    var data = eval("(" + msg + ")");
+                    for (var i = 0; i < data.length; i++) {
+                        var $items = $("<option value='" + data[i]["major_id"] + "'>" + data[i]["major_name"] + "</option>");
+                        $("#ff").append($items);
+                    };
+                }
+            });
+            $("#ee").change(function () {
+                var qid = $("#ee").val();
+                $.ajax({
+                    url: "/major_change/SeByyyy",
+                    type: "post",
+                    data: "qid=" + qid,
+                    success: function (msg) {
+                        $("#ff option").remove();
+                        var $qxz = $("<option value='' selected='selected'>全部</option>");
+                        $("#ff").append($qxz);
+                        var data = eval("(" + msg + ")");
+                        for (var i = 0; i < data.length; i++) {
+                            var $items = $("<option value='" + data[i]["major_id"] + "'>" + data[i]["major_name"] + "</option>");
+                            $("#ff").append($items);
+                        };
+                    }
+                });
+            })
+
+
+            $(document).on("click", "#cha", function () {
+                var yi = $('#bb option:selected').val();//选中的文本
+                // alert(yi)
+                var er = $("#cc option:selected").val();
+                var san = $("#dd option:selected").val();
+                var si = $("#ee option:selected").val();
+                var wu = $("#ff option:selected").val();
+                var date_start = $("#date_start").val();
+                var date_end = $("#date_end").val();
+                // window.location.href = "/check_list/atjcx?yi="+yi+"&er=" + er + "&san=" + san + "&si=" + si + "&wu="+ wu + "&dateks=" + date_start + "&datejs=" + date_end;
+                $.ajax({
+                    url: "/major_change/atjcx",
+                    type: "post",
+                    data: "yi=" + yi + "&er=" + er + "&san=" + san + "&si=" + si + "&wu=" + wu + "&dateks=" + date_start + "&datejs=" + date_end,
+                    success: function (msg) {
+                    }
+                })
+            })
+        })
+    </script>
+    <title>locate</title>
+</head>
+<body>
+    <table width="100%">
+        <tr>
+            <td>
+                <font color="black">您正在做的业务是：人力资源--调动管理--调动查询 </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                @*@Html.ActionLink("查询", "list")*@
+                <input type="submit" value="查询" class="BUTTON_STYLE1" id="cha">
+            </td>
+        </tr>
+    </table>
+    <table width="100%" border="1" cellpadding=0 cellspacing=1
+           bordercolorlight=#848284 bordercolordark=#eeeeee
+           class="TABLE_STYLE1">
+        <tr class="TR_STYLE1">
+            <td width="16%" class="TD_STYLE1">
+                请选择员工所在I级机构
+            </td>
+            <td width="84%" class="TD_STYLE2">
+                @Html.DropDownList("first_kind_id", @ViewBag.dt4 as IEnumerable<SelectListItem>, new { @id = "bb", @style = "width:350px", size = "5" })
+
+            </td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                请选择员工所在II级机构
+            </td>
+            <td width="84%" class="TD_STYLE2" id="td1">
+                <select id="cc" name="second_kind_id" style="width:350px" size="5"></select>
+            </td>
+        </tr>
+        <tr class="TR_STYLE1">
+            <td width="16%" class="TD_STYLE1">
+                请选择员工所在III级机构
+            </td>
+            <td width="84%" class="TD_STYLE2" id="td2">
+                <select id="dd" name="third_kind_id" style="width:350px" size="5"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                请选择职位分类
+            </td>
+            <td width="84%" class="TD_STYLE2">
+                @Html.DropDownList("new_major_kind_id", @ViewBag.dt7 as IEnumerable<SelectListItem>, new { @id = "ee", @style = "width:350px", size = "5", })
+
+            </td>
+        </tr>
+        <tr class="TR_STYLE1">
+            <td width="16%" class="TD_STYLE1">
+                请选择职位名称
+            </td>
+            <td width="84%" class="TD_STYLE2" id="td3">
+                <select id="ff" name="new_major_id" style="width:350px" size="5"></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="TD_STYLE1">
+                请输入建档时间
+            </td>
+            <td width="84%" class="TD_STYLE2">
+                <input name="utilbean.startDate" onclick="aa('utilbean.startDate')" type="text" class="INPUT_STYLE2" id="date_start" style="width:24% " value="" size="30">
+                至<input type="text" name="utilbean.endDate" onclick="aa('utilbean.endDate')" value="" style="width:24% " class="INPUT_STYLE2" id="date_end">
+                （YYYY-MM-DD）
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

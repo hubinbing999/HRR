@@ -10,7 +10,7 @@ namespace Model
     public class human_fileModel
     {
         [Required(ErrorMessage = "id不能为空")]
-        public System.Int32 id { get; set; }
+        public System.Int32 huf_id { get; set; }
 
         [Required(ErrorMessage = "编号不能为空")]
         public System.String human_id { get; set; }

@@ -155,7 +155,7 @@ namespace DAO
             }
             else
             {
-                sql = string.Format(@"select A.id, text, A.PID, Aaddress, state from [dbo].[Access] A  inner join Permission p on a.id=p.Aid where p.roleID='{0}'and a.PID=0", Aid);
+                sql = string.Format(@"select A.id, text, A.PID, Aaddress, state from [dbo].[Access] A  inner join Permisson p on a.id=p.Aid where p.roleID='{0}'and a.PID=0", Aid);
 
             }
             return DBHelper.SelectTable(sql);

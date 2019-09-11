@@ -1,0 +1,179 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/javascript/jquery-1.10.2.js"></script>
+    <script src="~/javascript/json.js"></script>
+    <script src="~/javascript/comm/comm.js"></script>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <title>register_locate2</title>
+    <script type="text/javascript">
+        var currentPage = 1;
+        var pages = 1;
+        var pagesize = 2;
+        $(function () {
+            fill();
+
+            //首页
+            $("#first").click(function () {
+                currentPage = 1;
+                fill();
+            })
+            //上一页
+            $("#prev").click(function () {
+                if (currentPage > 1) {
+                    currentPage--;
+                } else {
+                    currentPage = 1;
+                }
+                fill();
+
+            })
+            //下一页
+            $("#next").click(function () {
+                if (currentPage < pages) {
+                    currentPage++;
+                } else {
+                    currentPage = pages;
+                }
+                fill();
+            })
+            //尾页
+            $("#last").click(function () {
+                currentPage = pages;
+                fill();
+            })
+
+            $("#ti").click(function () {
+                var zhi = $("#sr").val();
+                if (zhi > pages) {
+                    alert("你输入的椰树大于总页数,重新输入!!");
+                    //document.getElementById("sr").value = null;
+                } else {
+                    currentPage = zhi;
+                }
+                fill();
+                document.getElementById("sr").value = null;
+            })
+        })
+
+        function fill() {
+            $("#tb tr:gt(0)").remove();
+            $.ajax({
+                url: "/transfer/SelectFenYe",
+                type: "post",
+                data: "dqy=" + currentPage + "&pagesize=" + pagesize + "&yi=" + localStorage.getItem("yi") + "&er=" + localStorage.getItem("er") + "&san=" + localStorage.getItem("san") + "&dateStart=" + localStorage.getItem("dateStart") + "&dateEnd=" + localStorage.getItem("dateEnd"),
+                success: function (msg) {
+                    var data = eval("(" + msg + ")");
+                    var dt = data.dt;
+                    for (var i = 0; i < dt.length; i++) {
+                        var $tr = $("<tr height='21'></tr>");
+                        var $td2 = $("<td class='TD_STYLE2'>" + dt[i].first_kind_name + "</td>");
+                        var $td3 = $("<td class='TD_STYLE2'>" + dt[i].second_kind_name + "</td>");
+                        var $td4 = $("<td class='TD_STYLE2'>" + dt[i].third_kind_name + "</td>");
+                        var $td5 = $("<td class='TD_STYLE2'>" + dt[i].salary_standard_name + "</td>");
+                        var $td6 = $("<td class='TD_STYLE2'>" + dt[i].human_name + "</td>");
+                        var $td7 = $("<td class='TD_STYLE2'><a href='/transfer/index3?id=" + dt[i].huf_id + "'>调动</td>");
+                        $tr.append($td2, $td3, $td4, $td5, $td6, $td7);
+                        $("#tb").append($tr);
+                    }
+                    var rows = data.rows;
+                    pages = data.pages;
+                    $("#zs").text(rows);//总页数
+                    $("#my").text(pagesize)//每页显示数
+                    $("#gjy").text(pages);//共几页
+                    $("#dqy").text(currentPage)//当前页
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <font color="black"> 您在做的业务是-人力资源-调动管理-调动登记列表 </font>
+    <br /><br /><br />
+
+    <table width="100%" border="1" cellpadding=0 cellspacing=1
+           bordercolorlight=#848284 bordercolordark=#eeeeee
+           class="TABLE_STYLE1" id="tb">
+        <tr height="21">
+            <td width="19%" class="TD_STYLE1">
+                I级机构
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                II级机构
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                Ⅲ级机构
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                薪酬标准
+            </td>
+            <td width="19%" class="TD_STYLE1">
+                名字
+            </td>
+            <td width="5%" class="TD_STYLE1">
+                调动
+
+            </td>
+
+        </tr>
+    </table>
+    <p>
+        <div align="center" style="font-size: 18px;color: gray">
+            &nbsp;&nbsp;总数：
+            <font style="color: maroon;font-weight: bold;" id="zs">14</font>
+            例
+            &nbsp;&nbsp;&nbsp;
+            每页显示 <font style="color: maroon;font-weight: bold;" id="my">10</font>
+            条
+            &nbsp;&nbsp;&nbsp;
+            当前第 <font style="color: maroon;font-weight: bold;" id="dqy"></font>
+            页
+            &nbsp;&nbsp;&nbsp;共
+            <font style="color: maroon;font-weight: bold;" id="gjy"></font>
+            页
+            <a style="color: navy;font-weight: bold" href="javascript:doPage(1)" id="first">首页</a>
+
+            <a style="color: navy;font-weight: bold"
+               href="javascript:doPage(0)" id="prev">上一页</a>
+
+            <a style="color: navy;font-weight: bold"
+               href="javascript:doPage(2)" id="next">下一页</a>
+
+            <a style="color: navy;font-weight: bold"
+               href="javascript:doPage(2)" id="last">末页</a>
+            &nbsp;&nbsp;&nbsp;跳到第
+            <input id="sr" type=text value="1" class=input1 size=1>
+            页&nbsp;&nbsp;
+            <input type="image" onclick="dopagebybutton()" src="../../images/go.bmp" width=18 height=18 border=0 id="ti">
+            <input type="hidden" name="page.startPage" id="startpage" value="1">
+        </div>
+        <script type="text/javascript">
+function dopagebybutton() {
+	var reg = /^[0-9]*[1-9][0-9]*$/;
+	if (reg.test(document.getElementById("page").value)) {
+		document.getElementById("startpage").value= document.getElementById("page").value;
+	} else {
+		alert("您的输入有误");
+		document.getElementById("page").value = document.getElementById("startpage").value;
+	}
+	document.forms[0].submit();
+
+}
+function doPage(startsize) {
+	document.getElementById("startpage").value =startsize;
+	document.forms[0].submit();
+
+}
+        </script>
+
+
+</body>
+</body>
+</html>

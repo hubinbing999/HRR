@@ -142,14 +142,14 @@ namespace DAO
         /// <returns></returns>
         public DataTable selectQX(string rid, string pid)
         {
-            string sql = string.Format("select id, text, state,pe.Pid,case when pe.Pid is not null then 1 else 0 end as checked from [Access] a left join(select * from [Permission] where  roleID='{0}') pe on a.id= pe.Aid where a.PID ='{1}'", rid, pid);
+            string sql = string.Format("select id, text, state,pe.Pid,case when pe.Pid is not null then 1 else 0 end as checked from [Access] a left join(select * from [Permisson] where  roleID='{0}') pe on a.id= pe.Aid where a.PID ='{1}'", rid, pid);
             return DBHelper.SelectTable(sql);
 
         }
         //根据角色id删除角色权限表
         public int DeletePer(string rid)
         {
-            string sql = string.Format(@"Delete from[dbo].[Permission] where[roleID] ='{0}'", rid);
+            string sql = string.Format(@"Delete from[dbo].[Permisson] where[roleID] ='{0}'", rid);
             return DBHelper.InsertDeleteUpdate(sql);
 
         }
