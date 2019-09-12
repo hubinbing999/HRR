@@ -1,0 +1,478 @@
+﻿@model Model.engage_resumeModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>resumeselect</title>
+    <link rel="stylesheet"
+          href="../../../css/table.css" type="text/css">
+    <link rel="stylesheet"
+          href="../../../css/cwcalendar.css" type="text/css">
+    <script type="text/javascript"
+            src="../../../javascript/comm/comm.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/comm/list.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/calendar-ch.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/jquery-1.7.2.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/locate.js">
+    </script>
+    <script type="text/javascript"
+            src="../../../javascript/select.js">
+    </script>
+    
+</head>
+<body>
+    <div> 
+        <form name="humanfileForm" method="post" action="/hr/humanfile.do">
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">您正在做的业务是：人力资源--招聘管理--简历管理--有效简历查询--详细 </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="button" value="返回" class="BUTTON_STYLE1" onclick="fh();">
+                    </td>
+                </tr>
+            </table>
+            @Html.HiddenFor(model => model.Id)
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td class="TD_STYLE1">
+                        职位分类
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="engageResume.humanMajorKindId">
+                            <option value="02">
+                                &#36719;&#20214;&#24320;&#21457;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_major_kind_name", @ViewBag.dt as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_major_kind_name" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        职位名称
+                    </td>
+                    <td class="TD_STYLE2" width="20%">
+                        @*<select name="engageResume.majorId">
+                            <option value="">
+                                &#31243;&#24207;&#21592;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_major_name", @ViewBag.dt1 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_major_name" })
+
+
+                    </td>
+                    <td width="11%" class="TD_STYLE1">
+                        招聘类型
+                    </td>
+                    <td class="TD_STYLE2" colspan="2">
+                        @*<select name="engageResume.engageType" class="SELECT_STYLE1">
+                            <option value="&#26657;&#22253;&#25307;&#32856;">
+                                &#26657;&#22253;&#25307;&#32856;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("engage_type", @ViewBag.dt2 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "engage_type" })
+
+
+                    </td>
+                    <td rowspan="6">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        姓名
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text"
+                               value="&#24352;&#39122;"
+                               name="engageResume.humanName" class="INPUT_STYLE2" readonly="readonly" />*@
+                        @Html.EditorFor(model => model.human_name, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "name" , @readonly = true } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        性别
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="engageResume.humanName" class="SELECT_STYLE1">
+                            <option value="&#30007;">
+                                &#30007;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_sex", @ViewBag.dt3 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_sex" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        EMAIL
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanEmail"
+                               value=""
+                               class="INPUT_STYLE2" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_email, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "email" ,@readonly = true} })
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        电话
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanTelephone"
+                               value="84802802"
+                               class="INPUT_STYLE2" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_telephone, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "phone", @readonly=true } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        家庭电话
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanHomephone"
+                               value=""
+                               class="INPUT_STYLE2" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_homephone, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanHomephone", @readonly = true } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        手机
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanMobilephone"
+                               value=""
+                               class="INPUT_STYLE2" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_mobilephone, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanMobilephone", @readonly = true } })
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        住址
+                    </td>
+                    <td colspan="3" class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanAddress"
+                               value="&#28246;&#21335;&#38271;&#27801;"
+                               class="INPUT_STYLE2" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_address, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanAddress", @readonly = true } })
+
+
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        邮编
+                    </td>
+                    <td colspan="2" class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanPostcode"
+                               value="410000"
+                               class="INPUT_STYLE2" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_postcode, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanPostcode", @readonly = true } })
+
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="TD_STYLE1">
+                        国籍
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="engageResume.humanNationality" class="SELECT_STYLE1">
+                            <option value="&#20013;&#22269;">
+                                &#20013;&#22269;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_nationality", @ViewBag.dt4 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_nationality" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        出生地
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanBirthplace"
+                               value=""
+                               class="INPUT_STYLE2" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_birthplace, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanBirthplace", @readonly = true } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        生日
+                    </td>
+                    <td width="13%" colspan="2" class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanBirthday"
+                               value="92-2-2 12:00:00.000"
+                               class="INPUT_STYLE2" id="date_start" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_birthday, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "Text2", @readonly = true } })
+
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td width="11%" class="TD_STYLE1">
+                        民族
+                    </td>
+                    <td class="TD_STYLE2" width="14%">
+                        @*<select name="engageResume.humanRace" class="SELECT_STYLE1">
+                            <option value="&#27721;&#26063;">
+                                &#27721;&#26063;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_race", @ViewBag.dt5 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_race" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        宗教信仰
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="engageResume.humanReligion" class="SELECT_STYLE1">
+                            <option value="&#26080;">
+                                &#26080;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_religion", @ViewBag.dt6 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_religion" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        政治面貌
+                    </td>
+                    <td class="TD_STYLE2" colspan="2">
+                        @*<select name="engageResume.humanParty" class="SELECT_STYLE1">
+                            <option value=""></option>
+                        </select>*@
+                        @Html.DropDownList("human_party", @ViewBag.dt7 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_party" })
+
+
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        身份证号码
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanIdcard"
+                               value="430121199202022323"
+                               class="INPUT_STYLE2" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_idcard, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanIdcard", @readonly = true } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        年龄
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanAge"
+                               value="20"
+                               class="INPUT_STYLE2" readonly="readonly">*@
+                        @Html.EditorFor(model => model.human_age, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanAge", @readonly = true } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        毕业院校
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.humanCollege"
+                               value="&#38271;&#27801;&#29702;&#24037;"
+                               class="INPUT_STYLE2" readonly="readonly" />*@
+                        @Html.EditorFor(model => model.human_college, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanCollege" } })
+
+
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        学历
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="engageResume.humanEducatedDegree"
+                                class="SELECT_STYLE1">
+                            <option value="&#22823;&#19987;">
+                                &#22823;&#19987;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_educated_degree", @ViewBag.dt8 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_educated_degree" })
+
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        教育年限
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="engageResume.humanEducatedYears"
+                                class="SELECT_STYLE1">
+                            <option value="12">
+                                12
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_educated_years", @ViewBag.dt9 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_educated_years" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        学历专业
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="engageResume.humanEducatedMajor"
+                                class="SELECT_STYLE1">
+                            <option value="&#35745;&#31639;&#26426;">
+                                &#35745;&#31639;&#26426;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_educated_major", @ViewBag.dt10 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_educated_major" })
+
+
+                    </td>
+
+                    <td class="TD_STYLE1">
+                        薪酬要求
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.demandSalaryStandard"
+                               value="6000.0"
+                               class="INPUT_STYLE2" readonly="readonly" />*@
+                        @Html.EditorFor(model => model.demand_salary_standard, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "demandSalaryStandard", @readonly = true} })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        注册时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.regist_time, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "regist_time", @readonly = true } })
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td class="TD_STYLE1">
+                        特长
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="engageResume.humanSpecility" class="SELECT_STYLE1">
+                            <option value="java">
+                                java
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_specility", @ViewBag.dt11 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_specility" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        爱好
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<select name="engageResume.humanHobby" class="SELECT_STYLE1">
+                            <option value="&#31726;&#29699;">
+                                &#31726;&#29699;
+                            </option>
+                        </select>*@
+                        @Html.DropDownList("human_hobby", @ViewBag.dt12 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_hobby" })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        推荐人
+                    </td>
+                    <td class="TD_STYLE2">
+                        @*<input type="text" name="engageResume.passChecker"
+                               value="zhangsan, zhangsan"
+                               class="INPUT_STYLE2" readonly="readonly" />*@
+                        @Html.EditorFor(model => model.checker, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "checker", @readonly = true } })
+
+
+                    </td>
+                    <td class="TD_STYLE1">
+                        推荐时间
+                    </td>
+                    <td class="TD_STYLE2">
+                        @Html.EditorFor(model => model.check_time, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "check_time", @readonly = true } })
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        个人履历
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        @*<textarea name="engageResume.humanHistoryRecords" rows="4" readonly="readonly"
+                                  class="TEXTAREA_STYLE1">
+                            &#20010;&#20154;&#23653;&#21382;
+
+                        </textarea>*@
+                        @Html.TextAreaFor(model => model.human_history_records, new { @class = "TEXTAREA_STYLE1", @id = "human_history_records", @rows = "4", @readonly = true })
+
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="TD_STYLE1">
+                        备注
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        @*<textarea name="engageResume.remark" rows="4" readonly="readonly"
+                                  class="TEXTAREA_STYLE1">
+                            &#22791;&#27880;
+
+                        </textarea>*@
+                        @Html.TextAreaFor(model => model.remark, new { @class = "TEXTAREA_STYLE1", @id = "remark", @rows = "4", @readonly = true })
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        推荐意见
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        @*<textarea name="engageResume.recomandation" rows="4" readonly="readonly"
+                                  class="TEXTAREA_STYLE1">
+                            &#25512;&#33616;
+                        </textarea>*@
+                        @Html.TextAreaFor(model => model.recomandation, new { @class = "TEXTAREA_STYLE1", @id = "recomandation", @rows = "4", @readonly = true })
+
+
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function fh() {
+        window.location.href = "/engage_resume/validlist";
+    }
+</script>

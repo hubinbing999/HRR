@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>register</title>
+    <title>resumedetails</title>
     <link rel="stylesheet"
           href="../../../css/table.css" type="text/css">
     <link rel="stylesheet"
@@ -31,29 +31,29 @@
     <script type="text/javascript"
             src="../../../javascript/select.js">
     </script>
-    <script type="text/javascript" src="../../javascript/jquery-1.7.2.js"></script>
+    <script src="~/javascript/jquery-1.10.2.js"></script>
     <script src="~/DatePicker/WdatePicker.js"></script>
 </head>
 <body>
-    <div id="div123"> 
-        <form id="form" name="fm" action="/engage_resume/register" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="engageResume.passCheckcomment" value="不通过" />
-            <input type="hidden" name="engageResume.passPasscomment" value="不通过" />
-            <input type="hidden" name="engageResume.checkStatus" value="false" />
+    <div>
+        <form name="humanfileForm" method="post" action="/engage_resume/resumedetails" id="form">
+
             <table width="100%">
                 <tr>
                     <td>
-                        <font color="black">您正在做的业务是：人力资源--招聘管理--简历管理--简历登记 </font>
+                        <font color="black">
+                            您正在做的业务是：人力资源--招聘管理--简历管理--简历筛选--简历筛选编辑
+                        </font>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">
-
-                        <input type="button" value="提交" class="BUTTON_STYLE1" onclick="return mysubmit()">
-                        <input type="reset" value="清除" class="BUTTON_STYLE1">
+                        <input type="button" value="推荐" class="BUTTON_STYLE1" onclick="return search()">
+                        <input type="button" value="返回" class="BUTTON_STYLE1" onclick="fh()">
                     </td>
                 </tr>
             </table>
+            @Html.HiddenFor(model => model.Id)
             <table width="100%" border="1" cellpadding=0 cellspacing=1
                    bordercolorlight=#848284 bordercolordark=#eeeeee
                    class="TABLE_STYLE1">
@@ -62,21 +62,22 @@
                         职位分类
                     </td>
                     <td class="TD_STYLE2">
-                        <input type="hidden" value="01" id="humanMajorKindId" name="engageResume.humanMajorKindId" />
-                        @*<select name="engageResume.humanMajorKindName" class="SELECT_STYLE1">
-                            <option value="销售">销售</option>
+
+                        @*<select name="engageResume.humanMajorKindId">
+                            <option value="02">
+                                &#36719;&#20214;&#24320;&#21457;
+                            </option>
                         </select>*@
-                        @Html.HiddenFor(model=>model.register)
-                        @Html.DropDownList("human_major_kind_name", @ViewBag.dt as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id= "human_major_kind_name" })
+                        @Html.DropDownList("human_major_kind_name", @ViewBag.dt as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_major_kind_name" })
                     </td>
                     <td class="TD_STYLE1">
                         职位名称
                     </td>
                     <td class="TD_STYLE2" width="20%">
-
-                        <input type="hidden" value="02" name="engageResume.humanMajorId" />
-                        @*<select name="engageResume.humanMajorName" class="SELECT_STYLE1">
-                            <option value="总经理">总经理</option>
+                        @*<select name="engageResume.majorId">
+                            <option value="02">
+                                &#31243;&#24207;&#21592;
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_major_name", @ViewBag.dt1 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_major_name" })
 
@@ -87,12 +88,16 @@
                     </td>
                     <td class="TD_STYLE2" colspan="2">
                         @*<select name="engageResume.engageType" class="SELECT_STYLE1">
-                            <option value="社会招聘">社会招聘</option>
+                            <option value="&#26657;&#22253;&#25307;&#32856;">
+                                &#26657;&#22253;&#25307;&#32856;
+                            </option>
                         </select>*@
                         @Html.DropDownList("engage_type", @ViewBag.dt2 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "engage_type" })
+
+
                     </td>
                     <td rowspan="6">
-                        @*<input type="button" value="选择图片" class="BUTTON_STYLE1" onclick="xztp()">*@
+                        &nbsp;
                     </td>
                 </tr>
                 <tr>
@@ -100,16 +105,21 @@
                         姓名
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanName" id="name" class="INPUT_STYLE2" />*@
+                        @*<input type="text"
+                               value="&#24352;&#39122;"
+                               name="engageResume.humanName" class="INPUT_STYLE2" />*@
                         @Html.EditorFor(model => model.human_name, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "name" } })
+
+
                     </td>
                     <td class="TD_STYLE1">
                         性别
                     </td>
                     <td class="TD_STYLE2">
                         @*<select name="engageResume.humanSex" class="SELECT_STYLE1">
-                            <option value="男">男</option>
-                            <option value="女">女</option>
+                            <option value="&#30007;">
+                                &#30007;
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_sex", @ViewBag.dt3 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_sex" })
 
@@ -119,7 +129,9 @@
                         EMAIL
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanEmail" id="email" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanEmail"
+                               value=""
+                               class="INPUT_STYLE2">*@
                         @Html.EditorFor(model => model.human_email, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "email" } })
 
 
@@ -130,7 +142,9 @@
                         电话
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanTelephone" id="phone" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanTelephone"
+                               value="84802802"
+                               class="INPUT_STYLE2">*@
                         @Html.EditorFor(model => model.human_telephone, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "phone" } })
 
 
@@ -139,7 +153,9 @@
                         家庭电话
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanHomephone" id="humanHomephone" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanHomephone"
+                               value="84802888"
+                               class="INPUT_STYLE2">*@
                         @Html.EditorFor(model => model.human_homephone, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanHomephone" } })
 
 
@@ -148,7 +164,9 @@
                         手机
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanMobilephone" id="humanMobilephone" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanMobilephone"
+                               value="13523322345"
+                               class="INPUT_STYLE2">*@
                         @Html.EditorFor(model => model.human_mobilephone, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanMobilephone" } })
 
 
@@ -159,7 +177,9 @@
                         住址
                     </td>
                     <td colspan="3" class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanAddress" value="" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanAddress"
+                               value="&#28246;&#21335;&#38271;&#27801;"
+                               class="INPUT_STYLE2">*@
                         @Html.EditorFor(model => model.human_address, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanAddress" } })
 
 
@@ -169,7 +189,9 @@
                         邮编
                     </td>
                     <td colspan="2" class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanPostcode" value="" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanPostcode"
+                               value="410000"
+                               class="INPUT_STYLE2">*@
                         @Html.EditorFor(model => model.human_postcode, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanPostcode" } })
 
 
@@ -182,12 +204,9 @@
                     </td>
                     <td class="TD_STYLE2">
                         @*<select name="engageResume.humanNationality" class="SELECT_STYLE1">
-                            <option value="">--请选择--</option>
-
-                            <option value="中国">中国</option>
-
-                            <option value="美国">美国</option>
-
+                            <option value="&#20013;&#22269;">
+                                &#20013;&#22269;
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_nationality", @ViewBag.dt4 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_nationality" })
 
@@ -197,7 +216,9 @@
                         出生地
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanBirthplace" value="" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanBirthplace"
+                               value=""
+                               class="INPUT_STYLE2">*@
                         @Html.EditorFor(model => model.human_birthplace, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanBirthplace" } })
 
 
@@ -206,8 +227,14 @@
                         生日
                     </td>
                     <td width="13%" colspan="2" class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanBirthday" id="birthday" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanBirthday"
+                               value="1992-02-02 12:00:00"
+                               class="INPUT_STYLE2" id="date_start">*@
+
                         @Html.EditorFor(model => model.human_birthday, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "Text2" } })
+
+
+                    </td>
 
                 </tr>
                 <tr>
@@ -216,12 +243,9 @@
                     </td>
                     <td class="TD_STYLE2" width="14%">
                         @*<select name="engageResume.humanRace" class="SELECT_STYLE1">
-                            <option value="">--请选择--</option>
-
-                            <option value="汉族">汉族</option>
-
-                            <option value="回族">回族</option>
-
+                            <option value="&#27721;&#26063;">
+                                &#27721;&#26063;
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_race", @ViewBag.dt5 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_race" })
 
@@ -232,11 +256,9 @@
                     </td>
                     <td class="TD_STYLE2">
                         @*<select name="engageResume.humanReligion" class="SELECT_STYLE1">
-
-                            <option value="无">无</option>
-
-                            <option value="佛教">佛教</option>
-
+                            <option value="&#26080;">
+                                &#26080;
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_religion", @ViewBag.dt6 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_religion" })
 
@@ -247,12 +269,7 @@
                     </td>
                     <td class="TD_STYLE2" colspan="2">
                         @*<select name="engageResume.humanParty" class="SELECT_STYLE1">
-                            <option value="">--请选择--</option>
-
-                            <option value="党员">党员</option>
-
-                            <option value="群众">群众</option>
-
+                            <option value=""></option>
                         </select>*@
                         @Html.DropDownList("human_party", @ViewBag.dt7 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_party" })
 
@@ -266,7 +283,9 @@
                         身份证号码
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanIdcard" value="" id="card" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanIdcard"
+                               value="430121199202022323"
+                               class="INPUT_STYLE2">*@
                         @Html.EditorFor(model => model.human_idcard, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanIdcard" } })
 
 
@@ -275,7 +294,9 @@
                         年龄
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanAge" id="humanAge" class="INPUT_STYLE2">*@
+                        @*<input type="text" name="engageResume.humanAge"
+                               value="20"
+                               class="INPUT_STYLE2">*@
                         @Html.EditorFor(model => model.human_age, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanAge" } })
 
 
@@ -284,7 +305,9 @@
                         毕业院校
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.humanCollege" class="INPUT_STYLE2" />*@
+                        @*<input type="text" name="engageResume.humanCollege"
+                               value="&#38271;&#27801;&#29702;&#24037;"
+                               class="INPUT_STYLE2" />*@
                         @Html.EditorFor(model => model.human_college, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "humanCollege" } })
 
 
@@ -294,13 +317,11 @@
                         学历
                     </td>
                     <td class="TD_STYLE2">
-                        @*<select name="engageResume.humanEducatedDegree" class="SELECT_STYLE1">
-                            <option value="">--请选择--</option>
-
-                            <option value="本科">本科</option>
-
-                            <option value="大专">大专</option>
-
+                        @*<select name="engageResume.humanEducatedDegree"
+                                class="SELECT_STYLE1">
+                            <option value="&#22823;&#19987;">
+                                &#22823;&#19987;
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_educated_degree", @ViewBag.dt8 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_educated_degree" })
 
@@ -313,13 +334,11 @@
                         教育年限
                     </td>
                     <td class="TD_STYLE2">
-                        @*<select name="engageResume.humanEducatedYears" class="SELECT_STYLE1">
-                            <option value="">--请选择--</option>
-
-                            <option value="12">12</option>
-
-                            <option value="16">16</option>
-
+                        @*<select name="engageResume.humanEducatedYears"
+                                class="SELECT_STYLE1">
+                            <option value="12">
+                                12
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_educated_years", @ViewBag.dt9 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_educated_years" })
 
@@ -329,13 +348,11 @@
                         学历专业
                     </td>
                     <td class="TD_STYLE2">
-                        @*<select name="engageResume.humanEducatedMajor" class="SELECT_STYLE1">
-                            <option value="">--请选择--</option>
-
-                            <option value="生物工程">生物工程</option>
-
-                            <option value="计算机">计算机</option>
-
+                        @*<select name="engageResume.humanEducatedMajor"
+                                class="SELECT_STYLE1">
+                            <option value="&#35745;&#31639;&#26426;">
+                                &#35745;&#31639;&#26426;
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_educated_major", @ViewBag.dt10 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_educated_major" })
 
@@ -346,7 +363,9 @@
                         薪酬要求
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.demandSalaryStandard" id="demandSalaryStandard" class="INPUT_STYLE2" />*@
+                        @*<input type="text" name="engageResume.demandSalaryStandard"
+                               value="6000.0"
+                               class="INPUT_STYLE2" />*@
                         @Html.EditorFor(model => model.demand_salary_standard, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "demandSalaryStandard" } })
 
 
@@ -355,10 +374,9 @@
                         注册时间
                     </td>
                     <td class="TD_STYLE2">
-                        @*<input type="text" name="engageResume.registTime"
-                        id="nowTime" readonly="readonly"
-                        class="INPUT_STYLE2">*@
-                        @Html.EditorFor(model => model.regist_time, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "nowTime", @readonly = true } })
+                        @*<input type="hidden" value="12-11-25 13:50:30.000" name="engageResume.registTime">
+                        2012-11-25 01:50:30*@
+                        @Html.EditorFor(model => model.regist_time, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "regist_time", @readonly = true } })
 
 
                     </td>
@@ -371,12 +389,9 @@
                     </td>
                     <td class="TD_STYLE2">
                         @*<select name="engageResume.humanSpecility" class="SELECT_STYLE1">
-                            <option value="">--请选择--</option>
-
-                            <option value="数据库">数据库</option>
-
-                            <option value="java">java</option>
-
+                            <option value="java">
+                                java
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_specility", @ViewBag.dt11 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_specility" })
 
@@ -387,28 +402,33 @@
                     </td>
                     <td class="TD_STYLE2">
                         @*<select name="engageResume.humanHobby" class="SELECT_STYLE1">
-                            <option value="">--请选择--</option>
-
-                            <option value="篮球">篮球</option>
-
-                            <option value="舞蹈">舞蹈</option>
-
+                            <option value="&#31726;&#29699;">
+                                &#31726;&#29699;
+                            </option>
                         </select>*@
                         @Html.DropDownList("human_hobby", @ViewBag.dt12 as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "human_hobby" })
 
 
                     </td>
                     <td class="TD_STYLE1">
-                        &nbsp;
+                        推荐人
                     </td>
                     <td class="TD_STYLE2">
-                        &nbsp;
+                        @*<input type="text" name="engageResume.passChecker"
+                               value="zhangsan"
+                               class="INPUT_STYLE2" />*@
+                        @Html.DropDownListFor(model => model.checker, @ViewBag.dl as IEnumerable<SelectListItem>, new { @class = "SELECT_STYLE1", @id = "register" })
                     </td>
                     <td class="TD_STYLE1">
-                        &nbsp;
+                        推荐时间
                     </td>
                     <td class="TD_STYLE2">
-                        &nbsp;
+                        @*<input type="text" name="engageResume.passCheckTime"
+                               id="nowTime" readonly="readonly"
+                               class="INPUT_STYLE2">*@
+                        @Html.EditorFor(model => model.check_time, new { htmlAttributes = new { @class = "INPUT_STYLE2", @id = "nowTime", @readonly = true } })
+
+
                     </td>
                 </tr>
                 <tr>
@@ -416,8 +436,11 @@
                         个人履历
                     </td>
                     <td colspan="7" class="TD_STYLE2">
-                        @*<textarea name="engageResume.humanHistoryRecords" rows="4" class="TEXTAREA_STYLE1"></textarea>*@
-                        @Html.TextAreaFor(model => model.human_history_records, new { @class = "TEXTAREA_STYLE1", @id = "humanHistoryRecords", @rows = "4" })
+                        @*<textarea name="engageResume.humanHistoryRecords" rows="4" readonly="readonly"
+                                  class="TEXTAREA_STYLE1">
+                            &#20010;&#20154;&#23653;&#21382;
+                        </textarea>*@
+                        @Html.TextAreaFor(model => model.human_history_records, new { @class = "TEXTAREA_STYLE1", @id = "human_history_records", @rows = "4", @readonly = true })
 
 
                     </td>
@@ -428,15 +451,28 @@
                         备注
                     </td>
                     <td colspan="7" class="TD_STYLE2">
-                        @*<textarea name="engageResume.remark" rows="4" class="TEXTAREA_STYLE1"></textarea>*@
-                        @Html.TextAreaFor(model => model.remark, new { @class = "TEXTAREA_STYLE1", @id = "humanRemark", @rows = "4" })
+                        @*<textarea name="engageResume.remark" rows="4" readonly="readonly"
+                                  class="TEXTAREA_STYLE1">
+                            &#22791;&#27880;
+                        </textarea>*@
+                        @Html.TextAreaFor(model => model.remark, new { @class = "TEXTAREA_STYLE1", @id = "remark", @rows = "4", @readonly = true })
 
 
                     </td>
                 </tr>
+                <tr>
+                    <td class="TD_STYLE1">
+                        推荐意见
+                    </td>
+                    <td colspan="7" class="TD_STYLE2">
+                        @*<textarea name="engageResume.recomandation" rows="4"
+                                  class="TEXTAREA_STYLE1"></textarea>*@
+                        @Html.TextAreaFor(model => model.recomandation, new { @class = "TEXTAREA_STYLE1", @id = "recomandation", @rows = "4"})
+                    </td>
+                </tr>
             </table>
-            </form>
-</div>
+        </form>
+    </div>
 </body>
 </html>
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
@@ -481,9 +517,6 @@
 		}
 </script>
 <script type="text/javascript">
-    //function xztp() {
-    //    window.location.href = "/engage_resume/filesupload";
-    //}
     $(document).on("focus", "#Text2", function () {
         WdatePicker({ onpicking: function (dp) { if (dp.cal.getDateStr() != dp.cal.getNewDateStr()) { Func(dp.cal.getNewDateStr()) } } });
         function Func(tim) {
@@ -509,125 +542,102 @@
         var nl = ff - nf;
         $("#humanAge").val(nl);
     })
-            function mysubmit(){
-                if(document.getElementById("name").value==""){
-                    alert("请填写姓名");
-                    return false;
-                }
-                if(document.getElementById("phone").value==""){
-                    alert("请填写电话");
-                    return false;
-                }else if(isNaN(document.getElementById("phone").value)){
-                    alert("电话号码请填写数字");
-                    return false;
-                }
-                var humanIdcard = $("#humanIdcard").val();
-                var nf = humanIdcard.slice(6, 10);
-                var yf = humanIdcard.slice(10, 12);
-                var rf = humanIdcard.slice(12, 14);
-                var sj = nf + "-" + yf + "-" + rf;
-                if($("#Text2").val()!=sj){
-                    alert("生日和身份证上的不符合，请重新填写");
-                    return false;
-                }
-                if (document.getElementById("humanIdcard").value == "") {
-                    alert("请填写身份证号码");
-                    return false;
-                }
-                var humanIdcard = $("#humanIdcard").val();
-                var nf = humanIdcard.slice(6, 10);
-                var sDate = new Date();
-                var ff = sDate.getFullYear();
-                var nl = ff - nf;
-                if ($("#humanAge").val() != nl) {
-                    alert("年龄和身份证上的不符合，请重新填写");
-                    return false;
-                }
-                var v = $("#humanIdcard").val();
-                if (v.length<18) {
-                    alert("身份证号码不正确");
-                    return false;
-                }
-                if (document.getElementById("email").value != "") {
-                    var email=document.getElementById("email").value;
-                    if(email.indexOf(".")<=-1 || email.indexOf("@{@Html.Raw("@")}")<=-1){
-                        alert("Email格式不匹配，如：123.com");
-                        return false;
+    function fh() {
+        window.location.href = "/engage_resume/resumelist";
+    }
+ 		function search(){
+ 		    if(document.getElementById("name").value==""){
+ 		        alert("请填写姓名");
+ 		        return false;
+ 		    }
+ 		    if(document.getElementById("phone").value==""){
+ 		        alert("请填写电话");
+ 		        return false;
+ 		    }else if(isNaN(document.getElementById("phone").value)){
+ 		        alert("电话号码请填写数字");
+ 		        return false;
+ 		    }
+ 		    if (document.getElementById("humanIdcard").value == "") {
+ 		        alert("请填写身份证号码");
+ 		        return false;
+ 		    }
+ 		    var humanIdcard = $("#humanIdcard").val();
+ 		    var nf = humanIdcard.slice(6, 10);
+ 		    var sDate = new Date();
+ 		    var ff = sDate.getFullYear();
+ 		    var nl = ff - nf;
+ 		    if ($("#humanAge").val() != nl) {
+ 		        alert("年龄和身份证上的不符合，请重新填写");
+ 		        return false;
+ 		    }
+ 		    var v = $("#humanIdcard").val();
+ 		    if (v.length<18) {
+ 		        alert("身份证号码不正确");
+ 		        return false;
+ 		    }
+ 		    if (document.getElementById("email").value != "") {
+ 		        var email=document.getElementById("email").value;
+ 		        if(email.indexOf(".")<=-1 || email.indexOf("@{@Html.Raw("@")}")<=-1){
+ 		            alert("Email格式不匹配，如：123.com");
+ 		            return false;
+ 		        }
+ 		    }
+ 		    if (document.getElementById("email").value == "") {
+ 		        alert("请填写Email");
+ 		        return false;
+ 		    }
+ 		    if (document.getElementById("humanHomephone").value != "") {
+ 		        if (isNaN(document.getElementById("humanHomephone").value)) {
+ 		            alert("家庭电话请填写数字");
+ 		            return false;
+ 		        }
+ 		    }
+ 		    if (document.getElementById("humanHomephone").value == "") {
+ 		        alert("请填写家庭电话");
+ 		        return false;
+ 		    }
+ 		    if (document.getElementById("humanMobilephone").value != "") {
+ 		        if (isNaN(document.getElementById("humanMobilephone").value)) {
+ 		            alert("手机请填写数字");
+ 		            return false;
+ 		        }
+ 		    }
+ 		    if ($("#humanPostcode").length>10) {
+ 		        alert("邮编长度不能超过10位");
+ 		        return false;
+ 		    }
+ 		    if ($("#humanPostcode").val() =="") {
+ 		        alert("请填写邮编");
+ 		        return false;
+ 		    }
+ 		    if (document.getElementById("humanMobilephone").value == "") {
+ 		        alert("请填写手机");
+ 		        return false;
+ 		    }
+ 		    if (document.getElementById("humanAge").value != "") {
+ 		        if (isNaN(document.getElementById("humanAge").value)) {
+ 		            alert("年龄请填写数字");
+ 		            return false;
+ 		        }
+ 		    }
+ 		    if (document.getElementById("humanAge").value == "")
+ 		    {
+ 		        alert("请填写年龄");
+ 		        return false;
+ 		    }
+ 		    $.ajax({
+ 		        url: "/engage_resume/resumedetails",
+                type:"post",
+                data:$("#form").serialize(),
+                success: function (msg) {
+                    if (msg > 0) {
+                        alert("推荐成功");
+                        window.location.href = "/engage_resume/resumelist";
+                    } else {
+                        alert("推荐失败");
+                        window.location.href = "/engage_resume/resumelist";
                     }
                 }
-                if (document.getElementById("email").value == "") {
-                    alert("请填写Email");
-                    return false;
-                }
-                if (document.getElementById("humanHomephone").value != "") {
-                    if (isNaN(document.getElementById("humanHomephone").value)) {
-                        alert("家庭电话请填写数字");
-                        return false;
-                    }
-                }
-                if (document.getElementById("humanHomephone").value == "") {
-                    alert("请填写家庭电话");
-                    return false;
-                }
-                if (document.getElementById("humanMobilephone").value != "") {
-                    if (isNaN(document.getElementById("humanMobilephone").value)) {
-                        alert("手机请填写数字");
-                        return false;
-                    }
-                }
-                if ($("#humanPostcode").length>10) {
-                    alert("邮编长度不能超过10位");
-                    return false;
-                }
-                if ($("#humanPostcode").val() =="") {
-                    alert("请填写邮编");
-                    return false;
-                }
-                if (document.getElementById("humanMobilephone").value == "") {
-                    alert("请填写手机");
-                    return false;
-                }
-                if (document.getElementById("humanAge").value != "") {
-                    if (isNaN(document.getElementById("humanAge").value)) {
-                        alert("年龄请填写数字");
-                        return false;
-                    }
-                }
-                if (document.getElementById("humanAge").value == "")
-                {
-                    alert("请填写年龄");
-                    return false;
-                }
-                var hm = $("#human_major_kind_name").find('option:selected').text();
-                var hmn = $("#human_major_name").find('option:selected').text();
-                var et = $("#engage_type").find('option:selected').text();
-                var hs = $("#human_sex").find('option:selected').text();
-                var hmt = $("#human_nationality").find('option:selected').text();
-                var hr = $("#human_race").find('option:selected').text();
-                var hrg = $("#human_religion").find('option:selected').text();
-                var hp = $("#human_party").find('option:selected').text();
-                var hed = $("#human_educated_degree").find('option:selected').text();
-                var hey = $("#human_educated_years").find('option:selected').text();
-                var hem = $("#human_educated_major").find('option:selected').text();
-                var hsp = $("#human_specility").find('option:selected').text();
-                var hh = $("#human_hobby").find('option:selected').text();
-                $.ajax({
-                    url: "/engage_resume/register",
-                    type: "post",
-                    data: $("#form").serialize() + "&hm=" + hm + "&hmn=" + hmn + "&et=" + et + "&hs=" + hs
-                    + "&hmt=" + hmt + "&hr=" + hr + "&hrg=" + hrg + "&hp=" + hp + "&hed=" + hed +
-                    "&hey=" + hey + "&hem=" + hem + "&hsp=" + hsp + "&hh=" + hh,
-                    success: function (msg) {
-                        if (msg > 0) {
-                            alert("提交成功");
-                            var id = msg;
-                            window.location.href = "/engage_resume/filesupload?eid=" + id;
-                        } else {
-                            alert("提交失败");
-                            window.location.href = "/engage_resume/register";
-                        }
-                    }
-                })
-            }
-    
+ 		    })
+ 		}
 </script>

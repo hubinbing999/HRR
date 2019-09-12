@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,7 +49,7 @@ namespace Model
         public string checker { get; set; }
         public DateTime check_time { get; set; }
         public int interview_status { get; set; }
-        public float total_points { get; set; }
+        public int total_points { get; set; }
         public int test_amount { get; set; }
         public string test_checker { get; set; }
         public DateTime test_check_time { get; set; }

@@ -202,7 +202,7 @@ namespace DAO
             }
             fym.rows = rows;
             fym.list = list;
-            fym.pageSize = (rows % rl == 0 ? rows / rl : rows % rl + 1);
+            fym.pageSize = (rows % rl == 0 ? rows / rl : rows / rl + 1);
             return fym;
         }
     }
