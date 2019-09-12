@@ -445,7 +445,7 @@ namespace DAO
             }
             cs.li = li;
             cs.MyProperty = rows;
-            cs.zys = (rows % rl == 0 ? rows / rl : rows % rl + 1);
+            cs.zys = (rows % rl == 0 ? rows / rl : rows / rl + 1);
             return cs;
         }
 
@@ -477,7 +477,7 @@ namespace DAO
             }
             cs.li = li;
             cs.MyProperty = rows;
-            cs.zys = (rows % ji.rl == 0 ? rows / ji.rl : rows % ji.rl + 1);
+            cs.zys = (rows % ji.rl == 0 ? rows / ji.rl : rows / ji.rl + 1);
             return cs;
         }
         private bool GetCondition(human_file fb, Cansh ji)

@@ -223,7 +223,7 @@ namespace DAO
             }
             cs.li = li;
             cs.MyProperty = rows;
-            cs.zys = (rows % rl == 0 ? rows / rl : rows % rl + 1);
+            cs.zys = (rows % rl == 0 ? rows / rl : rows / rl + 1);
             return cs;
         }
         static MyDbContext db = CreateDbContext();
@@ -291,7 +291,7 @@ namespace DAO
             }
             cs.li = li;
             cs.MyProperty = rows;
-            cs.zys = (rows % rl == 0 ? rows / rl : rows % rl + 1);
+            cs.zys = (rows % rl == 0 ? rows / rl : rows / rl + 1);
             return cs;
         }
     }
