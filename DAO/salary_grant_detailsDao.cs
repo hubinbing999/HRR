@@ -15,13 +15,15 @@ namespace DAO
     {
         public int Add(salary_grant_detailsModel item)
         {
-            salary_grant_details ko = new salary_grant_details(); 
-                      
-                    ko.salary_grant_id = item.salary_grant_id;  
-                    ko.human_id = item.human_id;  
-                    ko.human_name = item.human_name;  
-                    ko.salary_standard_sum = item.salary_standard_sum;  
-                    ko.salary_paid_sum = item.salary_paid_sum;
+            salary_grant_details ko = new salary_grant_details();
+            ko.salary_grant_id = item.salary_grant_id;
+            ko.human_id = item.human_id;
+            ko.human_name = item.human_name;
+            ko.bouns_sum = item.bouns_sum;
+            ko.sale_sum = item.sale_sum;
+            ko.deduct_sum = item.deduct_sum;
+            ko.salary_standard_sum = item.salary_standard_sum;
+            ko.salary_paid_sum = item.salary_paid_sum; 
             return  Add(ko);
         }
 

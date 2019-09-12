@@ -50,7 +50,7 @@
             </tr>
             <tr>
                 <td colspan="2" style="text-align: left">
-                    薪酬单编号：{{dt}}
+                    薪酬单编号：待定
                     <input type="hidden" name="salaryGrant.salaryGrantId" value="HS1353753198460">
                 </td>
             </tr>
@@ -58,7 +58,7 @@
                 <td colspan="2" style="text-align: left">
                     机构：
 
-                    {{message}}
+                    I
 
 
 
@@ -68,10 +68,10 @@
             </tr>
             <tr>
                 <td style="text-align: left">
-                    本机构总人数:{{zys}}
+                    本机构总人数:<span id="zrs"></span>
                     <input type="hidden" name="salaryGrant.humanAmount" value="5">
-                    ，基本薪酬总数:{{dqy}}<input type="hidden" name="salaryGrant.salaryStandardSum" value="139823.0" />
-                    ，实发总额:<span id="salarySum_sum">{{sfje}}</span>
+                    ，基本薪酬总数:<span id="ze"></span>
+                    ，实发总额:<span id="ze1"></span>
                     <input type="hidden" id="salaryPaidSum" name="salaryGrant.salaryPaidSum" value="139823.0" />
 
                 </td>
@@ -282,13 +282,16 @@
  		        success: function (msg) {
  		            console.info(msg)
  		            var dd = eval("(" + msg + ")");
+ 		            var zrs = 0;
+ 		            var sfze = 0;
  		            for (var i = 0; i < dd.length; i++) {
+ 		                zrs = zrs + 1;
  		                //详细
  		                var xx=dd[i].salary_grant_details;
  		                var hi = $('<input type="hidden" name="grantDetails[' + i + '].salaryGrantId" value="'+ xx.salary_grant_id+'">')
  		                var hi1 = $('<input type="hidden" id="salaryStandardSum' + (i + 1) + '" name="grantDetails[' + i + '].salaryStandardSum" value="' + xx.salary_standard_sum + '" />');
  		                var tr=$('<tr class="TD_STYLE2"></tr>');
- 		                var td=$('<td>'+xx.id+'</td>');
+ 		                var td=$('<td>'+(i+1)+'</td>');
  		                var td1 = $('<td>'+ xx.human_id + '</td>');
  		                var input=$('<input type="hidden" name="grantDetails['+i+'].humanId" value="'+xx.human_id+'" />');
  		                td1.append(input);
@@ -315,10 +318,14 @@
  		                tdu4.append(tdu5);
  		                var tdu6=$('<td></td>');
  		                var tdu7=$('<input type="text" name="grantDetails['+i+'].salaryPaidSum" readonly="readonly" id="salaryPaidSum'+(i+1)+'" value="'+xx.salary_standard_sum+'" class="INPUT_STYLE2" />')
+ 		                sfze = sfze + xx.salary_standard_sum;
  		                tdu6.append(tdu7);
  		                tr.append(tdu,tdu2,tdu4,tdu6);
  		                $("#fa").append(hi,hi1,tr);
  		            }
+ 		            $("#zrs").text(zrs);
+ 		            $("#ze").text(sfze);
+ 		            $("#ze1").text(sfze);
  		        }
  		  	    })
  		  	    $(document).on("click", "#gzxq", function () {
@@ -339,41 +346,7 @@
  		  	        })
  		  	    })
  		})
- 		var vr = new Vue({
- 		    el: "#ji",
- 		    data: {
- 		        dt: null,
- 		        message: null,
- 		        zys: null,
- 		        dqy: null,
- 		        sfje: null
- 		    },
- 		    methods: {
- 		        load: function () {
- 		            var t = this;
- 		            $.ajax({
- 		                url: "/salary_grant/Shuju",
- 		                type: "post",
- 		                data: "",
- 		                success: function (msg) {
- 		                    console.info(msg)
- 		                    var dd = eval("(" + msg + ")");
- 		                    console.info(dd);
- 		                    t.dt = dd.salary_standard_id;
- 		                    t.message = dd.third_kind_name;
- 		                    t.zys = dd.human_amount;
- 		                    t.dqy = dd.salary_standard_sum;
- 		                    //currentPage = dd.zys;
- 		                    t.sfje = dd.salary_paid_sum;
- 		                }
- 		            });
- 		        }
-
- 		    },
- 		    created: function () {
- 		        this.load();
- 		    }
- 		})
+ 	
     </SCRIPT>
 </body>
 </html>

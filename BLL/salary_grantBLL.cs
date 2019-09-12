@@ -55,6 +55,9 @@ namespace BLL
         public int updateFan(salary_grantModel item) {
             return st1.updateFan(item);
         }
+        public List<string> bianHao() {
+            return st1.bianHao();
+        }
     }
 }
                 

@@ -45,6 +45,7 @@
     <Compile Include="bangzhu\CXinCan.cs" />
     <Compile Include="bangzhu\query_locateCan.cs" />
     <Compile Include="bangzhu\salarystandard_query_locateCan.cs" />
+    <Compile Include="bangzhu\salary_grantANDsalary_grant_details.cs" />
     <Compile Include="bangzhu\salary_grantCan.cs" />
     <Compile Include="bangzhu\salary_grant_detailsASsalary_standard.cs" />
     <Compile Include="bangzhu\salary_standardFenYe.cs" />

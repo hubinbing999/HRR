@@ -864,41 +864,41 @@ namespace UI.Controllers
             int pd=hhhhh.update12(human);
             if (pd > 0)
             {
-                //给薪酬发放添加数据
-                //一级编号
-                string ii = list[0].first_kind_id;
-                //2级编号
-                string i2 = list[0].second_kind_id;
-                //3级编号
-                string i3 = list[0].third_kind_id;
-                //查询薪酬发放
-                salary_grantIBLL sa = iocComm.salary_grantBLL();
-                //薪酬发放详情
-                salary_grant_detailsIBLL de = iocComm.salary_grant_detailsBLL();
-                List<salary_grantModel> salary=  sa.select1();
-                int p2d = 0;
-                foreach (salary_grantModel item in salary)
-                {
-                    //如果1 2 3 级相同  给薪酬发放详情 添加一条信息
-                    if (item.first_kind_id.Equals(ii) && item.second_kind_id.Equals(i2) && item.third_kind_id.Equals(i3)) {
-                        salary_grant_detailsModel details = new salary_grant_detailsModel();
-                        details.salary_grant_id= item.salary_grant_id;
-                        //档案编号
-                        details.human_id= list[0].human_id;
-                        details.human_name= list[0].human_name;
-                        details.salary_standard_sum= list[0].salary_sum;
-                        details.salary_paid_sum= list[0].salary_sum;
-                        p2d= de.Add1(details);
-                        //修改薪酬发放表
-                        salary_grantModel cgai = new salary_grantModel();
-                        cgai.sgr_id = item.sgr_id;
-                        cgai.human_amount = item.human_amount + 1;
-                        cgai.salary_standard_sum=item.salary_standard_sum+ list[0].salary_sum;
-                        cgai.salary_paid_sum=item.salary_paid_sum+ list[0].salary_sum;
-                        int xg=  sa.updateFan(cgai);
+                ////给薪酬发放添加数据
+                ////一级编号
+                //string ii = list[0].first_kind_id;
+                ////2级编号
+                //string i2 = list[0].second_kind_id;
+                ////3级编号
+                //string i3 = list[0].third_kind_id;
+                ////查询薪酬发放
+                //salary_grantIBLL sa = iocComm.salary_grantBLL();
+                ////薪酬发放详情
+                //salary_grant_detailsIBLL de = iocComm.salary_grant_detailsBLL();
+                //List<salary_grantModel> salary=  sa.select1();
+                //int p2d = 0;
+                //foreach (salary_grantModel item in salary)
+                //{
+                //    //如果1 2 3 级相同  给薪酬发放详情 添加一条信息
+                //    if (item.first_kind_id.Equals(ii) && item.second_kind_id.Equals(i2) && item.third_kind_id.Equals(i3)) {
+                //        salary_grant_detailsModel details = new salary_grant_detailsModel();
+                //        details.salary_grant_id= item.salary_grant_id;
+                //        //档案编号
+                //        details.human_id= list[0].human_id;
+                //        details.human_name= list[0].human_name;
+                //        details.salary_standard_sum= list[0].salary_sum;
+                //        details.salary_paid_sum= list[0].salary_sum;
+                //        p2d= de.Add1(details);
+                //        //修改薪酬发放表
+                //        salary_grantModel cgai = new salary_grantModel();
+                //        cgai.sgr_id = item.sgr_id;
+                //        cgai.human_amount = item.human_amount + 1;
+                //        cgai.salary_standard_sum=item.salary_standard_sum+ list[0].salary_sum;
+                //        cgai.salary_paid_sum=item.salary_paid_sum+ list[0].salary_sum;
+                //        int xg=  sa.updateFan(cgai);
 
-                    }
-                }
+                //    }
+                //}
                 return JavaScript("alert('修改成功'); window.location.href='/human_file/wenjian?uid=" + list[0].id + "'");
 
 

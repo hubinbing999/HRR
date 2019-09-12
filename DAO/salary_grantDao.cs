@@ -17,37 +17,48 @@ namespace DAO
 {
     public class salary_grantDAO : Daobase<salary_grant>, salary_grantIDAO
     {
-        public int Add(salary_grantModel item)
-        {
+        //获取编号
+
+        public List<string> bianHao() {
             string sql = "dj";
             SqlParameter[] ji = {
                      new SqlParameter(){ ParameterName="@danhao",Size=14, SqlDbType= SqlDbType.VarChar, Direction= ParameterDirection.Output},
                 };
             DataTable dt = DBHaipu.SelectProc(sql, ji, "");
             //获取值
+            List<string> sttt = new List<string>();
             string r = ji[0].Value.ToString();
 
-         
 
-            salary_grant ko = new salary_grant();
-                    ko.salary_grant_id = r;
+
+
+            sttt.Add(r);
             string sql1 = "FF";
             SqlParameter ji1 = new SqlParameter() { ParameterName = "@danhao", Size = 14, SqlDbType = SqlDbType.VarChar, Direction = ParameterDirection.Output };
-               
+
             DataTable dt1 = DBHaipu.SelectProc1(sql1, ji1, "");
             //获取值
             string r1 = ji1.Value.ToString();
-            ko.salary_standard_id = r1;  
+            sttt.Add(r1);
+            return sttt;
+        }
+
+        public int Add(salary_grantModel item)
+        {
+            
+         
+
+                    salary_grant ko = new salary_grant();
+                    ko.salary_grant_id = item.salary_grant_id;
+                    ko.salary_standard_id = item.salary_standard_id;  
                     ko.first_kind_id = item.first_kind_id;  
-                    ko.first_kind_name = item.first_kind_name;  
-                    ko.second_kind_id = item.second_kind_id;  
-                    ko.second_kind_name = item.second_kind_name;  
-                    ko.third_kind_id = item.third_kind_id;  
-                    ko.third_kind_name = item.third_kind_name;  
+                    ko.first_kind_name = item.first_kind_name;
+                    ko.second_kind_id = item.second_kind_id;
+                    ko.second_kind_name = item.second_kind_name;
                     ko.human_amount = item.human_amount;  
                     ko.salary_standard_sum = item.salary_standard_sum;  
-                    ko.salary_paid_sum = item.salary_paid_sum;  
-                   
+                    ko.salary_paid_sum = item.salary_paid_sum;
+            ko.register = item.register;
                     ko.regist_time = DateTime.Now;  
                    
                     ko.check_time = DateTime.Now;  

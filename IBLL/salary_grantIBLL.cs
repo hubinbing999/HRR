@@ -11,6 +11,7 @@ namespace IBLL
 {
   public  interface salary_grantIBLL
     {
+        List<string> bianHao();
         int Add1(salary_grantModel st);
         List<salary_grantModel> select1();
         int update1(salary_grantModel st);

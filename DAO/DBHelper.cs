@@ -41,7 +41,7 @@ namespace DAO
 
         private static SqlConnection CreateConnection()
         {
-            string conStr = @"Data Source=DESKTOP-5R3I0RP;Initial Catalog=HR_DB;Persist Security Info=True;User ID=sa;Password=123";
+            string conStr = @"Data Source=.;Initial Catalog=112;Integrated Security=True";
             SqlConnection cn = new SqlConnection(conStr);
             return cn;
         }

@@ -338,10 +338,13 @@ namespace UI.Controllers
             string mc4 = "";
             foreach (config_majorModel item in list4)
             {
-                if (erid.Equals(item.major_id))
-                {
-                    mc4 = item.major_name;
+                if (mkid.Equals(item.major_kind_id)) {
+                    if (erid.Equals(item.major_id))
+                    {
+                        mc4 = item.major_name;
+                    }
                 }
+                
             }
             engage_major_releaseModel emrm = new engage_major_releaseModel();
             emrm.first_kind_id = fkid;

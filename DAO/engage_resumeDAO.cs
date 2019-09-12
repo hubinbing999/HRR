@@ -733,7 +733,7 @@ namespace DAO
             var data = db.Set<engage_resume>().OrderBy(e => e.Id).AsNoTracking();
             rows = data.Count();
             List<engage_resume> list2 = new List<engage_resume>();
-            list2 = FenYe(e => e.Id, e => e.interview_status == 4, ref rows, currentPage, rl);
+            list2 = FenYe(e => e.Id, e => e.interview_status == 4 && e.check_status==1, ref rows, currentPage, rl);
             foreach (engage_resume item in list2)
             {
                 engage_resumeModel ko = new engage_resumeModel();

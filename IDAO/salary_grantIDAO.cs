@@ -11,6 +11,7 @@ namespace IDAO
 {
   public  interface salary_grantIDAO
     {
+        List<string> bianHao();
         int Add(salary_grantModel st);
         List<salary_grantModel> select();
         int update(salary_grantModel st);

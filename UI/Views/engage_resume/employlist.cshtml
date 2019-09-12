@@ -135,7 +135,7 @@
             load: function () {
                 var v = this;
                 $.ajax({
-                    url: "/engage_resume/employchecklist2",
+                    url: "/engage_resume/employlist2",
                     type: "post",
                     data: $("#form").serialize() + "&currentPage=" + currentPage + "&rl=" + rl,
                     success: function (msg) {

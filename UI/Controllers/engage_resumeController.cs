@@ -1180,7 +1180,7 @@ namespace UI.Controllers
         {
             int currentPage = int.Parse(Request["currentPage"]);
             int rl = int.Parse(Request["rl"]);
-            FenyeModel2 fy = erb.Fenye6(currentPage, rl);
+            FenyeModel2 fy = erb.Fenye5(currentPage, rl);
             return Content(JsonConvert.SerializeObject(fy));
         }
         public ActionResult employcheck(int id) {

@@ -37,12 +37,12 @@
 
         </table>
         <br>
-        薪酬总数:{{message}}，
-        总人数:{{zys}}，基本薪酬总数:{{dqy}}，实发总额:{{sfje}}
+        薪酬总数:<span id="qianggg"></span>
+        总人数:<span id="zrs"></span>，基本薪酬总数:<span id="qianggg1"></span>，实发总额:<span id="qianggg2"></span>
+              
         <table width="100%" border="1" cellpadding=0 cellspacing=1
                bordercolorlight=#848284 bordercolordark=#eeeeee
-               class="TABLE_STYLE1">
-
+               class="TABLE_STYLE1" id="ka">
             <tr>
                 <td width="10%" class="TD_STYLE1">
                     <span>序号</span>
@@ -65,17 +65,7 @@
                     登记
                 </td>
             </tr>
-            <tr class="TD_STYLE2" v-for="(item,index) in dt">
-                <td>
-                    {{item.sgr_id}}
-                </td>
-                <td>{{item.first_kind_name}}</td>
-                <td>{{item.second_kind_name}}</td>
-                <td>{{item.human_amount}}</td>
-                <td>{{item.salary_standard_sum}}</td>
 
-                <td><a v-on:click="cz(item.id)" v-bind:href="['/salary_grant/register_commit/'+item.salary_grant_id]">登记</a></td>
-            </tr>
         </table>
         <p>
 
@@ -86,39 +76,45 @@
 </html>
 <script type="text/javascript">
 
-    var vr = new Vue({
-        el: "#ji",
-        data: {
-            dt: null,
-            message: null,
-            zys: null,
-            dqy: null,
-            sfje:null
-        },
-        methods: {
-            load: function () {
-                var t = this;
-                $.ajax({
-                    url: "/salary_grant/Yiji",
-                    type: "post",
-                    data: "",
-                    success: function (msg) {
-                        console.info(msg)
-                        var dd = eval("(" + msg + ")");
-                        console.info(dd);
-                        t.dt = dd.li;
-                        t.message = dd.xczs;
-                        t.zys = dd.zrs;
-                        t.dqy = dd.salary_standard_sum;
-                        //currentPage = dd.zys;
-                        t.sfje = dd.salary_paid_sum;
-                    }
-                });
-            }
+    $(function () {
+        $.ajax({
+            url: "/salary_grant/Yiji",
+            type: "post",
+            data: "",
+            success: function (msg) {
+                console.info(msg)
+                var dd = eval("(" + msg + ")");
+                //list salary_grantANDsalary_grant_details
+                console.info(dd);
+                //一个 salary_grantANDsalary_grant_details
+                var zrs = 0;
+                var xcze = 0;
+                for (var i = 0; i < dd.length; i++) {
 
-        } ,
-        created: function () {
-            this.load();
-        }})
+                    //salary_grant
+                    var ji = dd[i].salary_grant;
+                    var id = dd[i].id;
+                    zrs = zrs + ji.human_amount;
+                    xcze = xcze + ji.salary_standard_sum;
+                    var tr = $("<tr class='TD_STYLE2'></tr>");
+                    var td = $("<td>" + (i + 1) + "</td>");
+                    var td1 = $("<td>" + ji.first_kind_name + "</td>");
+                    var td5 = $("<td>" + ji.second_kind_name + "</td>");
+                    var td2 = $("<td>" + ji.human_amount + "</td>");
+
+                    var td3 = $("<td>" + ji.salary_standard_sum + "</td>");
+                   
+                    var td4 = $("<td><a href='/salary_grant/register_commit/" + id + "'>登记</a></td>");
+                    tr.append(td, td1,td5, td2, td3, td4);
+                    $("#ka").append(tr);
+                }
+                $("#qianggg").text(xcze);
+                $("#qianggg1").text(xcze);
+                $("#qianggg2").text(xcze);
+                $("#zrs").text(zrs);
+            }
+        });
+
+    })
 </script>
 
